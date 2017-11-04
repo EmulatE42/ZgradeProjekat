@@ -1,7 +1,7 @@
 package com.ftn.ZgradeProjekat.service.implementation;
 
-import com.ftn.ZgradeProjekat.domain.Korisnik;
-import com.ftn.ZgradeProjekat.repository.KorisnikRepository;
+import com.ftn.ZgradeProjekat.domain.User;
+import com.ftn.ZgradeProjekat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Autowired
-  private KorisnikRepository korisnikRepository;
+  private UserRepository userRepository;
 
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String ime) throws UsernameNotFoundException {
-    Korisnik user = korisnikRepository.findByIme(ime);
+    User user = userRepository.findByIme(ime);
 
     if (user == null) {
       throw new UsernameNotFoundException(String.format("No user found with username '%s'.", ime));

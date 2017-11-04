@@ -51,13 +51,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
 			.csrf().disable()
-			.sessionManagement()
+				/*
+				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
+				*/
 			.authorizeRequests()
 				.antMatchers("/index.html", "/api/login", "/api/register").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/**")
 					.hasAuthority("ROLE_ADMIN") //only administrator can add and edit data
+				.antMatchers("/test/hhh").hasAuthority("ROLE_ADMIN")
 				.anyRequest().authenticated();
 				 
 		

@@ -2,11 +2,6 @@ package com.ftn.ZgradeProjekat.domain;
 
 import javax.persistence.*;
 
-/**
- * Mapping table between User and Authority
- * @author Goran
- *
- */
 @Entity
 public class UserAuthority {
 	@Id
@@ -14,7 +9,7 @@ public class UserAuthority {
 	private Long id;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	private Korisnik user;
+	private User user;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private Authority authority;
@@ -27,11 +22,11 @@ public class UserAuthority {
 		this.id = id;
 	}
 
-	public Korisnik getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Korisnik user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

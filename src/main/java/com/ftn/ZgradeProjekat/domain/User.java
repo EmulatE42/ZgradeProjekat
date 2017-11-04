@@ -5,13 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by EmulatE on 02-Nov-17.
+ * Created by djuro on 11/4/2017.
  */
 @Entity
-@Table(name = "korisnik")
-public class Korisnik {
-
-
+public class User
+{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id" , unique = true, nullable = false)
@@ -20,17 +18,16 @@ public class Korisnik {
     @Column(name = "username")
     private String username;
 
-
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
 
-    public Korisnik() {
+    public User() {
 
     }
 
-    public Korisnik(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

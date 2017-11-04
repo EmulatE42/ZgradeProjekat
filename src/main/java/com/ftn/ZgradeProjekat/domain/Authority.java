@@ -9,7 +9,8 @@ public class Authority {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
+	@Column(name = "authority_name")
 	String name;
 	
 	@OneToMany(mappedBy = "authority", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
