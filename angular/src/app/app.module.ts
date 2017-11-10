@@ -1,7 +1,11 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
+
+
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent }  from './app.component';
 import {HomeComponent} from "./components/home/home.component";
 import {AboutComponent} from "./components/about/about.component";
@@ -12,6 +16,8 @@ import { routing } from "./app.routes";
   imports:      [
     BrowserModule,
     routing,
+    HttpModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,

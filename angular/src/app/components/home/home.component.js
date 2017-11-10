@@ -5,10 +5,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require("@angular/core");
+var authentication_service_1 = require("../../services/authentication.service");
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(autheticationService) {
+        this.autheticationService = autheticationService;
+        this.usr = "";
+        this.password = "";
     }
+    HomeComponent.prototype.authenticate = function () {
+        this.autheticationService.authenticateUser(this.usr, this.password).subscribe(function (data) { return localStorage.setItem("loggedUser", JSON.stringify(data)); }, function (error) { return alert("Incorrect username and/or password"); }, function () { return console.log(JSON.parse(localStorage.getItem("loggedUser"))); });
+    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([
@@ -17,7 +27,9 @@ HomeComponent = __decorate([
         selector: 'home',
         templateUrl: './home.component.html',
         styleUrls: ['./home.component.css'],
-    })
+        providers: [authentication_service_1.AuthenticationService]
+    }),
+    __metadata("design:paramtypes", [authentication_service_1.AuthenticationService])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map
