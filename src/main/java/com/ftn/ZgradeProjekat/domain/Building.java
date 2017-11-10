@@ -43,4 +43,5 @@ public class Building
 
     @OneToMany
     private Set<Parlament> parlaments;
+
 }

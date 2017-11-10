@@ -31,4 +31,7 @@ public class Bug
 
     @OneToMany
     private Set<Comment> comments;
+
+    @Column(name = "bug_finished")
+    private Boolean finished;
 }

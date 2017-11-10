@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController
 {
     @RequestMapping(value = "/hhh", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addOrder(){
+    public void test(){
         System.out.println("radiii");
     }
 }

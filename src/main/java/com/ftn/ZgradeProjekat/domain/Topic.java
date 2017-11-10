@@ -30,4 +30,7 @@ public class Topic
 
     @Column(name = "topic_accepted")
     private Boolean accepted;
+
+    @Column(name = "topic_votes")
+    private Long votes;
 }

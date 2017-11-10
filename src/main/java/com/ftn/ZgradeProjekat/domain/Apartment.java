@@ -21,6 +21,7 @@ public class Apartment extends Location
     @Column(name = "apartment_square")
     private Long square;
 
+    //treba promjeniti postaviti Stanar klasu
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "apartment_user_id")
     private User owner;
