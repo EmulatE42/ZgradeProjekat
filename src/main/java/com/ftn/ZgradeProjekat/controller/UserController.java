@@ -1,6 +1,8 @@
 package com.ftn.ZgradeProjekat.controller;
 
-import com.ftn.ZgradeProjekat.domain.DTO.LoginDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.LoginRequestDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.LoginResponseDTO;
+import com.ftn.ZgradeProjekat.domain.User;
 import com.ftn.ZgradeProjekat.security.TokenUtils;
 import com.ftn.ZgradeProjekat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -36,16 +36,17 @@ public class UserController
     TokenUtils tokenUtils;
 
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
-    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginDTO) {
         try {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     loginDTO.getUsername(), loginDTO.getPassword());
             Authentication authentication = authenticationManager.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             UserDetails details = userDetailsService.loadUserByUsername(loginDTO.getUsername());
-            return new ResponseEntity<String>(tokenUtils.generateToken(details), HttpStatus.OK);
+            String userToken = tokenUtils.generateToken(details);
+            return new ResponseEntity<>(new LoginResponseDTO(userToken,-1L,loginDTO.getUsername(),"ADMIN"), HttpStatus.OK);
         } catch (Exception ex) {
-            return new ResponseEntity<String>("Invalid login", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid login", HttpStatus.BAD_REQUEST);
         }
     }
 }
