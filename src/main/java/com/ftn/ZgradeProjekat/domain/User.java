@@ -30,12 +30,13 @@ import java.util.Set;
 
 //Firma - da li je firma isto sto i institucija (da li moze odgovorno lice da otkloni kvar)
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User
 {
     //dodati sliku, email, broj telefona
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id" , unique = true, nullable = false)
     private Integer id;
 
