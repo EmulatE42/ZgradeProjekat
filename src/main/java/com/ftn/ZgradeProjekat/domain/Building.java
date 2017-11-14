@@ -41,7 +41,8 @@ public class Building
     @OneToMany
     private Set<Survey> surveys;
 
-    @OneToMany
-    private Set<Parlament> parlaments;
+    @OneToOne
+    @JoinColumn(referencedColumnName = "parlament_id", name = "building_parlament_id")
+    private Parlament parlament;
 
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -23,19 +24,6 @@ public class Parlament
     @Column(name = "parlament_id", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "parlament_date")
-    private Date date;
-
-    @OneToMany
-    private Set<Topic> topics;
-
-    @Column(name = "parlament_record")
-    private String record;
-
-    @Column(name = "parlament_timetable")
-    private String timetable;
-
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name = "parlament_user_id")
-    private User creator;
+    @OneToMany(mappedBy = "parlament", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Session> sessions = new HashSet<>();
 }
