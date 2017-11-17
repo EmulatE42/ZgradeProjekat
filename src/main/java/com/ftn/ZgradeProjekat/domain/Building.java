@@ -45,4 +45,10 @@ public class Building
     @JoinColumn(referencedColumnName = "parlament_id", name = "building_parlament_id")
     private Parlament parlament;
 
+    public void addLocation(Location location)
+    {
+        locations.add(location);
+
+    }
+
 }
