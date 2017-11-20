@@ -1,10 +1,13 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -12,6 +15,7 @@ import java.util.Set;
  */
 @Entity
 @AllArgsConstructor(suppressConstructorProperties = true)
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "building")
@@ -19,14 +23,14 @@ public class Building
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "restaurant_id", unique = true, nullable = false)
+    @Column(name = "building_id", unique = true, nullable = false)
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @Column(name = "building_date_of_construction")
-    private Long dateOfConstruction;
+    private Date dateOfConstruction;
 
     @OneToOne
     @JoinColumn(referencedColumnName = "id", name = "building_user_id")
@@ -49,6 +53,12 @@ public class Building
     {
         locations.add(location);
 
+    }
+
+    public Building(BuildingDTO buildingDTO)
+    {
+        this.dateOfConstruction = buildingDTO.getDateOfConstruction();
+        this.address = buildingDTO.getAdress();
     }
 
 }

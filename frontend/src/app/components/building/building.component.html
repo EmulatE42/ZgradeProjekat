@@ -1,0 +1,36 @@
+<div class="building_container">
+
+  <div class="form-group">
+    <label class="col-form-label" for="exampleInput">Date of construction</label>
+    <input type="date" class="form-control" id="exampleInput" name="input" [(ngModel)]="dateOfConstruction"
+           placeholder="yyyy-MM-dd" required />
+  </div>
+
+  <div class="form-group">
+    <label class="col-form-label" for="inputDefault1">City</label>
+    <input type="text" class="form-control" id="inputDefault1" [(ngModel)]="city">
+  </div>
+
+  <div class="form-group">
+    <label class="col-form-label" for="inputDefault2">Number</label>
+    <input type="text" class="form-control" id="inputDefault2" [(ngModel)]="buildingNuber">
+  </div>
+
+  <div class="form-group">
+    <label class="col-form-label" for="inputDefault3">Street</label>
+    <input type="text" class="form-control" id="inputDefault3" [(ngModel)]="buildingStreet">
+  </div>
+
+  <div class="form-group">
+    <label class="col-form-label" for="inputDefault4">Postal code</label>
+    <input type="text" class="form-control" id="inputDefault4" [(ngModel)]="postalCode">
+  </div>
+
+  <div class="form-group">
+    <label class="col-form-label" for="inputDefault5">Country</label>
+    <input type="text" class="form-control" id="inputDefault5" [(ngModel)]="country">
+  </div>
+
+  <button type="submit" (click)="addBuilding()" class="btn btn-primary">Add</button>
+
+</div>

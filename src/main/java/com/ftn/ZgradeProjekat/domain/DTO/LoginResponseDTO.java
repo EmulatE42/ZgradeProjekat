@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain.DTO;
 
+import com.ftn.ZgradeProjekat.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,12 @@ public class LoginResponseDTO
     private Long id;
     private String username;
     private String role;
+
+    public LoginResponseDTO(User user)
+    {
+        this.token = user.getPassword();
+        this.id = new Long(user.getId());
+        this.username = user.getUsername();
+        this.role = user.getFirstUserAuthority().getAuthority().getName();
+    }
 }

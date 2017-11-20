@@ -1,0 +1,20 @@
+package com.ftn.ZgradeProjekat.domain.DTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+/**
+ * Created by djuro on 11/19/2017.
+ */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class RegisterUserDTO
+{
+    private String username;
+    private String password;
+    private String role;
+}

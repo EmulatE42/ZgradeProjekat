@@ -1,6 +1,7 @@
 package com.ftn.ZgradeProjekat.controller;
 
 import com.ftn.ZgradeProjekat.domain.Building;
+import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
 import com.ftn.ZgradeProjekat.domain.Location;
@@ -29,8 +30,8 @@ public class BuildingController
         this.buildingService = buildingService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Building> addBuilding(@RequestBody Building building)
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Building> addBuilding(@RequestBody BuildingDTO building)
     {
         Building saved = buildingService.addBuilding(building);
         if(saved == null)
@@ -59,7 +60,7 @@ public class BuildingController
         return new ResponseEntity<>(buildingDTOs, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteBuilding/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/deleteBuilding/{buildingId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteBuilding(@PathVariable("buildingId") Long buildingId)
     {
         Boolean deleted = buildingService.deleteBuilding(buildingId);

@@ -1,6 +1,7 @@
 package com.ftn.ZgradeProjekat.service.implementation;
 
 import com.ftn.ZgradeProjekat.domain.*;
+import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
 import com.ftn.ZgradeProjekat.repository.*;
@@ -40,8 +41,9 @@ public class BuildingServiceImpl implements BuildingService
     }
 
     @Override
-    public Building addBuilding(Building building)
+    public Building addBuilding(BuildingDTO buildingDTO)
     {
+        Building building = new Building(buildingDTO);
         Building saved = null;
         try
         {
