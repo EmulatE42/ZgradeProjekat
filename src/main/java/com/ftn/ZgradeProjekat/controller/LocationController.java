@@ -2,6 +2,7 @@ package com.ftn.ZgradeProjekat.controller;
 
 import com.ftn.ZgradeProjekat.domain.Apartment;
 import com.ftn.ZgradeProjekat.domain.Building;
+import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
 import com.ftn.ZgradeProjekat.domain.Location;
 import com.ftn.ZgradeProjekat.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,11 @@ public class LocationController
         this.locationService = locationService;
     }
 
-    @RequestMapping(value = "/findByLocationId/{apartmentId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Location> getLocationById(@PathVariable("locationId") Long locationId)
+    @RequestMapping(value = "/findByLocationId/{locationId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<LocationDTO> getLocationById(@PathVariable("locationId") Long locationId)
     {
 
-        Location loc = this.locationService.getLocationById(locationId);
+        LocationDTO loc = this.locationService.getLocationById(locationId);
 
         if(loc == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,7 +39,7 @@ public class LocationController
             return new ResponseEntity<>(loc, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteLocation/{apartmentId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/deleteLocation/{locationId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteLocation(@PathVariable("locationId") Long locationId)
     {
 
@@ -48,5 +49,15 @@ public class LocationController
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(deleted, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/connenctTenantAndApartment/{apartmentId}/{tenantId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> connenctTenantAndApartment(@PathVariable("apartmentId") Long apartmentId, @PathVariable("tenantId") Integer tenantId)
+    {
+        Boolean connected = this.locationService.connenctTenantAndApartment(apartmentId,tenantId);
+        if(connected == false)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(connected, HttpStatus.OK);
     }
 }

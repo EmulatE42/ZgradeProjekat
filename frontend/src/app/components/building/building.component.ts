@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import {Address, BuildingDTO} from "../../models";
 import { AdminService } from "../../services/admin.service";
+import { Router }    from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -20,16 +21,21 @@ export class BuildingComponent
   postalCode:string;
   country:string;
 
-  constructor(private adminService: AdminService)
+  constructor(private adminService: AdminService, private _router: Router)
   {
   }
 
   addBuilding()
   {
     this.adminService.addBuilding(new BuildingDTO(null,this.dateOfConstruction,new Address(null,this.city,
-      this.buildingNuber, this.buildingStreet, this.postalCode, this.country))).subscribe(
-      data => console.log(data)
+      this.buildingNuber, this.buildingStreet, this.postalCode, this.country),null)).subscribe(
+      ()=>this.goToDispayAllBuildings()
     );
+  }
+
+  goToDispayAllBuildings()
+  {
+    this._router.navigate(['/adminPage']);
   }
 }
 

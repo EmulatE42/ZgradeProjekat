@@ -62,6 +62,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.hasAuthority("ROLE_ADMIN") //only administrator can add and edit data
 				.antMatchers("/test/hhh").hasAuthority("ROLE_ADMIN")
 				.antMatchers("/building/**").permitAll()
+				.antMatchers("/location/**").permitAll()
+				.antMatchers("/user/**").permitAll()
 				.anyRequest().authenticated();
 				 
 		

@@ -13,17 +13,21 @@ export class AddUserComponent  {
   private usr: string;
   private password: string;
   private userType: string;
+  private firstname: string;
+  private lastname: string;
 
   constructor(private adminService: AdminService)
   {
     this.usr = "";
     this.password = "";
     this.userType = "";
+    this.firstname = "";
+    this.lastname = "";
   }
 
   register()
   {
-    this.adminService.registerUser(this.usr, this.password, this.userType).subscribe(
+    this.adminService.registerUser(this.usr, this.password, this.userType, this.firstname, this.lastname).subscribe(
       data => console.log(data),
     );
   }

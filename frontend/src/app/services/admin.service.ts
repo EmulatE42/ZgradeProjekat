@@ -3,16 +3,16 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import {LoggedUtils} from "../utils/logged.utils";
-import {BuildingDTO} from "../models";
+import {BuildingDTO, LocationDTO} from "../models";
 
 @Injectable()
 export class AdminService
 {
   constructor(private http: Http) {}
 
-  registerUser(username: string, pass: string, role: string)
+  registerUser(username: string, pass: string, role: string, firstname: string, lastname: string)
   {
-    let registerRequest = {username: username, password: pass, role: role};
+    let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname};
     let param = JSON.stringify(registerRequest);
     let headers = new Headers();
 
@@ -38,7 +38,6 @@ export class AdminService
     var headers = new Headers();
     console.log("Token:   "+LoggedUtils.getToken());
     headers.append("X-Auth-Token", LoggedUtils.getToken());
-    headers.append('Content-Type', 'application/json');
     return this.http.get("http://localhost:8080/building/getAllBuilding",{ headers : headers })
       .map(res => res.json());
   }
@@ -52,7 +51,62 @@ export class AdminService
       .map(res => res.json());
   }
 
+  getBuildingById(buildingId:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/building/findByBuildingId/"+buildingId,{ headers : headers })
+      .map(res => res.json());
+  }
 
+
+  addLocation(location : LocationDTO)
+  {
+    var param = JSON.stringify(location);
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    console.log(location);
+    return this.http.post("http://localhost:8080/building/addLocationToBuilding", param, { headers : headers })
+      .map(res => res.json());
+  }
+
+  deleteLocation(locationId : number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete("http://localhost:8080/location/deleteLocation/"+locationId, { headers : headers })
+      .map(res => res.json());
+  }
+
+  getLocationById(locationId : number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/location/findByLocationId/"+locationId, { headers : headers })
+      .map(res => res.json());
+  }
+
+  getAllTenants()
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/user/getAllTenants", { headers : headers })
+      .map(res => res.json());
+  }
+
+  connenctTenantAndApartment(apartmentId:number, tenantId:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.put("http://localhost:8080/location/connenctTenantAndApartment/"+apartmentId+"/"+tenantId, { headers : headers })
+      .map(res => res.json());
+  }
 }
 
 

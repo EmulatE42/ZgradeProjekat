@@ -11,11 +11,24 @@ export class Address
   ) {}
 }
 
+export class LocationDTO
+{
+  constructor( public locationId:number,
+               public type:string,
+               public buildingId:number,
+               public flor:number,
+               public square:number,
+               public numberOfFlors:number,
+               public tenantDTO:TenantDTO
+  ) {}
+}
+
 export class BuildingDTO
 {
   constructor( public id:number,
                public dateOfConstruction:Date,
-               public adress:Address
+               public adress:Address,
+               public locations:LocationDTO[]
   ) {}
 }
 
@@ -25,5 +38,14 @@ export class BuildingListItemDTO
                public city:string,
                public street:string,
                public number:string
+  ) {}
+}
+
+export class TenantDTO
+{
+  constructor( public id:number,
+               public username:string,
+               public firstname:string,
+               public lastname:string
   ) {}
 }

@@ -55,10 +55,11 @@ public class BuildingServiceImpl implements BuildingService
     }
 
     @Override
-    public Building getById(Long buildingId)
+    public BuildingDTO getById(Long buildingId)
     {
         Building building = buildingRepository.findById(buildingId);
-        return building;
+        BuildingDTO buildingDTO = new BuildingDTO(building);
+        return buildingDTO;
     }
 
     @Override
@@ -93,7 +94,7 @@ public class BuildingServiceImpl implements BuildingService
     {
         Building building = buildingRepository.findById(locationDTO.getBuildingId());
         switch (locationDTO.getType()) {
-            case "apartment":
+            case "APARTMENT":
             {
                 Apartment apartment = new Apartment();
                 apartment.setBuilding(building);
@@ -104,7 +105,7 @@ public class BuildingServiceImpl implements BuildingService
                 locationDTO.setLocationId(saved.getId());
                 break;
             }
-            case "hallway":
+            case "HALLWAY":
             {
                 Hallway hallway = new Hallway();
                 hallway.setBuilding(building);
@@ -114,7 +115,7 @@ public class BuildingServiceImpl implements BuildingService
                 locationDTO.setLocationId(saved.getId());
                 break;
             }
-            case "basement":
+            case "BASEMENT":
             {
                 Basement basement = new Basement();
                 basement.setBuilding(building);
@@ -124,7 +125,7 @@ public class BuildingServiceImpl implements BuildingService
                 locationDTO.setLocationId(saved.getId());
                 break;
             }
-            case "attic":
+            case "ATTIC":
             {
                 Attic attic = new Attic();
                 attic.setBuilding(building);

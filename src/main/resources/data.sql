@@ -2,6 +2,14 @@ INSERT INTO buildings.authority(
 	id, authority_name)
 	VALUES (-1, 'ROLE_ADMIN');
 
+INSERT INTO buildings.authority(
+	id, authority_name)
+	VALUES (-2, 'TENANT');
+
+INSERT INTO buildings.authority(
+	id, authority_name)
+	VALUES (-3, 'RESPONSIBLE_PERSON');
+
 INSERT INTO buildings.user(
 	id, password, username)
 	VALUES (-1, '$2a$10$S3rxpwjnJUrmgMrnMCJo8eIRCFvCcmzuPi5Y3Okz67i/2sj6xMfau', 'a');

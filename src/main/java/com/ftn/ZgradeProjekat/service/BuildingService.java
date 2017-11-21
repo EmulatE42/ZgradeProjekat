@@ -14,7 +14,7 @@ public interface BuildingService
 {
     Building addBuilding(BuildingDTO building);
 
-    Building getById(Long buildingId);
+    BuildingDTO getById(Long buildingId);
 
     List<BuildingListItemDTO> getBuildings();
 

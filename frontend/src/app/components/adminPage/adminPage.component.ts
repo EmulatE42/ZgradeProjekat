@@ -30,5 +30,12 @@ export class AdminPageComponent
       data=>console.log(data)
     );
   }
+
+  goToBuilding(buildingId:number)
+  {
+    this.adminService.getBuildingById(buildingId).subscribe(
+      data=>console.log(data)
+    )
+  }
 }
 

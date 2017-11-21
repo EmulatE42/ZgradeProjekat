@@ -43,9 +43,9 @@ public class BuildingController
 
     //building => BuildingDTO
     @RequestMapping(value = "/findByBuildingId/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Building> getById(@PathVariable("buildingId") Long buildingId)
+    public ResponseEntity<BuildingDTO> getById(@PathVariable("buildingId") Long buildingId)
     {
-        Building rest = this.buildingService.getById(buildingId);
+        BuildingDTO rest = this.buildingService.getById(buildingId);
 
         if(rest == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -71,10 +71,9 @@ public class BuildingController
     }
 
 
-    @RequestMapping(value = "/addLocationToBuilding", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/addLocationToBuilding", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LocationDTO> addLocation(@RequestBody LocationDTO locationDTO)
     {
-
         LocationDTO savedLocationDTO = buildingService.addLocationToBuilding(locationDTO);
         return new ResponseEntity<>(savedLocationDTO, HttpStatus.OK);
     }

@@ -12,6 +12,9 @@ import {AboutComponent} from "./components/about/about.component";
 import {AddUserComponent} from "./components/addUser/addUser.component";
 import {BuildingComponent} from "./components/building/building.component";
 import {AdminPageComponent} from "./components/adminPage/adminPage.component";
+import {DisplayBuildingComponent} from "./components/building/displayBuilding/displayBuilding.component";
+import {AddLocationComponent} from "./components/building/addLocation/addLocation.component";
+import {LocationComponent} from "./components/location/location.component";
 
 import { routing } from "./app.routes";
 
@@ -30,7 +33,10 @@ import { routing } from "./app.routes";
     AboutComponent,
     AddUserComponent,
     BuildingComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    DisplayBuildingComponent,
+    AddLocationComponent,
+    LocationComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]
