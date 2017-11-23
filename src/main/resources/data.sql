@@ -27,9 +27,9 @@ INSERT INTO buildings.address(
   VALUES (-2, 'Novi Sad', 'Serbia', '66/3','21000','Gogoljeva');
 
 INSERT INTO buildings.building(
-  building_id,building_date_of_construction, address_id, building_user_id, building_parlament_id)
+  building_id,building_date_of_construction, address_id, building_user_id, building_parliament_id)
   VALUES (-1,'2017-11-16 01:00:00', -1, null, null);
 
 INSERT INTO buildings.building(
-  building_id,building_date_of_construction, address_id, building_user_id, building_parlament_id)
+  building_id,building_date_of_construction, address_id, building_user_id, building_parliament_id)
   VALUES (-2,'2017-11-16 01:00:00', -2, null, null);
