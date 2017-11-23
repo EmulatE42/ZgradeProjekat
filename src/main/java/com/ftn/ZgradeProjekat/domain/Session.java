@@ -41,5 +41,5 @@ public class Session {
     private User creator;
 
     @ManyToOne
-    private Parlament parlament;
+    private Parliament parliament;
 }

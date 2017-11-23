@@ -98,7 +98,7 @@ public class BuildingServiceImpl implements BuildingService
             {
                 Apartment apartment = new Apartment();
                 apartment.setBuilding(building);
-                apartment.setFlor(locationDTO.getFlor());
+                apartment.setFloor(locationDTO.getFloor());
                 apartment.setSquare(locationDTO.getSquare());
                 Apartment saved = apartmentRepository.save(apartment);
                 building.addLocation(saved);
@@ -109,7 +109,7 @@ public class BuildingServiceImpl implements BuildingService
             {
                 Hallway hallway = new Hallway();
                 hallway.setBuilding(building);
-                hallway.setNumberOfFlors(locationDTO.getNumberOfFlors());
+                hallway.setNumberOfFloors(locationDTO.getNumberOfFloors());
                 Hallway saved = hallwayRepository.save(hallway);
                 building.addLocation(saved);
                 locationDTO.setLocationId(saved.getId());
@@ -130,7 +130,7 @@ public class BuildingServiceImpl implements BuildingService
                 Attic attic = new Attic();
                 attic.setBuilding(building);
                 attic.setSquare(locationDTO.getSquare());
-                attic.setFlor(locationDTO.getFlor());
+                attic.setFloor(locationDTO.getFloor());
                 Attic saved = atticRepository.save(attic);
                 building.addLocation(saved);
                 locationDTO.setLocationId(saved.getId());

@@ -14,7 +14,7 @@ export class HomeComponent
   private usr: string;
   private password: string;
 
-  constructor(private autheticationService: AuthenticationService)
+  constructor(private authenticationService: AuthenticationService)
   {
     this.usr = "";
     this.password = "";
@@ -23,7 +23,7 @@ export class HomeComponent
   authenticate()
   {
 
-    this.autheticationService.authenticateUser(this.usr, this.password).subscribe(
+    this.authenticationService.authenticateUser(this.usr, this.password).subscribe(
       data => localStorage.setItem("loggedUser", JSON.stringify(data)),
       error => alert("Incorrect username and/or password"),
       () => console.log(JSON.parse(localStorage.getItem("loggedUser")))

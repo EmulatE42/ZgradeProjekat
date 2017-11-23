@@ -11,7 +11,7 @@
   <div class="form-group" *ngIf="location.type=='APARTMENT' || location.type=='ATTIC'">
     <fieldset disabled="">
       <label class="control-label" for="disabledInput1">Flor</label>
-      <input class="form-control" id="disabledInput1" type="text" disabled="" [(ngModel)]="location.flor">
+      <input class="form-control" id="disabledInput1" type="text" disabled="" [(ngModel)]="location.floor">
     </fieldset>
   </div>
 
@@ -24,8 +24,8 @@
 
   <div class="form-group" *ngIf="location.type=='HALLWAY'">
     <fieldset disabled="">
-      <label class="control-label" for="disabledInput3">Number of flors</label>
-      <input class="form-control" id="disabledInput3" type="text" disabled="" [(ngModel)]="location.numberOfFlors">
+      <label class="control-label" for="disabledInput3">Number of floors</label>
+      <input class="form-control" id="disabledInput3" type="text" disabled="" [(ngModel)]="location.numberOfFloors">
     </fieldset>
   </div>
 

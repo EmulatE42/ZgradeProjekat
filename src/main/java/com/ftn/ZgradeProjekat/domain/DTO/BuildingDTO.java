@@ -39,18 +39,18 @@ public class BuildingDTO
             if(location instanceof Apartment)
             {
                 LocationDTO locationDTO = new LocationDTO(location.getId(),"APARTMENT",location.getBuilding().getId(),
-                        ((Apartment) location).getFlor(),((Apartment) location).getSquare(),null);
+                        ((Apartment) location).getFloor(),((Apartment) location).getSquare(),null);
                 this.locations.add(locationDTO);
             }
             else if(location instanceof Hallway)
             {
                 this.locations.add(new LocationDTO(location.getId(),"HALLWAY",location.getBuilding().getId(),
-                        null,null,((Hallway) location).getNumberOfFlors()));
+                        null,null,((Hallway) location).getNumberOfFloors()));
             }
             else if(location instanceof Attic)
             {
                 this.locations.add(new LocationDTO(location.getId(),"ATTIC",location.getBuilding().getId(),
-                        ((Attic) location).getFlor(),((Attic) location).getSquare(),null));
+                        ((Attic) location).getFloor(),((Attic) location).getSquare(),null));
             }
             else if(location instanceof Basement)
             {

@@ -16,22 +16,22 @@ import lombok.Setter;
 public class LocationDTO
 {
     private Long locationId;
-    private String type; //apartmant,hallway...
+    private String type; //apartment, hallway...
     private Long buildingId;
-    private Long flor;
+    private Long floor;
     private Long square;
-    private Long numberOfFlors;
+    private Long numberOfFloors;
     private TenantDTO tenantDTO;
 
     /*
-    public LocationDTO(Long id, String type, Long buildingId, Long flor, Long square, Long numberOfFlors)
+    public LocationDTO(Long id, String type, Long buildingId, Long floor, Long square, Long numberOfFloors)
     {
         this.locationId = id;
         this.type = type;
         this.buildingId = buildingId;
-        this.flor = flor;
+        this.floor = floor;
         this.square = square;
-        this.numberOfFlors = numberOfFlors;
+        this.numberOfFloors = numberOfFloors;
     }
     */
 
@@ -42,9 +42,9 @@ public class LocationDTO
         if(location instanceof Apartment)
         {
             this.type = "APARTMENT";
-            this.flor = ((Apartment) location).getFlor();
+            this.floor = ((Apartment) location).getFloor();
             this.square = ((Apartment) location).getSquare();
-            this.numberOfFlors = null;
+            this.numberOfFloors = null;
             if(((Apartment) location).getOwner()!=null)
                 this.tenantDTO = new TenantDTO((Tenant)((Apartment) location).getOwner());
             else
@@ -53,25 +53,25 @@ public class LocationDTO
         else if(location instanceof Hallway)
         {
             this.type = "HALLWAY";
-            this.flor = null;
+            this.floor = null;
             this.square = null;
-            this.numberOfFlors = ((Hallway) location).getNumberOfFlors();
+            this.numberOfFloors = ((Hallway) location).getNumberOfFloors();
             this.tenantDTO = null;
         }
         else if(location instanceof Attic)
         {
             this.type = "ATTIC";
-            this.flor = ((Attic) location).getFlor();
+            this.floor = ((Attic) location).getFloor();
             this.square = ((Attic) location).getSquare();
-            this.numberOfFlors = null;
+            this.numberOfFloors = null;
             this.tenantDTO = null;
         }
         else if(location instanceof Basement)
         {
             this.type = "BASEMENT";
-            this.flor = null;
+            this.floor = null;
             this.square = ((Basement) location).getSquare();
-            this.numberOfFlors = null;
+            this.numberOfFloors = null;
             this.tenantDTO = null;
         }
     }

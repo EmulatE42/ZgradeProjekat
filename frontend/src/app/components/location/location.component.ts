@@ -48,7 +48,7 @@ export class LocationComponent implements OnInit
   {
     console.log(this.selectedTenant.username);
 
-    this.adminService.connenctTenantAndApartment(this.location.locationId,this.selectedTenant.id).subscribe
+    this.adminService.connectTenantAndApartment(this.location.locationId,this.selectedTenant.id).subscribe
     (
       (data) => console.log(data),
       error => alert(error)

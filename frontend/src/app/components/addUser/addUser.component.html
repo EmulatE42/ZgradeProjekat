@@ -20,17 +20,17 @@
 
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" [(ngModel)]="password" >
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter password" name="password" [(ngModel)]="password" >
   </div>
 
   <div class="form-group" *ngIf="userType=='TENANT'">
-    <label for="firstname">Firstname</label>
-    <input type="text" class="form-control" id="firstname" placeholder="Enter firstname" name="firstname" [(ngModel)]="firstname" >
+    <label for="firstname">First name</label>
+    <input type="text" class="form-control" id="firstname" placeholder="Enter first name" name="firstname" [(ngModel)]="firstname" >
   </div>
 
   <div class="form-group" *ngIf="userType=='TENANT'">
-    <label for="lastname">Lastname</label>
-    <input type="text" class="form-control" id="lastname" placeholder="Enter username" name="lastname" [(ngModel)]="lastname" >
+    <label for="lastname">Last name</label>
+    <input type="text" class="form-control" id="lastname" placeholder="Enter last name" name="lastname" [(ngModel)]="lastname" >
   </div>
 
   <button type="submit" (click)="register()"  class="btn btn-primary">Register</button>

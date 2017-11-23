@@ -16,7 +16,7 @@ export class BuildingComponent
 {
   dateOfConstruction:Date;
   city:string;
-  buildingNuber:string;
+  buildingNumber:string;
   buildingStreet:string;
   postalCode:string;
   country:string;
@@ -28,12 +28,12 @@ export class BuildingComponent
   addBuilding()
   {
     this.adminService.addBuilding(new BuildingDTO(null,this.dateOfConstruction,new Address(null,this.city,
-      this.buildingNuber, this.buildingStreet, this.postalCode, this.country),null)).subscribe(
-      ()=>this.goToDispayAllBuildings()
+      this.buildingNumber, this.buildingStreet, this.postalCode, this.country),null)).subscribe(
+      ()=>this.goToDisplayAllBuildings()
     );
   }
 
-  goToDispayAllBuildings()
+  goToDisplayAllBuildings()
   {
     this._router.navigate(['/adminPage']);
   }

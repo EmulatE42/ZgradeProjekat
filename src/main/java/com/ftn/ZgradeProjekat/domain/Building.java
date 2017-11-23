@@ -34,7 +34,7 @@ public class Building
 
     @OneToOne
     @JoinColumn(referencedColumnName = "id", name = "building_user_id")
-    private User menager;
+    private User manager;
 
     @OneToMany(mappedBy = "building", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Location> locations;
@@ -46,13 +46,12 @@ public class Building
     private Set<Survey> surveys;
 
     @OneToOne
-    @JoinColumn(referencedColumnName = "parlament_id", name = "building_parlament_id")
-    private Parlament parlament;
+    @JoinColumn(referencedColumnName = "parliament_id", name = "building_parliament_id")
+    private Parliament parliament;
 
     public void addLocation(Location location)
     {
         locations.add(location);
-
     }
 
     public Building(BuildingDTO buildingDTO)

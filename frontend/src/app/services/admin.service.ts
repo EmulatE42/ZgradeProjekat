@@ -38,7 +38,7 @@ export class AdminService
     var headers = new Headers();
     console.log("Token:   "+LoggedUtils.getToken());
     headers.append("X-Auth-Token", LoggedUtils.getToken());
-    return this.http.get("http://localhost:8080/building/getAllBuilding",{ headers : headers })
+    return this.http.get("http://localhost:8080/building/getAllBuildings",{ headers : headers })
       .map(res => res.json());
   }
 
@@ -99,12 +99,12 @@ export class AdminService
       .map(res => res.json());
   }
 
-  connenctTenantAndApartment(apartmentId:number, tenantId:number)
+  connectTenantAndApartment(apartmentId:number, tenantId:number)
   {
     var headers = new Headers();
     headers.append("X-Auth-Token", LoggedUtils.getToken());
     headers.append('Content-Type', 'application/json');
-    return this.http.put("http://localhost:8080/location/connenctTenantAndApartment/"+apartmentId+"/"+tenantId, { headers : headers })
+    return this.http.put("http://localhost:8080/location/connectTenantAndApartment/"+apartmentId+"/"+tenantId, { headers : headers })
       .map(res => res.json());
   }
 }

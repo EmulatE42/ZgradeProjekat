@@ -16,14 +16,14 @@ import java.util.Set;
 @AllArgsConstructor(suppressConstructorProperties = true)
 @Getter
 @Setter
-@Table(name = "parlament")
-public class Parlament
+@Table(name = "parliament")
+public class Parliament
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "parlament_id", unique = true, nullable = false)
+    @Column(name = "parliament_id", unique = true, nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "parlament", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parliament", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Session> sessions = new HashSet<>();
 }

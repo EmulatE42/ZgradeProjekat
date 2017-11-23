@@ -16,9 +16,9 @@ export class AddLocationComponent implements OnInit
 {
 
   type:string;
-  flor:number;
+  floor:number;
   square:number;
-  numberOfFlors:number;
+  numberOfFloors:number;
   buildingId:number;
 
 
@@ -33,12 +33,12 @@ export class AddLocationComponent implements OnInit
   addLocation()
   {
     this.adminService.addLocation(new LocationDTO(null,this.type,this.buildingId,
-      this.flor,this.square,this.numberOfFlors, null)).subscribe(
-      ()=>this.goToDispayBuilding()
+      this.floor,this.square,this.numberOfFloors, null)).subscribe(
+      ()=>this.goToDisplayBuilding()
     );
   }
 
-  goToDispayBuilding()
+  goToDisplayBuilding()
   {
 
     this._router.navigate(['/displayBuilding/'+this.buildingId]);

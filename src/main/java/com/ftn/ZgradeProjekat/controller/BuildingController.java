@@ -53,7 +53,7 @@ public class BuildingController
             return new ResponseEntity<>(rest, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getAllBuilding", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/getAllBuildings", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<BuildingListItemDTO>> getAllBuildings()
     {
         List<BuildingListItemDTO> buildingDTOs = buildingService.getBuildings();

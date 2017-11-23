@@ -16,9 +16,9 @@
       <tr>
         <th>#</th>
         <th>Type</th>
-        <th>Flor</th>
+        <th>Floor</th>
         <th>Square</th>
-        <th>Number of flor</th>
+        <th>Number of floors</th>
         <th>Open</th>
         <th>Delete</th>
       </tr>
@@ -27,12 +27,12 @@
         <tr class="table-active" *ngFor="let l of building.locations; let i = index">
           <td>{{i}}</td>
           <td *ngIf="l.type != null">{{l.type}}</td>
-          <td *ngIf="l.flor != null">{{l.flor}}</td>
-          <td *ngIf="l.flor == null">#</td>
+          <td *ngIf="l.floor != null">{{l.floor}}</td>
+          <td *ngIf="l.floor == null">#</td>
           <td *ngIf="l.square != null">{{l.square}}</td>
           <td *ngIf="l.square != null">#</td>
-          <td *ngIf="l.numberOfFlors != null">{{l.numberOfFlors}}</td>
-          <td *ngIf="l.numberOfFlors != null">#</td>
+          <td *ngIf="l.numberOfFloors != null">{{l.numberOfFloors}}</td>
+          <td *ngIf="l.numberOfFloors != null">#</td>
           <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/location/{{l.locationId}}" routerLinkActive="active">Open</button></div></th>
           <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteLocation(l.locationId, i)">Delete</button></div></th>
         </tr>

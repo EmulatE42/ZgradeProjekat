@@ -50,7 +50,7 @@ public class LocationServiceImpl implements LocationService
     }
 
     @Override
-    public Boolean connenctTenantAndApartment(Long apartmentId, Integer tenantId)
+    public Boolean connectTenantAndApartment(Long apartmentId, Integer tenantId)
     {
         Apartment apartment = (Apartment) this.locationRepository.findById(apartmentId);
         Tenant tenant = this.tenantRepository.findById(tenantId);

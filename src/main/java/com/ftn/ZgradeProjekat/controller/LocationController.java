@@ -1,9 +1,6 @@
 package com.ftn.ZgradeProjekat.controller;
 
-import com.ftn.ZgradeProjekat.domain.Apartment;
-import com.ftn.ZgradeProjekat.domain.Building;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
-import com.ftn.ZgradeProjekat.domain.Location;
 import com.ftn.ZgradeProjekat.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,10 +48,10 @@ public class LocationController
             return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/connenctTenantAndApartment/{apartmentId}/{tenantId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> connenctTenantAndApartment(@PathVariable("apartmentId") Long apartmentId, @PathVariable("tenantId") Integer tenantId)
+    @RequestMapping(value = "/connectTenantAndApartment/{apartmentId}/{tenantId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> connectTenantAndApartment(@PathVariable("apartmentId") Long apartmentId, @PathVariable("tenantId") Integer tenantId)
     {
-        Boolean connected = this.locationService.connenctTenantAndApartment(apartmentId,tenantId);
+        Boolean connected = this.locationService.connectTenantAndApartment(apartmentId,tenantId);
         if(connected == false)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else

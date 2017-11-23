@@ -16,9 +16,9 @@ export class LocationDTO
   constructor( public locationId:number,
                public type:string,
                public buildingId:number,
-               public flor:number,
+               public floor:number,
                public square:number,
-               public numberOfFlors:number,
+               public numberOfFloors:number,
                public tenantDTO:TenantDTO
   ) {}
 }

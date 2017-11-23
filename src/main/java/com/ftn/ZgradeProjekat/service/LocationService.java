@@ -11,5 +11,5 @@ public interface LocationService
 
     Boolean deleteLocation(Long locationId);
 
-    Boolean connenctTenantAndApartment(Long apartmentId, Integer tenantId);
+    Boolean connectTenantAndApartment(Long apartmentId, Integer tenantId);
 }

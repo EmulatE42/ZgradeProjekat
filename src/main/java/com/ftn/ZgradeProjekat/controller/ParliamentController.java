@@ -1,8 +1,7 @@
 package com.ftn.ZgradeProjekat.controller;
 
-import com.ftn.ZgradeProjekat.domain.Building;
-import com.ftn.ZgradeProjekat.domain.Parlament;
-import com.ftn.ZgradeProjekat.service.ParlamentService;
+import com.ftn.ZgradeProjekat.domain.Parliament;
+import com.ftn.ZgradeProjekat.service.ParliamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,15 +14,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/parlament")
-public class ParlamentController {
+public class ParliamentController {
 
     @Autowired
-    private ParlamentService parlamentService;
+    private ParliamentService parliamentService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Parlament> addParlament(@RequestBody Parlament parlament)
+    public ResponseEntity<Parliament> addParlament(@RequestBody Parliament parliament)
     {
-        Parlament saved = parlamentService.addParlament(parlament);
+        Parliament saved = parliamentService.addParliament(parliament);
         if(saved == null)
         {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -33,20 +32,20 @@ public class ParlamentController {
 
 
     @RequestMapping(value = "/getById/{parlamentId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Parlament> getById(@PathVariable("parlamentId") Long parlamentId)
+    public ResponseEntity<Parliament> getById(@PathVariable("parlamentId") Long parlamentId)
     {
-        Parlament parlament = this.parlamentService.getParlament(parlamentId);
+        Parliament parliament = this.parliamentService.getParliament(parlamentId);
 
-        if(parlament == null)
+        if(parliament == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
-            return new ResponseEntity<>(parlament, HttpStatus.OK);
+            return new ResponseEntity<>(parliament, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/deleteParlament/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteParlament(@PathVariable("parlamentId") Long parlamentId)
     {
-        Boolean deleted = this.parlamentService.deleteParlament(parlamentId);
+        Boolean deleted = this.parliamentService.deleteParliament(parlamentId);
         if(deleted == false)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else

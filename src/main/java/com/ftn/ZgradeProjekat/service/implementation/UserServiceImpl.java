@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User changePassword(LoginRequestDTO user)
     {
-        User usr = userRepository.findByIme(user.getUsername());
+        User usr = userRepository.findByUsername(user.getUsername());
         usr.setPassword(user.getPassword());
         return usr;
     }
