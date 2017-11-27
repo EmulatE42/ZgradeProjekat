@@ -1,0 +1,33 @@
+<div class="my_table">
+  <legend>All buildings</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>City</th>
+      <th>Street</th>
+      <th>Building number</th>
+      <th>Open</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let building of buildings; let i = index">
+      <td>{{i}}</td>
+      <td>{{building.city}}</td>
+      <td>{{building.street}}</td>
+      <td>{{building.number}}</td>
+      <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/displayBuilding/{{building.id}}" routerLinkActive="active">Open</button></div></th>
+      <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteBuilding(building.id, i)">Delete</button></div></th>
+    </tr>
+    <tr class="table-success">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><div class="container"><button type="button" class="btn btn-success" routerLink="/makeBuilding" routerLinkActive="active">Add new</button></div></th>
+    </tr>
+    </tbody>
+  </table>
+</div>
