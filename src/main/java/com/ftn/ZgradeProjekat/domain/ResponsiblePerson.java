@@ -8,4 +8,11 @@ import javax.persistence.Entity;
 @Entity
 public class ResponsiblePerson extends User {
 
+    public ResponsiblePerson(User user)
+    {
+        this.setUsername(user.getUsername());
+        this.setPassword(user.getPassword());
+        this.setUserAuthorities(user.getUserAuthorities());
+    }
+
 }

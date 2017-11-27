@@ -16,9 +16,9 @@ export class LoggedUtils
     return roles.indexOf(role) != -1;
   }
 
-  static getEmail()
+  static getUsername()
   {
-    return JSON.parse(localStorage.getItem("loggedUser")).email;
+    return JSON.parse(localStorage.getItem("loggedUser")).username;
   }
 
   static clearLocalStorage()

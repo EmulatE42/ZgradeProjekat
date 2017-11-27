@@ -1,0 +1,50 @@
+  <div align="center">
+  <legend>All location of selected building</legend>
+  <div class="col-md-4">
+    <ul class="list-group">
+      <li *ngIf="building != null" class="list-group-item"><strong>City: </strong>{{building.adress.city}}</li>
+      <li *ngIf="building != null" class="list-group-item"><strong>Street: </strong>{{building.adress.street}}</li>
+      <li *ngIf="building != null" class="list-group-item"><strong>Number: </strong>{{building.adress.number}}</li>
+      <li *ngIf="building != null" class="list-group-item"><strong>Postal Code: </strong>{{building.adress.postalCode}}</li>
+    </ul>
+  </div>
+  </div>
+
+  <div class="my_table">
+    <table class="table table-striped table-hover table-bordered" *ngIf="building != null">
+      <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Type</th>
+        <th>Floor</th>
+        <th>Square</th>
+        <th>Number of floors</th>
+        <th>Open</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr class="table-active" *ngFor="let l of building.locations; let i = index">
+          <td>{{i}}</td>
+          <td *ngIf="l.type != null">{{l.type}}</td>
+          <td *ngIf="l.floor != null">{{l.floor}}</td>
+          <td *ngIf="l.floor == null">#</td>
+          <td *ngIf="l.square != null">{{l.square}}</td>
+          <td *ngIf="l.square != null">#</td>
+          <td *ngIf="l.numberOfFloors != null">{{l.numberOfFloors}}</td>
+          <td *ngIf="l.numberOfFloors != null">#</td>
+          <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/location/{{l.locationId}}" routerLinkActive="active">Open</button></div></th>
+          <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteLocation(l.locationId, i)">Delete</button></div></th>
+        </tr>
+      <tr class="table-success">
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th><div class="container"><button type="button" class="btn btn-success" routerLink="/addLocation/{{building.id}}" routerLinkActive="active">Add new</button></div></th>
+      </tr>
+      </tbody>
+    </table>
+  </div>

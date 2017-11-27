@@ -1,0 +1,26 @@
+<div class="location_container">
+  <h3>Add location</h3>
+  <div class="form-group">
+    <label for="exampleSelect1">Type of location</label>
+    <select class="form-control" id="exampleSelect1" [(ngModel)]="type">
+      <option value="APARTMENT">APARTMENT</option>
+        <option value="BASEMENT">BASEMENT</option>
+      <option value="HALLWAY">HALLWAY</option>
+      <option value="ATTIC">ATTIC</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="type=='APARTMENT' || type=='ATTIC'">
+    <label for="floor">Floor</label>
+    <input type="text" class="form-control" id="floor" placeholder="Enter floor" name="floor" [(ngModel)]="floor" >
+  </div>
+  <div class="form-group" *ngIf="type=='APARTMENT' || type=='ATTIC' || type=='BASEMENT'">
+    <label for="square">Square</label>
+    <input type="text" class="form-control" id="square" placeholder="Enter square" name="square" [(ngModel)]="square" >
+  </div>
+  <div class="form-group" *ngIf="type=='HALLWAY'">
+    <label for="numberOfFloors">Number of floor</label>
+    <input type="text" class="form-control" id="numberOfFloors" placeholder="Enter number of floors" name="numberOfFloors" [(ngModel)]="numberOfFloors" >
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="addLocation()">Add location</button>
+</div>

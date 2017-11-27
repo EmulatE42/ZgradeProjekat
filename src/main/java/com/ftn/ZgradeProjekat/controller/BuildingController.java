@@ -1,6 +1,7 @@
 package com.ftn.ZgradeProjekat.controller;
 
 import com.ftn.ZgradeProjekat.domain.Building;
+import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
 import com.ftn.ZgradeProjekat.domain.Location;
@@ -29,8 +30,8 @@ public class BuildingController
         this.buildingService = buildingService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Building> addBuilding(@RequestBody Building building)
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Building> addBuilding(@RequestBody BuildingDTO building)
     {
         Building saved = buildingService.addBuilding(building);
         if(saved == null)
@@ -42,9 +43,9 @@ public class BuildingController
 
     //building => BuildingDTO
     @RequestMapping(value = "/findByBuildingId/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Building> getById(@PathVariable("buildingId") Long buildingId)
+    public ResponseEntity<BuildingDTO> getById(@PathVariable("buildingId") Long buildingId)
     {
-        Building rest = this.buildingService.getById(buildingId);
+        BuildingDTO rest = this.buildingService.getById(buildingId);
 
         if(rest == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,14 +53,14 @@ public class BuildingController
             return new ResponseEntity<>(rest, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getAllBuilding", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/getAllBuildings", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<BuildingListItemDTO>> getAllBuildings()
     {
         List<BuildingListItemDTO> buildingDTOs = buildingService.getBuildings();
         return new ResponseEntity<>(buildingDTOs, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteBuilding/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/deleteBuilding/{buildingId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteBuilding(@PathVariable("buildingId") Long buildingId)
     {
         Boolean deleted = buildingService.deleteBuilding(buildingId);
@@ -70,10 +71,9 @@ public class BuildingController
     }
 
 
-    @RequestMapping(value = "/addLocationToBuilding", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/addLocationToBuilding", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LocationDTO> addLocation(@RequestBody LocationDTO locationDTO)
     {
-
         LocationDTO savedLocationDTO = buildingService.addLocationToBuilding(locationDTO);
         return new ResponseEntity<>(savedLocationDTO, HttpStatus.OK);
     }

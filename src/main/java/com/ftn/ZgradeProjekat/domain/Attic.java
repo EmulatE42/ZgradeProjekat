@@ -16,8 +16,8 @@ import javax.persistence.Table;
 @Table(name = "hallway")
 public class Attic extends Location
 {
-    @Column(name = "hallway_flor")
-    private Long flor;
+    @Column(name = "hallway_floor")
+    private Long floor;
 
     @Column(name = "hallway_square")
     private Long square;

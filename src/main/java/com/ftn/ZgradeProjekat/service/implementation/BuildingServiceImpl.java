@@ -1,6 +1,7 @@
 package com.ftn.ZgradeProjekat.service.implementation;
 
 import com.ftn.ZgradeProjekat.domain.*;
+import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
 import com.ftn.ZgradeProjekat.repository.*;
@@ -40,8 +41,9 @@ public class BuildingServiceImpl implements BuildingService
     }
 
     @Override
-    public Building addBuilding(Building building)
+    public Building addBuilding(BuildingDTO buildingDTO)
     {
+        Building building = new Building(buildingDTO);
         Building saved = null;
         try
         {
@@ -53,10 +55,11 @@ public class BuildingServiceImpl implements BuildingService
     }
 
     @Override
-    public Building getById(Long buildingId)
+    public BuildingDTO getById(Long buildingId)
     {
         Building building = buildingRepository.findById(buildingId);
-        return building;
+        BuildingDTO buildingDTO = new BuildingDTO(building);
+        return buildingDTO;
     }
 
     @Override
@@ -91,28 +94,28 @@ public class BuildingServiceImpl implements BuildingService
     {
         Building building = buildingRepository.findById(locationDTO.getBuildingId());
         switch (locationDTO.getType()) {
-            case "apartment":
+            case "APARTMENT":
             {
                 Apartment apartment = new Apartment();
                 apartment.setBuilding(building);
-                apartment.setFlor(locationDTO.getFlor());
+                apartment.setFloor(locationDTO.getFloor());
                 apartment.setSquare(locationDTO.getSquare());
                 Apartment saved = apartmentRepository.save(apartment);
                 building.addLocation(saved);
                 locationDTO.setLocationId(saved.getId());
                 break;
             }
-            case "hallway":
+            case "HALLWAY":
             {
                 Hallway hallway = new Hallway();
                 hallway.setBuilding(building);
-                hallway.setNumberOfFlors(locationDTO.getNumberOfFlors());
+                hallway.setNumberOfFloors(locationDTO.getNumberOfFloors());
                 Hallway saved = hallwayRepository.save(hallway);
                 building.addLocation(saved);
                 locationDTO.setLocationId(saved.getId());
                 break;
             }
-            case "basement":
+            case "BASEMENT":
             {
                 Basement basement = new Basement();
                 basement.setBuilding(building);
@@ -122,12 +125,12 @@ public class BuildingServiceImpl implements BuildingService
                 locationDTO.setLocationId(saved.getId());
                 break;
             }
-            case "attic":
+            case "ATTIC":
             {
                 Attic attic = new Attic();
                 attic.setBuilding(building);
                 attic.setSquare(locationDTO.getSquare());
-                attic.setFlor(locationDTO.getFlor());
+                attic.setFloor(locationDTO.getFloor());
                 Attic saved = atticRepository.save(attic);
                 building.addLocation(saved);
                 locationDTO.setLocationId(saved.getId());

@@ -1,6 +1,7 @@
 package com.ftn.ZgradeProjekat.service;
 
 import com.ftn.ZgradeProjekat.domain.Building;
+import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
 
@@ -11,9 +12,9 @@ import java.util.List;
  */
 public interface BuildingService
 {
-    Building addBuilding(Building building);
+    Building addBuilding(BuildingDTO building);
 
-    Building getById(Long buildingId);
+    BuildingDTO getById(Long buildingId);
 
     List<BuildingListItemDTO> getBuildings();
 

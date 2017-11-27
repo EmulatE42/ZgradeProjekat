@@ -23,11 +23,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
   @Override
   @Transactional
-  public UserDetails loadUserByUsername(String ime) throws UsernameNotFoundException {
-    User user = userRepository.findByIme(ime);
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user = userRepository.findByUsername(username);
 
     if (user == null) {
-      throw new UsernameNotFoundException(String.format("No user found with username '%s'.", ime));
+      throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
     } else {
     	/*List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
     	for (UserAuthority ua: user.getUserAuthorities()) {

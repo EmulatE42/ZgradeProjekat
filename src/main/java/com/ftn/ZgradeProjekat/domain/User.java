@@ -57,7 +57,6 @@ public class User
         this.password = password;
     }
 
-
     public Set<UserAuthority> getUserAuthorities() {
         return userAuthorities;
     }
@@ -80,5 +79,22 @@ public class User
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Integer getId() { return this.id; }
+
+    public void setId(Integer id) { this.id = id; }
+
+    public void addUserAuthority(UserAuthority userAuthority)
+    {
+        userAuthorities.add(userAuthority);
+    }
+
+    public UserAuthority getFirstUserAuthority()
+    {
+        if(!this.userAuthorities.isEmpty()){
+            return this.userAuthorities.iterator().next();
+        }
+        return null;
     }
 }

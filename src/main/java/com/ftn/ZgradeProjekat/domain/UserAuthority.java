@@ -37,4 +37,14 @@ public class UserAuthority {
 	public void setAuthority(Authority authority) {
 		this.authority = authority;
 	}
+
+	/*
+	//ovo je greska vjerovatno
+	public UserAuthority(User user, Authority authority)
+	{
+		this.user = user;
+		this.authority = authority;
+	}
+	*/
+	public UserAuthority() {};
 }
