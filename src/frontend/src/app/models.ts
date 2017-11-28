@@ -19,7 +19,7 @@ export class LocationDTO
                public floor:number,
                public square:number,
                public numberOfFloors:number,
-               public tenantDTO:TenantDTO
+               public tenantDTOs:TenantDTO[]
   ) {}
 }
 
@@ -28,7 +28,8 @@ export class BuildingDTO
   constructor( public id:number,
                public dateOfConstruction:Date,
                public adress:Address,
-               public locations:LocationDTO[]
+               public locations:LocationDTO[],
+               public responsiblePersonDTOs:ResponsiblePersonDTO[]
   ) {}
 }
 
@@ -47,5 +48,24 @@ export class TenantDTO
                public username:string,
                public firstname:string,
                public lastname:string
+  ) {}
+}
+
+export class InstitutionDTO
+{
+  constructor( public id:number,
+               public username:string,
+               public address:Address,
+               public name:string
+  ) {}
+}
+
+export class ResponsiblePersonDTO
+{
+  constructor( public id:number,
+               public tenantDTO:TenantDTO,
+               public institutionDTO:InstitutionDTO,
+               public isTenant:boolean,
+               public description:string
   ) {}
 }

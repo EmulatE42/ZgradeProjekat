@@ -1,0 +1,29 @@
+<div class="location_container">
+  <h3>Add responsible person:</h3>
+  <div class="form-group">
+    <label for="exampleSelect1">Type</label>
+    <select class="form-control" id="exampleSelect1" [(ngModel)]="type">
+      <option value="TENANT">TENANT</option>
+      <option value="INSTITUTION">INSTITUTION</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="type=='TENANT'">
+    <label for="exampleSelect2">Select tenant</label>
+    <select class="form-control" id="exampleSelect2" [(ngModel)]="selectedTenant">
+      <option *ngFor="let c of tenants" [ngValue]="c" >{{c.username}}--{{c.firstname}}--{{c.lastname}}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="type=='INSTITUTION'">
+    <label for="exampleSelect3">Select institution</label>
+    <select class="form-control" id="exampleSelect3" [(ngModel)]="selectedInstitution">
+      <option *ngFor="let c of institutionDTOs" [ngValue]="c" >{{c.username}}--{{c.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" id="description" placeholder="Enter description" name="description" [(ngModel)]="description" >
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" (click)="add()">Add</button>
+  </div>
+</div>

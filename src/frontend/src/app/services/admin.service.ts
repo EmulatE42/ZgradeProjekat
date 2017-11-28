@@ -3,7 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import {LoggedUtils} from "../utils/logged.utils";
-import {BuildingDTO, LocationDTO} from "../models";
+import {BuildingDTO, LocationDTO, ResponsiblePersonDTO} from "../models";
 
 @Injectable()
 export class AdminService
@@ -107,6 +107,44 @@ export class AdminService
     return this.http.put("http://localhost:8080/location/connectTenantAndApartment/"+apartmentId+"/"+tenantId, { headers : headers })
       .map(res => res.json());
   }
+
+  getAllInstitutions()
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/user/getAllInstitution", { headers : headers })
+      .map(res => res.json());
+  }
+
+  addResponsiblePerson(responsiblePerson:ResponsiblePersonDTO, buildingId:number)
+  {
+    var param = JSON.stringify(responsiblePerson);
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.post("http://localhost:8080/building/addResponsiblePerson/"+buildingId, param, { headers : headers })
+      .map(res => res.json());
+  }
+
+  getAllResponsiblePeople(id:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/building/getAllResponsiblePersons/"+id, { headers : headers })
+      .map(res => res.json());
+  }
+
+  deleteResponsePerson(id:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete("http://localhost:8080/building/deleteResponsiblePerson/"+id, { headers : headers })
+      .map(res => res.json());
+  }
+
 }
 
 

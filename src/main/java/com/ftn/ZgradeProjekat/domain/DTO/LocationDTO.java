@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by djuro on 11/17/2017.
  */
@@ -21,7 +25,7 @@ public class LocationDTO
     private Long floor;
     private Long square;
     private Long numberOfFloors;
-    private TenantDTO tenantDTO;
+    private Set<TenantDTO> tenantDTOs = new HashSet<>();
 
     /*
     public LocationDTO(Long id, String type, Long buildingId, Long floor, Long square, Long numberOfFloors)
@@ -45,10 +49,18 @@ public class LocationDTO
             this.floor = ((Apartment) location).getFloor();
             this.square = ((Apartment) location).getSquare();
             this.numberOfFloors = null;
-            if(((Apartment) location).getOwner()!=null)
-                this.tenantDTO = new TenantDTO((Tenant)((Apartment) location).getOwner());
+            if(((Apartment) location).getOwners()!=null)
+            {
+                for(User user : ((Apartment) location).getOwners())
+                {
+                    if(user instanceof Tenant)
+                    {
+                        this.tenantDTOs.add(new TenantDTO((Tenant) user));
+                    }
+                }
+            }
             else
-                this.tenantDTO = null;
+                this.tenantDTOs = null;
         }
         else if(location instanceof Hallway)
         {
@@ -56,7 +68,7 @@ public class LocationDTO
             this.floor = null;
             this.square = null;
             this.numberOfFloors = ((Hallway) location).getNumberOfFloors();
-            this.tenantDTO = null;
+            this.tenantDTOs = null;
         }
         else if(location instanceof Attic)
         {
@@ -64,7 +76,7 @@ public class LocationDTO
             this.floor = ((Attic) location).getFloor();
             this.square = ((Attic) location).getSquare();
             this.numberOfFloors = null;
-            this.tenantDTO = null;
+            this.tenantDTOs = null;
         }
         else if(location instanceof Basement)
         {
@@ -72,7 +84,7 @@ public class LocationDTO
             this.floor = null;
             this.square = ((Basement) location).getSquare();
             this.numberOfFloors = null;
-            this.tenantDTO = null;
+            this.tenantDTOs = null;
         }
     }
 }
