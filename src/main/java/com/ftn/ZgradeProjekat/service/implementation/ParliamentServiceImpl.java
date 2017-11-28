@@ -6,6 +6,9 @@ import com.ftn.ZgradeProjekat.service.ParliamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by Momir on 17.11.2017.
  */
@@ -40,6 +43,12 @@ public class ParliamentServiceImpl implements ParliamentService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Parliament> getParliaments() {
+
+        return this.parliamentRepository.findAll();
     }
 
 }
