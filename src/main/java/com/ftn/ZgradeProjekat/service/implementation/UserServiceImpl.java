@@ -1,10 +1,7 @@
 package com.ftn.ZgradeProjekat.service.implementation;
 
 import com.ftn.ZgradeProjekat.domain.*;
-import com.ftn.ZgradeProjekat.domain.DTO.LoginRequestDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.LoginResponseDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.TenantDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.*;
 import com.ftn.ZgradeProjekat.repository.*;
 import com.ftn.ZgradeProjekat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +35,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    InstitutionRepository institutionRepository;
+
     @Override
     public User save(User user) {
         this.userRepository.save(user);
@@ -63,35 +63,20 @@ public class UserServiceImpl implements UserService {
                 user.setId(admin.getId());
                 break;
             }
-            case "RESPONSIBLE_PERSON":
-            {
-                ResponsiblePerson responsiblePerson = new ResponsiblePerson(user);
-                userAuthority.setUser(responsiblePerson);
-                responsiblePerson.addUserAuthority(userAuthority);
-                this.responsiblePersonRepository.save(responsiblePerson);
-                user.setId(responsiblePerson.getId());
-                break;
-            }
             case "TENANT":
             {
-                System.out.println("/////////////");
                 Tenant tenant = new Tenant(user);
                 tenant.setFirstname(registerUser.getFirstname());
                 tenant.setLastname(registerUser.getLastname());
                 userAuthority.setUser(tenant);
                 tenant.addUserAuthority(userAuthority);
                 this.tenantRepository.save(tenant);
-                System.out.println("id /////////////"+tenant.getId());
                 user.setId(tenant.getId());
                 break;
             }
             default:
                 break;
         }
-        System.out.println("ROLEEE   "+registerUser.getRole());
-        System.out.println("USERNAME   "+registerUser.getUsername());
-        System.out.println("PASWORD   "+registerUser.getPassword());
-        System.out.println("id   "+user.getId());
         return new LoginResponseDTO(user);
     }
 
@@ -120,5 +105,17 @@ public class UserServiceImpl implements UserService {
             tenantDTOs.add(new TenantDTO(tenant));
         }
         return tenantDTOs;
+    }
+
+    @Override
+    public List<InstitutionDTO> getAllInstitution()
+    {
+        List<Institution> institutions = this.institutionRepository.findAll();
+        List<InstitutionDTO> institutionDTOs = new ArrayList<>();
+        for(Institution institution : institutions)
+        {
+            institutionDTOs.add(new InstitutionDTO(institution));
+        }
+        return institutionDTOs;
     }
 }

@@ -49,6 +49,9 @@ public class Building
     @JoinColumn(referencedColumnName = "parliament_id", name = "building_parliament_id")
     private Parliament parliament;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<ResponsiblePerson> responsiblePersons;
+
     public void addLocation(Location location)
     {
         locations.add(location);
@@ -58,6 +61,11 @@ public class Building
     {
         this.dateOfConstruction = buildingDTO.getDateOfConstruction();
         this.address = buildingDTO.getAdress();
+    }
+
+    public void addResponsiblePerson(ResponsiblePerson responsiblePerson)
+    {
+        this.responsiblePersons.add(responsiblePerson);
     }
 
 }

@@ -29,11 +29,11 @@
     </fieldset>
   </div>
 
-  <div class="form-group" *ngIf="location.type=='APARTMENT' && selectedTenant!=null">
-    <fieldset disabled="">
-      <label class="control-label" for="disabledInput4">Owner</label>
-      <input class="form-control" id="disabledInput4" type="text" disabled="" value="{{selectedTenant.username}}--{{selectedTenant.firstname}}--{{selectedTenant.lastname}}">
-    </fieldset>
+  <div class="form-group" *ngIf="location.type=='APARTMENT' && tenants1.length!=0">
+    <label for="exampleSelect2">Owners</label>
+    <select class="form-control" id="exampleSelect2">
+      <option *ngFor="let c of tenants1" [ngValue]="c" >{{c.username}}--{{c.firstname}}--{{c.lastname}}</option>
+    </select>
   </div>
 
   <div class="form-group" *ngIf="location.type=='APARTMENT'">

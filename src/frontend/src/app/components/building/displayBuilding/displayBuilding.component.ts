@@ -16,6 +16,7 @@ export class DisplayBuildingComponent implements OnInit
 {
 
   building:BuildingDTO=null;
+  buildingId:number;
 
 
   constructor(private adminService: AdminService, private route: ActivatedRoute)
@@ -31,6 +32,7 @@ export class DisplayBuildingComponent implements OnInit
   }
 
   ngOnInit() {
+    this.buildingId = this.route.snapshot.params['p1']
     this.adminService.getBuildingById(this.route.snapshot.params['p1']).subscribe
     (
       (data:BuildingDTO) => this.building = data,

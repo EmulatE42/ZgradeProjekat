@@ -17,6 +17,7 @@ export class LocationComponent implements OnInit
   location:LocationDTO;
   tenants:TenantDTO[];
   selectedTenant:TenantDTO;
+  tenants1:TenantDTO[];
 
   constructor(private adminService: AdminService, private route: ActivatedRoute)
   {
@@ -38,16 +39,20 @@ export class LocationComponent implements OnInit
 
   setSelectedTenant()
   {
-    if(this.location.tenantDTO!=null)
+    if(this.location.tenantDTOs!=null)
     {
-      this.selectedTenant = this.location.tenantDTO;
+      this.tenants1 = this.location.tenantDTOs;
+    }
+    else{
+      this.tenants1 = [];
+      console.log(this.tenants1.length)
     }
   }
 
   connect()
   {
     console.log(this.selectedTenant.username);
-
+    this.tenants1.push(this.selectedTenant);
     this.adminService.connectTenantAndApartment(this.location.locationId,this.selectedTenant.id).subscribe
     (
       (data) => console.log(data),

@@ -1,9 +1,7 @@
 package com.ftn.ZgradeProjekat.controller;
 
-import com.ftn.ZgradeProjekat.domain.DTO.LoginRequestDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.LoginResponseDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.TenantDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.*;
+import com.ftn.ZgradeProjekat.domain.Institution;
 import com.ftn.ZgradeProjekat.security.TokenUtils;
 import com.ftn.ZgradeProjekat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +70,15 @@ public class UserController
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(tenantDTOs, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user/getAllInstitution", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<InstitutionDTO>> getAllInstitutions()
+    {
+        List<InstitutionDTO> institutionDTOs = this.userService.getAllInstitution();
+        if(institutionDTOs == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(institutionDTOs, HttpStatus.OK);
     }
 }

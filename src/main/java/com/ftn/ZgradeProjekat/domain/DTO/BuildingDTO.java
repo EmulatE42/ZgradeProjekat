@@ -23,6 +23,7 @@ public class BuildingDTO
     private Date dateOfConstruction;
     private Address adress;
     private Set<LocationDTO> locations;
+    private Set<ResponsiblePersonDTO> responsiblePersonDTOs;
 
     public BuildingDTO(Building building)
     {
@@ -58,6 +59,12 @@ public class BuildingDTO
                         null,((Basement) location).getSquare(),null));
             }
             */
+        }
+
+        responsiblePersonDTOs = new HashSet<>();
+        for(ResponsiblePerson responsiblePerson : building.getResponsiblePersons())
+        {
+            this.responsiblePersonDTOs.add(new ResponsiblePersonDTO(responsiblePerson));
         }
     }
 

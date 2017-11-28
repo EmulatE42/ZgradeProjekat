@@ -1,0 +1,23 @@
+<div class="my_table">
+  <legend>Responsible people</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Username</th>
+      <th>Description</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let rp of responsiblePeople; let i = index">
+      <td>{{i}}</td>
+      <td *ngIf="rp.isTenant == true">{{rp.tenantDTO.username}}</td>
+      <td *ngIf="rp.isTenant == false">{{rp.institutionDTO.username}}</td>
+
+      <td>{{rp.description}}</td>
+      <th><div class="container"><button type="button" class="btn btn-danger" (click)="delete(rp.id,i)">Delete</button></div></th>
+    </tr>
+    </tbody>
+  </table>
+</div>
