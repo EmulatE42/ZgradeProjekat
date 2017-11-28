@@ -55,9 +55,9 @@ public class LocationServiceImpl implements LocationService
         Apartment apartment = (Apartment) this.locationRepository.findById(apartmentId);
         Tenant tenant = this.tenantRepository.findById(tenantId);
         if(apartment == null || tenant == null) return false;
-        apartment.setOwner(tenant);
+        apartment.addAddTenant(tenant);
         this.locationRepository.save(apartment);
-        tenant.setApartment(apartment);
+        tenant.addApartment(apartment);
         this.tenantRepository.save(tenant);
         return true;
     }

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by djuro on 11/4/2017.
@@ -22,7 +23,13 @@ public class Apartment extends Location
     private Long square;
 
     //treba promjeniti postaviti Stanar klasu
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name = "apartment_user_id")
-    private User owner;
+    //ManyToOne
+    @ManyToMany
+    //@JoinColumn(referencedColumnName = "id", name = "apartment_user_id")
+    private Set<User> owners;
+
+    public void addAddTenant(User user)
+    {
+        this.owners.add(user);
+    }
 }

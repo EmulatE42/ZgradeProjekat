@@ -39,7 +39,7 @@ public class BuildingRepositoryUnitTest
         //entityManager.persist(new Building(1L,null,new Date(2017,8,8),null,null,null,null,null));
         //entityManager.persist(new Building(2L,null,new Date(2017,8,7),null,null,null,null,null));
         //entityManager.persist(new Building(3L,null,new Date(2017,8,6),null,null,null,null,null));
-        this.buildingRepository.save(new Building(1L,new Address(1L,"Novi Sad","30","Bulevar Oslobodjenja","21000","Serbia"),new Date(2017,8,8),null,null,null,null,null));
+        this.buildingRepository.save(new Building(1L,new Address(1L,"Novi Sad","30","Bulevar Oslobodjenja","21000","Serbia"),new Date(2017,8,8),null,null,null,null,null,null));
     }
 
     @Test

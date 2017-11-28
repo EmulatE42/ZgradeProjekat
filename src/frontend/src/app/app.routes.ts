@@ -9,6 +9,8 @@ import {AdminPageComponent} from "./components/adminPage/adminPage.component";
 import {DisplayBuildingComponent} from "./components/building/displayBuilding/displayBuilding.component";
 import {AddLocationComponent} from "./components/building/addLocation/addLocation.component";
 import {LocationComponent} from "./components/location/location.component";
+import {AddResponsiblePersonComponent} from "./components/building/addResponsiblePerson/addResponsiblePerson.component";
+import {ShowAllResponsiblePersonsComponent} from "./components/building/showAllResponsiblePersons/showAllResponsiblePersons.component";
 
 const appRoutes : Routes =
   [
@@ -43,6 +45,14 @@ const appRoutes : Routes =
     {
       path : "location/:p1",
       component : LocationComponent
+    },
+    {
+      path : "addResposiblePerson/:p1",
+      component : AddResponsiblePersonComponent
+    },
+    {
+      path: "showAllResponsiblePersonsComponent/:p1",
+      component : ShowAllResponsiblePersonsComponent
     }
   ];
 

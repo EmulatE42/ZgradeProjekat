@@ -1,9 +1,8 @@
 package com.ftn.ZgradeProjekat.service;
 
-import com.ftn.ZgradeProjekat.domain.DTO.LoginRequestDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.LoginResponseDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.TenantDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.*;
+import com.ftn.ZgradeProjekat.domain.ResponsiblePerson;
+import com.ftn.ZgradeProjekat.domain.Tenant;
 import com.ftn.ZgradeProjekat.domain.User;
 
 import java.util.List;
@@ -21,4 +20,6 @@ public interface UserService {
     User changePassword(LoginRequestDTO user);
 
     List<TenantDTO> getAllTenants();
+
+    List<InstitutionDTO> getAllInstitution();
 }
