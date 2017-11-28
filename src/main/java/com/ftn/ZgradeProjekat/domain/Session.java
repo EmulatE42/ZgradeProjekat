@@ -2,6 +2,7 @@ package com.ftn.ZgradeProjekat.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 @Entity
 @AllArgsConstructor(suppressConstructorProperties = true)
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "session")
