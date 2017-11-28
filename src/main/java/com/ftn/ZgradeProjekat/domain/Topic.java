@@ -33,4 +33,7 @@ public class Topic
 
     @Column(name = "topic_votes")
     private Long votes;
+
+    @ManyToOne
+    private Session session;
 }
