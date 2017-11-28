@@ -28,7 +28,7 @@ export class BuildingComponent
   addBuilding()
   {
     this.adminService.addBuilding(new BuildingDTO(null,this.dateOfConstruction,new Address(null,this.city,
-      this.buildingNumber, this.buildingStreet, this.postalCode, this.country),null)).subscribe(
+      this.buildingNumber, this.buildingStreet, this.postalCode, this.country),null,null)).subscribe(
       ()=>this.goToDisplayAllBuildings()
     );
   }

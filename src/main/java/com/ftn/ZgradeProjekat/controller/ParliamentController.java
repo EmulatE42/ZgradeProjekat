@@ -8,6 +8,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by Momir on 17.11.2017.
  */
@@ -42,7 +46,7 @@ public class ParliamentController {
             return new ResponseEntity<>(parliament, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteParlament/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/deleteParlament/{parlamentId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteParlament(@PathVariable("parlamentId") Long parlamentId)
     {
         Boolean deleted = this.parliamentService.deleteParliament(parlamentId);
@@ -50,6 +54,17 @@ public class ParliamentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(deleted, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getParlaments", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Parliament>> getParlaments()
+    {
+        List<Parliament> parliaments = this.parliamentService.getParliaments();
+
+        if(parliaments == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(parliaments, HttpStatus.OK);
     }
 
 }

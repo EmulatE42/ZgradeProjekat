@@ -18,8 +18,14 @@ import javax.persistence.*;
 @Setter
 @Table(name = "institution")
 
-public class Institution {
+public class Institution extends User {
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    @Column(name = "institution_name")
+    private String name;
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -31,4 +37,6 @@ public class Institution {
 
     @OneToOne(cascade = CascadeType.ALL)
     private ResponsiblePerson responsiblePerson;
+
+    */
 }

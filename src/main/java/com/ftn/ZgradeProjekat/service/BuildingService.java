@@ -4,6 +4,8 @@ import com.ftn.ZgradeProjekat.domain.Building;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.ResponsiblePersonDTO;
+import com.ftn.ZgradeProjekat.domain.ResponsiblePerson;
 
 import java.util.List;
 
@@ -21,4 +23,10 @@ public interface BuildingService
     Boolean deleteBuilding(Long buildingId);
 
     LocationDTO addLocationToBuilding(LocationDTO locationDTO);
+
+    ResponsiblePersonDTO addResponsiblePerson(ResponsiblePersonDTO responsiblePersonDTO, Long buildingId);
+
+    List<ResponsiblePersonDTO> getAllResponsiblePersons(Long id);
+
+    Boolean deleteResponsiblePerson(Long id);
 }

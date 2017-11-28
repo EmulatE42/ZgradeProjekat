@@ -4,7 +4,9 @@ import com.ftn.ZgradeProjekat.domain.Building;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.ResponsiblePersonDTO;
 import com.ftn.ZgradeProjekat.domain.Location;
+import com.ftn.ZgradeProjekat.domain.ResponsiblePerson;
 import com.ftn.ZgradeProjekat.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -78,4 +80,33 @@ public class BuildingController
         return new ResponseEntity<>(savedLocationDTO, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/addResponsiblePerson/{buildingId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponsiblePersonDTO> addResponsiblePerson(@PathVariable("buildingId") Long buildingId, @RequestBody ResponsiblePersonDTO responsiblePersonDTO)
+    {
+        ResponsiblePersonDTO savedResponsiblePerson = this.buildingService.addResponsiblePerson(responsiblePersonDTO, buildingId);
+        if(savedResponsiblePerson == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(savedResponsiblePerson, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getAllResponsiblePersons/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ResponsiblePersonDTO>> getAllResponsiblePersons(@PathVariable("buildingId") Long buildingId)
+    {
+        List<ResponsiblePersonDTO> responsiblePersonDTOs = this.buildingService.getAllResponsiblePersons(buildingId);
+        if(responsiblePersonDTOs == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(responsiblePersonDTOs, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/deleteResponsiblePerson/{responsiblePersonId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> deleteResponsiblePerson(@PathVariable("responsiblePersonId") Long responsiblePersonId)
+    {
+        Boolean deleted = buildingService.deleteResponsiblePerson(responsiblePersonId);
+        if(deleted == false)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(deleted, HttpStatus.OK);
+    }
 }

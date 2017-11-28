@@ -4,6 +4,7 @@ import com.ftn.ZgradeProjekat.domain.*;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.BuildingListItemDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.ResponsiblePersonDTO;
 import com.ftn.ZgradeProjekat.repository.*;
 import com.ftn.ZgradeProjekat.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by djuro on 11/17/2017.
@@ -23,13 +25,19 @@ public class BuildingServiceImpl implements BuildingService
     private final HallwayRepository hallwayRepository;
     private final BasementRepository basementRepository;
     private final AtticRepository atticRepository;
+    private final TenantRepository tenantRepository;
+    private final ResponsiblePersonRepository responsiblePersonRepository;
+    private final InstitutionRepository institutionRepository;
 
     @Autowired
     public BuildingServiceImpl(BuildingRepository buildingRepository,
                                ApartmentRepository apartmentRepository,
                                HallwayRepository hallwayRepository,
                                BasementRepository basementRepository,
-                               AtticRepository atticRepository)
+                               AtticRepository atticRepository,
+                               TenantRepository tenantRepository,
+                               ResponsiblePersonRepository responsiblePersonRepository,
+                               InstitutionRepository institutionRepository)
     {
 
         this.buildingRepository = buildingRepository;
@@ -37,6 +45,9 @@ public class BuildingServiceImpl implements BuildingService
         this.hallwayRepository = hallwayRepository;
         this.basementRepository = basementRepository;
         this.atticRepository = atticRepository;
+        this.tenantRepository = tenantRepository;
+        this.responsiblePersonRepository = responsiblePersonRepository;
+        this.institutionRepository = institutionRepository;
 
     }
 
@@ -82,6 +93,20 @@ public class BuildingServiceImpl implements BuildingService
         buildingForDelete = buildingRepository.findById(buildingId);
         if(buildingForDelete != null)
         {
+            for(Location location : buildingForDelete.getLocations())
+            {
+                if(location instanceof Apartment)
+                {
+                    for(User user : ((Apartment) location).getOwners())
+                    {
+                        if(user instanceof Tenant)
+                        {
+                            ((Tenant) user).removeApartment((Apartment) location);
+                        }
+                    }
+                    //((Tenant)((Apartment) location).getOwner()).setApartment(null);
+                }
+            }
             buildingRepository.delete(buildingForDelete);
             deleted = true;
         }
@@ -141,4 +166,55 @@ public class BuildingServiceImpl implements BuildingService
         }
         return locationDTO;
     }
+
+    @Override
+    public ResponsiblePersonDTO addResponsiblePerson(ResponsiblePersonDTO responsiblePersonDTO, Long buildingId)
+    {
+        Tenant tenant = null;
+        Institution institution = null;
+        ResponsiblePerson responsiblePerson = null;
+        if(responsiblePersonDTO.getIsTenant())
+        {
+            tenant = this.tenantRepository.findById(responsiblePersonDTO.getTenantDTO().getId());
+            responsiblePerson = new ResponsiblePerson(responsiblePersonDTO, tenant);
+        }
+        else {
+            institution = this.institutionRepository.findOne(responsiblePersonDTO.getInstitutionDTO().getId());
+            responsiblePerson = new ResponsiblePerson(responsiblePersonDTO, institution);
+        }
+        this.responsiblePersonRepository.save(responsiblePerson);
+        Building building = this.buildingRepository.findById(buildingId);
+        building.addResponsiblePerson(responsiblePerson);
+        this.buildingRepository.save(building);
+        responsiblePersonDTO.setId(responsiblePerson.getId());
+        return responsiblePersonDTO;
+    }
+
+    @Override
+    public List<ResponsiblePersonDTO> getAllResponsiblePersons(Long id)
+    {
+        Set<ResponsiblePerson> responsiblePeople = this.buildingRepository.findById(id).getResponsiblePersons();
+        List<ResponsiblePersonDTO> responsiblePersonDTOs = new ArrayList<>();
+        for(ResponsiblePerson rp : responsiblePeople)
+        {
+            responsiblePersonDTOs.add(new ResponsiblePersonDTO(rp));
+        }
+        return responsiblePersonDTOs;
+    }
+
+    //brisanje ne radi zato sto se mora izbrisati iz liste odgovornih lica u zgradi 
+    @Override
+    public Boolean deleteResponsiblePerson(Long id)
+    {
+        ResponsiblePerson deletedResponsiblePerson = null;
+        Boolean deleted = false;
+        deletedResponsiblePerson = this.responsiblePersonRepository.findOne(id);
+        if(deletedResponsiblePerson!=null)
+        {
+            this.responsiblePersonRepository.delete(deletedResponsiblePerson);
+            deleted = true;
+        }
+        return deleted;
+    }
+
 }
