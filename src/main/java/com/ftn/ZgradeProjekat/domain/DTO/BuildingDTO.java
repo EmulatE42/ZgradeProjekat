@@ -24,6 +24,7 @@ public class BuildingDTO
     private Address adress;
     private Set<LocationDTO> locations;
     private Set<ResponsiblePersonDTO> responsiblePersonDTOs;
+    private TenantDTO buildingManager;
 
     public BuildingDTO(Building building)
     {
@@ -66,6 +67,7 @@ public class BuildingDTO
         {
             this.responsiblePersonDTOs.add(new ResponsiblePersonDTO(responsiblePerson));
         }
+        if(building.getBuildingManager()!=null) this.buildingManager = new TenantDTO((Tenant) building.getBuildingManager());
     }
 
 

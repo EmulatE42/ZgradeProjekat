@@ -15,6 +15,7 @@ import {AddLocationComponent} from "./components/building/addLocation/addLocatio
 import {LocationComponent} from "./components/location/location.component";
 import {AddResponsiblePersonComponent} from "./components/building/addResponsiblePerson/addResponsiblePerson.component";
 import {ShowAllResponsiblePersonsComponent} from "./components/building/showAllResponsiblePersons/showAllResponsiblePersons.component";
+import {SetBuildingManagerComponent} from "./components/building/setBuildingManager/setBuildingManager.component";
 
 import { routing } from "./app.routes";
 
@@ -39,7 +40,8 @@ import { routing } from "./app.routes";
     AddLocationComponent,
     LocationComponent,
     AddResponsiblePersonComponent,
-    ShowAllResponsiblePersonsComponent
+    ShowAllResponsiblePersonsComponent,
+    SetBuildingManagerComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]

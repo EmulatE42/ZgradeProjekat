@@ -29,6 +29,9 @@ public class Tenant extends User {
     @ManyToMany
     private Set<Apartment> apartments;
 
+    @Column(name = "tenant_is_building_manager")
+    private Boolean isBuildingmManager;
+
     public Tenant(User user)
     {
         this.setUsername(user.getUsername());

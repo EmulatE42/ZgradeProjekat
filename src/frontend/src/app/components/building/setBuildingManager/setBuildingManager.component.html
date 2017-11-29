@@ -1,0 +1,20 @@
+<div class="location_container" *ngIf="building!=null">
+  <h3>Set building manager:</h3>
+
+  <div class="form-group" *ngIf="building.buildingManager!=null">
+    <fieldset disabled="">
+      <label class="control-label" for="disabledInput3">Current building manager</label>
+      <input class="form-control" id="disabledInput3" type="text" disabled="" [(ngModel)]="building.buildingManager.username">
+    </fieldset>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleSelect2">Choose building manager</label>
+    <select class="form-control" id="exampleSelect2" [(ngModel)]="newBuildingManager">
+      <option *ngFor="let c of tenants" [ngValue]="c" >{{c.username}}--{{c.firstname}}--{{c.lastname}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+</div>

@@ -202,19 +202,42 @@ public class BuildingServiceImpl implements BuildingService
         return responsiblePersonDTOs;
     }
 
-    //brisanje ne radi zato sto se mora izbrisati iz liste odgovornih lica u zgradi 
     @Override
-    public Boolean deleteResponsiblePerson(Long id)
+    public Boolean deleteResponsiblePerson(Long id, Long buildingId)
     {
         ResponsiblePerson deletedResponsiblePerson = null;
         Boolean deleted = false;
         deletedResponsiblePerson = this.responsiblePersonRepository.findOne(id);
         if(deletedResponsiblePerson!=null)
         {
+            Building building = this.buildingRepository.findById(buildingId);
+            building.removeResponsiblePerson(deletedResponsiblePerson);
+            this.buildingRepository.save(building);
             this.responsiblePersonRepository.delete(deletedResponsiblePerson);
             deleted = true;
         }
         return deleted;
+    }
+
+    @Override
+    public Boolean setBuildingManager(Long buildingId, Integer tenantId)
+    {
+        Building building = this.buildingRepository.findById(buildingId);
+        Tenant tenant = null;
+        Boolean saved = false;
+        tenant = this.tenantRepository.findById(tenantId);
+        if(tenant!= null) saved=true;
+        tenant.setIsBuildingmManager(true);
+        this.tenantRepository.save(tenant);
+        if(building.getBuildingManager()!=null)
+        {
+            Tenant oldBuildingManager = (Tenant) building.getBuildingManager();
+            oldBuildingManager.setIsBuildingmManager(false);
+            this.tenantRepository.save(oldBuildingManager);
+        }
+        building.setBuildingManager(tenant);
+        this.buildingRepository.save(building);
+        return saved;
     }
 
 }

@@ -100,13 +100,23 @@ public class BuildingController
             return new ResponseEntity<>(responsiblePersonDTOs, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteResponsiblePerson/{responsiblePersonId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> deleteResponsiblePerson(@PathVariable("responsiblePersonId") Long responsiblePersonId)
+    @RequestMapping(value = "/deleteResponsiblePerson/{responsiblePersonId}/{buildingId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> deleteResponsiblePerson(@PathVariable("responsiblePersonId") Long responsiblePersonId, @PathVariable("buildingId") Long buildingId)
     {
-        Boolean deleted = buildingService.deleteResponsiblePerson(responsiblePersonId);
+        Boolean deleted = buildingService.deleteResponsiblePerson(responsiblePersonId, buildingId);
         if(deleted == false)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(deleted, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/setBuildingManager/{buildingId}/{tenantId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> setBuildingManager(@PathVariable("buildingId") Long buildingId, @PathVariable("tenantId") Integer tenantId)
+    {
+        Boolean saved = this.buildingService.setBuildingManager(buildingId,tenantId);
+        if(saved == false)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(saved, HttpStatus.OK);
     }
 }

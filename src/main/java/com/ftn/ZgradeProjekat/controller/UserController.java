@@ -81,4 +81,14 @@ public class UserController
         else
             return new ResponseEntity<>(institutionDTOs, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/user/getAllTenantsFromBuilding/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<TenantDTO>> getAllTenantsFromBuilding(@PathVariable("buildingId") Long buildingId)
+    {
+        List<TenantDTO> tenantDTOs = this.userService.getAllTenantsFromBuilding(buildingId);
+        if(tenantDTOs == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(tenantDTOs, HttpStatus.OK);
+    }
 }

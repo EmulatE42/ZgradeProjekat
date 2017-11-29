@@ -32,10 +32,6 @@ public class Building
     @Column(name = "building_date_of_construction")
     private Date dateOfConstruction;
 
-    @OneToOne
-    @JoinColumn(referencedColumnName = "id", name = "building_user_id")
-    private User manager;
-
     @OneToMany(mappedBy = "building", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Location> locations;
 
@@ -52,6 +48,9 @@ public class Building
     @OneToMany(cascade = CascadeType.ALL)
     private Set<ResponsiblePerson> responsiblePersons;
 
+    @OneToOne
+    private User buildingManager;
+
     public void addLocation(Location location)
     {
         locations.add(location);
@@ -66,6 +65,11 @@ public class Building
     public void addResponsiblePerson(ResponsiblePerson responsiblePerson)
     {
         this.responsiblePersons.add(responsiblePerson);
+    }
+
+    public void removeResponsiblePerson(ResponsiblePerson responsiblePerson)
+    {
+        this.responsiblePersons.remove(responsiblePerson);
     }
 
 }
