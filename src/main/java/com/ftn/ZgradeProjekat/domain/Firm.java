@@ -27,4 +27,8 @@ public class Firm {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
+    private String testxD;
+
+    private int bla;
+
 }
