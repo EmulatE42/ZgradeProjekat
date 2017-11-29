@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
                 Tenant tenant = new Tenant(user);
                 tenant.setFirstname(registerUser.getFirstname());
                 tenant.setLastname(registerUser.getLastname());
+                tenant.setIsBuildingmManager(false);
                 userAuthority.setUser(tenant);
                 tenant.addUserAuthority(userAuthority);
                 this.tenantRepository.save(tenant);
@@ -117,5 +118,25 @@ public class UserServiceImpl implements UserService {
             institutionDTOs.add(new InstitutionDTO(institution));
         }
         return institutionDTOs;
+    }
+
+    @Override
+    public List<TenantDTO> getAllTenantsFromBuilding(Long buildingId)
+    {
+        List<Tenant> tenants = tenantRepository.findAll();
+        List<TenantDTO> tenantDTOs = new ArrayList<>();
+        for(Tenant tenant : tenants)
+        {
+            for(Apartment apartment: tenant.getApartments())
+            {
+                if(apartment.getBuilding().getId()==buildingId)
+                {
+                    tenantDTOs.add(new TenantDTO(tenant));
+                    break;
+                }
+            }
+
+        }
+        return tenantDTOs;
     }
 }

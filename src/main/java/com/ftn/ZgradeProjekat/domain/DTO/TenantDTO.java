@@ -19,6 +19,7 @@ public class TenantDTO
     private String username;
     private String firstname;
     private String lastname;
+    private Boolean isBuildingManager;
 
     public TenantDTO(Tenant tenant)
     {
@@ -26,6 +27,7 @@ public class TenantDTO
         this.username = tenant.getUsername();
         this.firstname = tenant.getFirstname();
         this.lastname = tenant.getLastname();
+        this.isBuildingManager = tenant.getIsBuildingmManager();
     }
 
 }

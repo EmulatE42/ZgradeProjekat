@@ -136,12 +136,30 @@ export class AdminService
       .map(res => res.json());
   }
 
-  deleteResponsePerson(id:number)
+  deleteResponsePerson(id:number, buildingId:number)
   {
     var headers = new Headers();
     headers.append("X-Auth-Token", LoggedUtils.getToken());
     headers.append('Content-Type', 'application/json');
-    return this.http.delete("http://localhost:8080/building/deleteResponsiblePerson/"+id, { headers : headers })
+    return this.http.delete("http://localhost:8080/building/deleteResponsiblePerson/"+id+"/"+buildingId, { headers : headers })
+      .map(res => res.json());
+  }
+
+  getAllTenantsFromBuilding(buildingId:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/user/getAllTenantsFromBuilding/"+buildingId, { headers : headers })
+      .map(res => res.json());
+  }
+
+  setBuildingManager(buildingId:number, tenantId:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.put("http://localhost:8080/building/setBuildingManager/"+buildingId+"/"+tenantId, { headers : headers })
       .map(res => res.json());
   }
 

@@ -29,7 +29,8 @@ export class BuildingDTO
                public dateOfConstruction:Date,
                public adress:Address,
                public locations:LocationDTO[],
-               public responsiblePersonDTOs:ResponsiblePersonDTO[]
+               public responsiblePersonDTOs:ResponsiblePersonDTO[],
+               public buildingManager:TenantDTO
   ) {}
 }
 
@@ -47,7 +48,8 @@ export class TenantDTO
   constructor( public id:number,
                public username:string,
                public firstname:string,
-               public lastname:string
+               public lastname:string,
+               public isBuildingManager:boolean
   ) {}
 }
 
