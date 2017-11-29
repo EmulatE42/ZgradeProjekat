@@ -25,6 +25,7 @@ public class Institution extends User {
 
     @Column(name = "institution_name")
     private String name;
+    private String konacnomenanje;
     /*
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

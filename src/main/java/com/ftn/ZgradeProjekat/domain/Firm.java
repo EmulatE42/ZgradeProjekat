@@ -30,5 +30,4 @@ public class Firm {
     private String testxD;
 
     private int bla;
-
 }
