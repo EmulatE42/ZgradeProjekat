@@ -119,4 +119,14 @@ public class BuildingController
         else
             return new ResponseEntity<>(saved, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/getAllResponsiblePersonsByLocationId/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ResponsiblePersonDTO>> getAllResponsiblePersonsByLocationId(@PathVariable("buildingId") Long buildingId)
+    {
+        List<ResponsiblePersonDTO> responsiblePersonDTOs = this.buildingService.getAllResponsiblePersonsByLocationId(buildingId);
+        if(responsiblePersonDTOs == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(responsiblePersonDTOs, HttpStatus.OK);
+    }
 }

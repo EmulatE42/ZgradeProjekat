@@ -34,6 +34,7 @@ public class Tenant extends User {
 
     public Tenant(User user)
     {
+        this.setId(user.getId());  //--------------
         this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
         this.setUserAuthorities(user.getUserAuthorities());

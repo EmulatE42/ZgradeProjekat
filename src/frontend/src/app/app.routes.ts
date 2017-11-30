@@ -12,6 +12,10 @@ import {LocationComponent} from "./components/location/location.component";
 import {AddResponsiblePersonComponent} from "./components/building/addResponsiblePerson/addResponsiblePerson.component";
 import {ShowAllResponsiblePersonsComponent} from "./components/building/showAllResponsiblePersons/showAllResponsiblePersons.component";
 import {SetBuildingManagerComponent} from "./components/building/setBuildingManager/setBuildingManager.component";
+import {TenantPageComponent} from "./components/tenantPage/tenantPage.component";
+import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllBugs.component";
+import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
+import {BugComponent} from "./components/bug/bug.component";
 
 const appRoutes : Routes =
   [
@@ -58,6 +62,22 @@ const appRoutes : Routes =
     {
       path : "setBuildingManagerComponent/:p1",
       component : SetBuildingManagerComponent
+    },
+    {
+      path : "tenantPageComponent",
+      component : TenantPageComponent
+    },
+    {
+      path : "showAllBugs/:p1",
+      component : ShowAllBugsComponent
+    },
+    {
+      path : "addNewBug/:p1",
+      component : AddNewBugComponent
+    },
+    {
+      path : "bug/:p1",
+      component : BugComponent
     }
   ];
 

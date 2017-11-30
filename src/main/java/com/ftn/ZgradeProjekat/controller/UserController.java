@@ -2,6 +2,7 @@ package com.ftn.ZgradeProjekat.controller;
 
 import com.ftn.ZgradeProjekat.domain.DTO.*;
 import com.ftn.ZgradeProjekat.domain.Institution;
+import com.ftn.ZgradeProjekat.domain.User;
 import com.ftn.ZgradeProjekat.security.TokenUtils;
 import com.ftn.ZgradeProjekat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,8 @@ public class UserController
             SecurityContextHolder.getContext().setAuthentication(authentication);
             UserDetails details = userDetailsService.loadUserByUsername(loginDTO.getUsername());
             String userToken = tokenUtils.generateToken(details);
-            return new ResponseEntity<>(new LoginResponseDTO(userToken,-1,loginDTO.getUsername(),"ADMIN"), HttpStatus.OK);
+            User user = this.userService.getUserByUsername(loginDTO.getUsername());
+            return new ResponseEntity<>(new LoginResponseDTO(userToken, user.getId(),loginDTO.getUsername(),user.getUserAuthorities().iterator().next().getAuthority().getName()), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>("Invalid login", HttpStatus.BAD_REQUEST);
         }
@@ -90,5 +92,15 @@ public class UserController
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(tenantDTOs, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user/getApartmentsOfTenant/{tenantId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<LocationDTO>> getApartmentsOfTenant(@PathVariable("tenantId") Integer tenantId)
+    {
+        List<LocationDTO> locationDTOs = this.userService.getApartmentsOfTenant(tenantId);
+        if(locationDTOs == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(locationDTOs, HttpStatus.OK);
     }
 }

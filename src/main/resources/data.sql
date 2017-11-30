@@ -38,3 +38,51 @@ INSERT INTO buildings.parliament(parliament_id) VALUES (-1);
 
 INSERT INTO buildings.session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
   VALUES (-1, '2017-11-30 19:00:00', 'nesto', null, null, null);
+
+INSERT INTO buildings.location(
+  dtype, location_id, basement_square, hallway_number_of_floors, apartment_floor, apartment_square, hallway_floor, hallway_square, building_building_id)
+  VALUES ('Apartment',-1, null, null, 4, 44, null, null, -2);
+
+INSERT INTO buildings.location(
+  dtype, location_id, basement_square, hallway_number_of_floors, apartment_floor, apartment_square, hallway_floor, hallway_square, building_building_id)
+  VALUES ('Apartment',-2, null, null, 5, 55, null, null, -2);
+
+INSERT INTO buildings.tenant(
+  id, password, username, firstname, tenant_is_building_manager, lastname)
+  VALUES (-2,'$2a$10$m0vzull2J6eDyN4cqAsfguP2bbIZy//CuhPo9vRXgx4WFpdbZnUQq', 'hhh', 'hhh', false, 'hhh');
+
+INSERT INTO buildings.tenant(
+  id, password, username, firstname, tenant_is_building_manager, lastname)
+  VALUES (-3,'$2a$10$g8bQYJ1ZkWM8H3SLEe/oYukJ3jxUrwOm2bEHh2CQllT/NJIm87RbC', 'aaa', 'aaa', false, 'aaa');
+
+INSERT INTO buildings.user_authority(
+	id, authority_id, user_id)
+	VALUES (-2, -2, -2);
+
+INSERT INTO buildings.user_authority(
+	id, authority_id, user_id)
+	VALUES (-3, -2, -3);
+
+INSERT INTO buildings.tenant_apartments(
+	tenant_id, apartments_location_id)
+	VALUES (-3, -2);
+
+INSERT INTO buildings.tenant_apartments(
+	tenant_id, apartments_location_id)
+	VALUES (-2, -1);
+
+INSERT INTO buildings.location_owners(
+	apartment_location_id, owners_id)
+	VALUES (-2, -3);
+
+INSERT INTO buildings.location_owners(
+	apartment_location_id, owners_id)
+	VALUES (-1, -2);
+
+INSERT INTO buildings.responsible_person(
+	responsible_person_id, responsible_person_description, responsible_person_is_tenant, institution_id, tenant_id)
+	VALUES (-1, 'kvar1', true, null, -2);
+
+INSERT INTO buildings.building_responsible_persons(
+	building_building_id, responsible_persons_responsible_person_id)
+	VALUES (-2, -1);

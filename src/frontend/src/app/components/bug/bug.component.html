@@ -1,0 +1,38 @@
+<div align="center">
+  <legend>Information about bug</legend>
+  <div class="col-md-4">
+    <ul class="list-group">
+      <li *ngIf="bug != null" class="list-group-item"><strong>Description: </strong>{{bug.description}}</li>
+      <li *ngIf="bug != null" class="list-group-item"><strong>Date of bug: </strong>{{bug.dateOfBug | date:'medium'}}</li>
+      <li *ngIf="bug != null" class="list-group-item"><strong>Finished: </strong>{{bug.finished}}</li>
+      <li *ngIf="bug != null" class="list-group-item"><strong>Type of bug: </strong>{{bug.responsiblePersonDTO.description}}</li>
+    </ul>
+  </div>
+</div>
+
+<div class="my_table">
+  <table class="table table-striped table-hover table-bordered" *ngIf="bug != null">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Username</th>
+      <th colspan="5">Comment</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let c of bug.comments; let i = index">
+      <td>{{i}}</td>
+      <td colspan="5">{{c.user.username}}</td>
+      <td>{{c.text}}</td>
+      <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteComment(c.id, i)" *ngIf="c.user.id == currentUserId">Delete</button></div></th>
+    </tr>
+    <tr class="table-success">
+      <th></th>
+      <th>{{currentUser}}</th>
+      <th colspan="5"><input type="text" class="form-control" id="comment" placeholder="Enter your comment" name="comment" [(ngModel)]="newComment" ></th>
+      <th><div class="container"><button type="button" class="btn btn-success" (click)="addComment()">Add new</button></div></th>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by EmulatE on 02-Nov-17.
@@ -38,6 +39,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     InstitutionRepository institutionRepository;
 
+    @Autowired
+    UserAuthorityRepository userAuthorityRepository;
+
     @Override
     public User save(User user) {
         this.userRepository.save(user);
@@ -53,6 +57,7 @@ public class UserServiceImpl implements UserService {
         //UserAuthority userAuthority = new UserAuthority(user, authority);
         UserAuthority userAuthority = new UserAuthority();
         userAuthority.setAuthority(authority);
+        this.userAuthorityRepository.save(userAuthority);
         switch (registerUser.getRole()) {
             case "ROLE_ADMIN":
             {
@@ -60,6 +65,7 @@ public class UserServiceImpl implements UserService {
                 userAuthority.setUser(admin);
                 admin.addUserAuthority(userAuthority);
                 this.adminRepository.save(admin);
+                this.userAuthorityRepository.save(userAuthority);
                 user.setId(admin.getId());
                 break;
             }
@@ -72,6 +78,7 @@ public class UserServiceImpl implements UserService {
                 userAuthority.setUser(tenant);
                 tenant.addUserAuthority(userAuthority);
                 this.tenantRepository.save(tenant);
+                this.userAuthorityRepository.save(userAuthority);
                 user.setId(tenant.getId());
                 break;
             }
@@ -138,5 +145,26 @@ public class UserServiceImpl implements UserService {
 
         }
         return tenantDTOs;
+    }
+
+    @Override
+    public List<LocationDTO> getApartmentsOfTenant(Integer tenantId)
+    {
+        Tenant tenant = this.tenantRepository.findById(tenantId);
+        Set<Apartment> apartments = tenant.getApartments();
+        List<LocationDTO> locationDTOs = new ArrayList<>();
+        for(Apartment apartment : apartments)
+        {
+            locationDTOs.add(new LocationDTO(apartment));
+        }
+        return locationDTOs;
+    }
+
+    @Override
+    public User getUserByUsername(String username)
+    {
+        User user = null;
+        user = this.userRepository.findByUsername(username);
+        return user;
     }
 }

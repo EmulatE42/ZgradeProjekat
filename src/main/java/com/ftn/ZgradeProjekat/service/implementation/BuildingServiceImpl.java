@@ -28,6 +28,7 @@ public class BuildingServiceImpl implements BuildingService
     private final TenantRepository tenantRepository;
     private final ResponsiblePersonRepository responsiblePersonRepository;
     private final InstitutionRepository institutionRepository;
+    private final LocationRepository locationRepository;
 
     @Autowired
     public BuildingServiceImpl(BuildingRepository buildingRepository,
@@ -37,7 +38,8 @@ public class BuildingServiceImpl implements BuildingService
                                AtticRepository atticRepository,
                                TenantRepository tenantRepository,
                                ResponsiblePersonRepository responsiblePersonRepository,
-                               InstitutionRepository institutionRepository)
+                               InstitutionRepository institutionRepository,
+                               LocationRepository locationRepository)
     {
 
         this.buildingRepository = buildingRepository;
@@ -48,7 +50,7 @@ public class BuildingServiceImpl implements BuildingService
         this.tenantRepository = tenantRepository;
         this.responsiblePersonRepository = responsiblePersonRepository;
         this.institutionRepository = institutionRepository;
-
+        this.locationRepository = locationRepository;
     }
 
     @Override
@@ -238,6 +240,19 @@ public class BuildingServiceImpl implements BuildingService
         building.setBuildingManager(tenant);
         this.buildingRepository.save(building);
         return saved;
+    }
+
+    @Override
+    public List<ResponsiblePersonDTO> getAllResponsiblePersonsByLocationId(Long id)
+    {
+        Location location = this.locationRepository.findById(id);
+        Set<ResponsiblePerson> responsiblePeople = location.getBuilding().getResponsiblePersons();
+        List<ResponsiblePersonDTO> responsiblePersonDTOs = new ArrayList<>();
+        for(ResponsiblePerson rp : responsiblePeople)
+        {
+            responsiblePersonDTOs.add(new ResponsiblePersonDTO(rp));
+        }
+        return responsiblePersonDTOs;
     }
 
 }
