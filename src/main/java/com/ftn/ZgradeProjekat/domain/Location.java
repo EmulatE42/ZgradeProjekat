@@ -30,4 +30,14 @@ public abstract class Location
 
     @ManyToOne
     protected Building building;
+
+    public void addBug(Bug bug)
+    {
+        this.bugs.add(bug);
+    }
+
+    public void removeBug(Bug bug)
+    {
+        this.bugs.remove(bug);
+    }
 }

@@ -24,4 +24,8 @@ public interface UserService {
     List<InstitutionDTO> getAllInstitution();
 
     List<TenantDTO> getAllTenantsFromBuilding(Long buildingId);
+
+    List<LocationDTO> getApartmentsOfTenant(Integer tenantId);
+
+    User getUserByUsername(String username);
 }

@@ -163,6 +163,15 @@ export class AdminService
       .map(res => res.json());
   }
 
+  getAllResponsiblePersonsByLocationId(id:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/building/getAllResponsiblePersonsByLocationId/"+id, { headers : headers })
+      .map(res => res.json());
+  }
+
 }
 
 

@@ -71,3 +71,31 @@ export class ResponsiblePersonDTO
                public description:string
   ) {}
 }
+
+export class BugDTO
+{
+  constructor( public id:number,
+               public description:string,
+               public dateOfBug:Date,
+               public comments:CommentDTO[],
+               public finished:boolean,
+               public responsiblePersonDTO:ResponsiblePersonDTO
+  ) {}
+}
+
+export class CommentDTO
+{
+  constructor( public id:number,
+               public text:string,
+               public user:UserDTO
+  ) {}
+}
+
+export class UserDTO
+{
+  constructor( public id:number,
+               public username:string
+  ) {}
+}
+
+

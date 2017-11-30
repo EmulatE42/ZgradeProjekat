@@ -16,6 +16,10 @@ import {LocationComponent} from "./components/location/location.component";
 import {AddResponsiblePersonComponent} from "./components/building/addResponsiblePerson/addResponsiblePerson.component";
 import {ShowAllResponsiblePersonsComponent} from "./components/building/showAllResponsiblePersons/showAllResponsiblePersons.component";
 import {SetBuildingManagerComponent} from "./components/building/setBuildingManager/setBuildingManager.component";
+import {TenantPageComponent} from "./components/tenantPage/tenantPage.component";
+import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllBugs.component";
+import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
+import {BugComponent} from "./components/bug/bug.component";
 
 import { routing } from "./app.routes";
 
@@ -41,7 +45,11 @@ import { routing } from "./app.routes";
     LocationComponent,
     AddResponsiblePersonComponent,
     ShowAllResponsiblePersonsComponent,
-    SetBuildingManagerComponent
+    SetBuildingManagerComponent,
+    TenantPageComponent,
+    ShowAllBugsComponent,
+    AddNewBugComponent,
+    BugComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]
