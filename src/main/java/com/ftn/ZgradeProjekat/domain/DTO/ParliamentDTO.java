@@ -17,7 +17,7 @@ import java.util.Set;
 public class ParliamentDTO {
 
     private Long id;
-    private Set<Session> sessions;
+    private Set<SessionDTO> sessions;
     private AddressDTO buildingAddress;
 
     public ParliamentDTO()
@@ -29,7 +29,11 @@ public class ParliamentDTO {
     {
         this();
         this.id = building.getParliament().getId();
-        this.sessions = building.getParliament().getSessions();
         this.buildingAddress = new AddressDTO(building.getAddress());
+
+        for(Session session: building.getParliament().getSessions())
+        {
+            this.sessions.add(new SessionDTO(session));
+        }
     }
 }
