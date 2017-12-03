@@ -21,8 +21,10 @@ import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllB
 import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
 import {BugComponent} from "./components/bug/bug.component";
 import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
+import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 
 import { routing } from "./app.routes";
+
 
 
 @NgModule({
@@ -52,6 +54,7 @@ import { routing } from "./app.routes";
     AddNewBugComponent,
     BugComponent,
     ParlamentViewComponent,
+    SessionViewComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]

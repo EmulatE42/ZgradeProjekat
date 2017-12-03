@@ -17,6 +17,7 @@ import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllB
 import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
 import {BugComponent} from "./components/bug/bug.component";
 import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
+import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 
 const appRoutes : Routes =
   [
@@ -83,7 +84,12 @@ const appRoutes : Routes =
     {
       path : "parlaments",
       component : ParlamentViewComponent
+    },
+    {
+      path : "parlament/:p1/sessions",
+      component : SessionViewComponent
     }
+
   ];
 
 export const routing : ModuleWithProviders = RouterModule.forRoot(appRoutes);
