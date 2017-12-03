@@ -16,6 +16,7 @@ import {TenantPageComponent} from "./components/tenantPage/tenantPage.component"
 import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllBugs.component";
 import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
 import {BugComponent} from "./components/bug/bug.component";
+import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
 
 const appRoutes : Routes =
   [
@@ -78,6 +79,10 @@ const appRoutes : Routes =
     {
       path : "bug/:p1",
       component : BugComponent
+    },
+    {
+      path : "parlaments",
+      component : ParlamentViewComponent
     }
   ];
 

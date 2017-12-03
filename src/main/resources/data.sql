@@ -18,6 +18,11 @@ INSERT INTO buildings.user_authority(
 	id, authority_id, user_id)
 	VALUES (-1, -1, -1);
 
+INSERT INTO buildings.parliament(parliament_id) VALUES (-1);
+
+INSERT INTO buildings.session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
+  VALUES (-1, '2017-11-30 19:00:00', 'nesto', null, null, -1);
+
 INSERT INTO buildings.address(
   id, address_city, address_country, address_number, address_postal_code, address_street)
   VALUES (-1, 'Novi Sad', 'Serbia', '44/3','21000','Brace Ribnikara');
@@ -32,12 +37,7 @@ INSERT INTO buildings.building(
 
 INSERT INTO buildings.building(
   building_id,building_date_of_construction, address_id, building_manager_id, building_parliament_id)
-  VALUES (-2,'2017-11-16 01:00:00', -2, null, null);
-
-INSERT INTO buildings.parliament(parliament_id) VALUES (-1);
-
-INSERT INTO buildings.session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
-  VALUES (-1, '2017-11-30 19:00:00', 'nesto', null, null, null);
+  VALUES (-2,'2017-11-16 01:00:00', -2, null, -1);
 
 INSERT INTO buildings.location(
   dtype, location_id, basement_square, hallway_number_of_floors, apartment_floor, apartment_square, hallway_floor, hallway_square, building_building_id)
