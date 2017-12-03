@@ -10,6 +10,14 @@ INSERT INTO buildings.authority(
 	id, authority_name)
 	VALUES (-3, 'RESPONSIBLE_PERSON');
 
+INSERT INTO buildings.authority(
+	id, authority_name)
+	VALUES (-4, 'INSTITUTION');
+
+INSERT INTO buildings.authority(
+	id, authority_name)
+	VALUES (-5, 'FIRM');
+
 INSERT INTO buildings.user(
 	id, password, username)
 	VALUES (-1, '$2a$10$S3rxpwjnJUrmgMrnMCJo8eIRCFvCcmzuPi5Y3Okz67i/2sj6xMfau', 'a');
@@ -86,3 +94,51 @@ INSERT INTO buildings.responsible_person(
 INSERT INTO buildings.building_responsible_persons(
 	building_building_id, responsible_persons_responsible_person_id)
 	VALUES (-2, -1);
+
+INSERT INTO buildings.address(
+  id, address_city, address_country, address_number, address_postal_code, address_street)
+  VALUES (-3, 'Novi Sad', 'Serbia', '66/3','21000','Gogoljeva');
+
+INSERT INTO buildings.institution(
+  id, password, username, institution_name, address_id)
+  VALUES (-4,'$2a$10$CvBkI9i9MlMbdYQAad3yB.YekOzSkw/nWwNo8VJQjBmV8IK8/Y3f2', 'kkk', 'kkk', -3);
+
+INSERT INTO buildings.user_authority(
+	id, authority_id, user_id)
+	VALUES (-4, -4, -4);
+
+INSERT INTO buildings.address(
+  id, address_city, address_country, address_number, address_postal_code, address_street)
+  VALUES (-4, 'Novi Sad', 'Serbia', '67/3','21000','Gogoljeva');
+
+INSERT INTO buildings.firm(
+  id, password, username, firm_description, firm_name, address_id)
+  VALUES (-5,'$2a$10$imgDY2q34lSSmApMya.nv.STB3uOo4mt4olWReZwrmXdHfRdRe44m', 'mmm', 'mmm', 'mmm', -4);
+
+INSERT INTO buildings.user_authority(
+	id, authority_id, user_id)
+	VALUES (-5, -5, -5);
+
+INSERT INTO buildings.responsible_person(
+	responsible_person_id, responsible_person_description, responsible_person_is_tenant, institution_id, tenant_id)
+	VALUES (-2, 'krecenje', false, -4, null);
+
+INSERT INTO buildings.building_responsible_persons(
+	building_building_id, responsible_persons_responsible_person_id)
+	VALUES (-2, -2);
+
+INSERT INTO buildings.bug(
+	bug_id, bug_date_of_bug, bug_description, bug_finished, bill_id, responsible_firm_id, responsible_person_responsible_person_id, bug_paid)
+	VALUES (-1, '2017-12-03 19:52:14', 'krecenje sobe', false, null, -5,-2, false);
+
+INSERT INTO buildings.location_bugs(
+	location_location_id, bugs_bug_id)
+	VALUES (-2, -1);
+
+INSERT INTO buildings.responsible_person_bugs(
+	responsible_person_responsible_person_id, bugs_bug_id)
+	VALUES (-2, -1);
+
+INSERT INTO buildings.firm_bugs(
+	firm_id, bugs_bug_id)
+	VALUES (-5, -1);

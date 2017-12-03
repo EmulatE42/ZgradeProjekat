@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,5 +30,11 @@ public class Admin extends User {
         this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
         this.setUserAuthorities(user.getUserAuthorities());
+    }
+
+    public Admin(RegisterUserDTO registerUserDTO)
+    {
+        this.setUsername(registerUserDTO.getUsername());
+        this.setPassword(registerUserDTO.getPassword());
     }
 }

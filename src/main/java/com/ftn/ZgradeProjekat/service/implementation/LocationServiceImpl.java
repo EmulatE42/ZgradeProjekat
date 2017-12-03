@@ -1,9 +1,7 @@
 package com.ftn.ZgradeProjekat.service.implementation;
 
-import com.ftn.ZgradeProjekat.domain.Apartment;
+import com.ftn.ZgradeProjekat.domain.*;
 import com.ftn.ZgradeProjekat.domain.DTO.LocationDTO;
-import com.ftn.ZgradeProjekat.domain.Location;
-import com.ftn.ZgradeProjekat.domain.Tenant;
 import com.ftn.ZgradeProjekat.repository.LocationRepository;
 import com.ftn.ZgradeProjekat.repository.TenantRepository;
 import com.ftn.ZgradeProjekat.service.LocationService;
@@ -57,6 +55,16 @@ public class LocationServiceImpl implements LocationService
         if(apartment == null || tenant == null) return false;
         apartment.addAddTenant(tenant);
         this.locationRepository.save(apartment);
+        /*
+        Building building = apartment.getBuilding();
+        for(Location location : building.getLocations())
+        {
+            if(location instanceof Basement)
+            {
+
+            }
+        }
+        */
         tenant.addApartment(apartment);
         this.tenantRepository.save(tenant);
         return true;

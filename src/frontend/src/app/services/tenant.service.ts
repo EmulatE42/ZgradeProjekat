@@ -84,4 +84,25 @@ export class TenantService {
       .map(res => res.json());
   }
 
+  getBill(bugId:number)
+  {
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/bill/getBill/" + bugId, {headers: headers})
+      .map(res => res.json());
+  }
+
+  payBill(bugId:number)
+  {
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.put("http://localhost:8080/bill/payBill/" + bugId, {headers: headers})
+      .map(res => res.json());
+  }
+
+
 }

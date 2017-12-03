@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,15 @@ public class Tenant extends User {
         this.setUserAuthorities(user.getUserAuthorities());
     }
 
+    public Tenant(RegisterUserDTO registerUserDTO)
+    {
+        this.setUsername(registerUserDTO.getUsername());
+        this.setPassword(registerUserDTO.getPassword());
+        this.setFirstname(registerUserDTO.getFirstname());
+        this.setLastname(registerUserDTO.getLastname());
+        this.setIsBuildingmManager(false);
+    }
+
     public void addApartment(Apartment apartment)
     {
         this.apartments.add(apartment);
@@ -49,4 +59,5 @@ public class Tenant extends User {
     {
         this.apartments.remove(apartment);
     }
+
 }

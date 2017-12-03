@@ -42,12 +42,22 @@ public class Bug
     @ManyToOne
     private ResponsiblePerson responsiblePerson;
 
+    @OneToOne
+    private Bill bill;
+
+    @ManyToOne
+    private Firm responsibleFirm;
+
+    @Column(name = "bug_paid")
+    private Boolean paid;
+
     public Bug(BugDTO bugDTO)
     {
         this.description = bugDTO.getDescription();
         this.dateOfBug = bugDTO.getDateOfBug();
         this.comments = new HashSet<>();
         this.finished = false;
+        this.paid = false;
     }
 
     public void addComment(Comment comment)

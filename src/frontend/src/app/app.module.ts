@@ -20,6 +20,11 @@ import {TenantPageComponent} from "./components/tenantPage/tenantPage.component"
 import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllBugs.component";
 import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
 import {BugComponent} from "./components/bug/bug.component";
+import {InstitutionBugsComponent} from "./components/bug/institutionBugs/institutionBugs.component";
+import {BillComponent} from "./components/bug/bill/bill.component";
+import {SetResponsibleFirmComponent} from "./components/bug/setResponsibleFirm/setResponsibleFirm.component";
+import {FirmPageComponent} from "./components/firmPage/firmPage.component";
+import {ShowBillComponent} from "./components/tenantPage/showBill/showBill.component";
 
 import { routing } from "./app.routes";
 
@@ -49,7 +54,12 @@ import { routing } from "./app.routes";
     TenantPageComponent,
     ShowAllBugsComponent,
     AddNewBugComponent,
-    BugComponent
+    BugComponent,
+    InstitutionBugsComponent,
+    BillComponent,
+    SetResponsibleFirmComponent,
+    FirmPageComponent,
+    ShowBillComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]

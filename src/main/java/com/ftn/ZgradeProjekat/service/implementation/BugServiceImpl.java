@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by djuro on 11/29/2017.
@@ -22,19 +23,25 @@ public class BugServiceImpl implements BugService
     private final ResponsiblePersonRepository responsiblePersonRepository;
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
+    private final InstitutionRepository institutionRepository;
+    private final FirmRepository firmRepository;
 
     @Autowired
     public BugServiceImpl(BugRepository bugRepository,
                           LocationRepository locationRepository,
                           ResponsiblePersonRepository responsiblePersonRepository,
                           UserRepository userRepository,
-                          CommentRepository commentRepository)
+                          CommentRepository commentRepository,
+                          InstitutionRepository institutionRepository,
+                          FirmRepository firmRepository)
     {
         this.bugRepository = bugRepository;
         this.locationRepository = locationRepository;
         this.responsiblePersonRepository = responsiblePersonRepository;
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
+        this.institutionRepository = institutionRepository;
+        this.firmRepository = firmRepository;
     }
 
     @Override
@@ -47,6 +54,8 @@ public class BugServiceImpl implements BugService
             ResponsiblePerson responsiblePerson = this.responsiblePersonRepository.findOne(bugDTO.getResponsiblePersonDTO().getId());
             bug.setResponsiblePerson(responsiblePerson);
             this.bugRepository.save(bug);
+            responsiblePerson.addBug(bug);
+            this.responsiblePersonRepository.save(responsiblePerson);
             bugDTO.setId(bug.getId());
             location.addBug(bug);
             this.locationRepository.save(location);
@@ -138,5 +147,85 @@ public class BugServiceImpl implements BugService
             deleted = true;
         }
         return deleted;
+    }
+
+    @Override
+    public List<BugDTO> getBugsOfResponsiblePerson(Integer userId)
+    {
+        Set<ResponsiblePerson> responsiblePeople = null;
+        responsiblePeople = this.responsiblePersonRepository.findAllResponsiblePeopleByUserId(userId);
+        List<BugDTO> bugs = null;
+        if(responsiblePeople != null)
+        {
+            for(ResponsiblePerson rp : responsiblePeople)
+            {
+                bugs = new ArrayList<>();
+                for(Bug bug : rp.getBugs())
+                {
+                    bugs.add(new BugDTO(bug));
+                }
+            }
+        }
+        return bugs;
+    }
+
+    @Override
+    public Boolean connectBugAndFirm(Long bugId, Integer firmId)
+    {
+        Bug bug = this.bugRepository.findOne(bugId);
+        Firm firm = this.firmRepository.findOne(firmId);
+        Boolean connected = false;
+        if(bug != null && firm != null)
+        {
+            if(bug.getResponsibleFirm()!=null)
+            {
+                Firm tempFirm = bug.getResponsibleFirm();
+                tempFirm.removeBug(bug);
+                this.firmRepository.save(tempFirm);
+                bug.setResponsibleFirm(firm);
+                this.bugRepository.save(bug);
+            }
+            else
+            {
+                bug.setResponsibleFirm(firm);
+                this.bugRepository.save(bug);
+            }
+
+            firm.addBug(bug);
+            this.firmRepository.save(firm);
+            connected = true;
+        }
+        return connected;
+    }
+
+    @Override
+    public List<BugDTO> getBugsOfFirm(Integer firmId)
+    {
+        Firm firm = this.firmRepository.findOne(firmId);
+        List<BugDTO> bugDTOs = null;
+        if(firm != null)
+        {
+            bugDTOs = new ArrayList<>();
+            for(Bug bug : firm.getBugs())
+            {
+                bugDTOs.add(new BugDTO(bug));
+            }
+        }
+        return bugDTOs;
+    }
+
+    @Override
+    public Boolean payBill(Long bugId)
+    {
+        Bug bug = null;
+        Boolean paid = false;
+        bug = this.bugRepository.findOne(bugId);
+        if(bug != null)
+        {
+            bug.setPaid(true);
+            this.bugRepository.save(bug);
+            paid = true;
+        }
+        return paid;
     }
 }

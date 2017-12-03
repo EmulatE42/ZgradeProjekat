@@ -21,4 +21,12 @@ public interface BugService
     BugDTO getBug(Long bugId);
 
     Boolean deleteComment(Long id, Long bugId);
+
+    List<BugDTO> getBugsOfResponsiblePerson(Integer Id);
+
+    Boolean connectBugAndFirm(Long bugId, Integer firmId);
+
+    List<BugDTO> getBugsOfFirm(Integer firmId);
+
+    Boolean payBill(Long bugId);
 }

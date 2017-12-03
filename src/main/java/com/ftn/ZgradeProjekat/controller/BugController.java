@@ -27,7 +27,6 @@ public class BugController
     @RequestMapping(value = "/reportBug/{locationId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BugDTO> reportBug(@PathVariable("locationId") Long locationId, @RequestBody BugDTO bugDTO)
     {
-        System.out.println("usaoooooo11111");
         BugDTO savedBug = this.bugService.reportBug(locationId, bugDTO);
         if(savedBug == null)
         {
@@ -88,5 +87,39 @@ public class BugController
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(deleted, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getBugsOfResponsiblePerson/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<BugDTO>> getBugsOfResponsiblePerson(@PathVariable("userId") Integer userId)
+    {
+        List<BugDTO> bugs = this.bugService.getBugsOfResponsiblePerson(userId);
+        if(bugs == null)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(bugs, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/connectBugAndFirm/{bugId}/{firmId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> connectBugAndFirm(@PathVariable("bugId") Long bugId, @PathVariable("firmId") Integer firmId)
+    {
+        Boolean connected = this.bugService.connectBugAndFirm(bugId, firmId);
+
+        if(connected == false)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(connected, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/getBugsOfFirm/{firmId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<BugDTO>> getBugsOfFirm(@PathVariable("firmId") Integer firmId)
+    {
+        List<BugDTO> bugDTOs = this.bugService.getBugsOfFirm(firmId);
+        if(bugDTOs == null)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(bugDTOs, HttpStatus.CREATED);
     }
 }

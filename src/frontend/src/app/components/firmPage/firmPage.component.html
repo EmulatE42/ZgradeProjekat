@@ -9,8 +9,7 @@
       <th>Paid</th>
       <th>Finished</th>
       <th>Open</th>
-      <th>Delete</th>
-      <th>Bill</th>
+      <th>Create bill</th>
     </tr>
     </thead>
     <tbody>
@@ -23,18 +22,7 @@
       <td *ngIf="b.finished == true"><span class="badge badge-success">{{b.finished}}</span></td>
       <td *ngIf="b.finished == false"><span class="badge badge-danger">{{b.finished}}</span></td>
       <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/bug/{{b.id}}" routerLinkActive="active">Open</button></div></th>
-      <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteBug(i)">Delete</button></div></th>
-      <th><div class="container" *ngIf="b.paid == false && b.finished == true"><button type="button" class="btn btn-danger" routerLink="/showBill/{{b.id}}/{{locationId}}" routerLinkActive="active">Open bill</button></div></th>
-    </tr>
-    <tr class="table-success">
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th><div class="container"><button type="button" class="btn btn-success" (click)="goToAddNewBug()">Add new</button></div></th>
+      <th><div class="container" *ngIf="b.finished == false"><button type="button" class="btn btn-secondary" routerLink="/createBill/{{b.id}}" routerLinkActive="active">Create bill</button></div></th>
     </tr>
     </tbody>
   </table>

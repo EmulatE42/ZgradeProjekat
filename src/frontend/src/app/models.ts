@@ -79,7 +79,9 @@ export class BugDTO
                public dateOfBug:Date,
                public comments:CommentDTO[],
                public finished:boolean,
-               public responsiblePersonDTO:ResponsiblePersonDTO
+               public responsiblePersonDTO:ResponsiblePersonDTO,
+               public responsibleFirm:FirmDTO,
+               public paid:boolean
   ) {}
 }
 
@@ -95,6 +97,34 @@ export class UserDTO
 {
   constructor( public id:number,
                public username:string
+  ) {}
+}
+
+export class BillItem
+{
+  constructor( public id:number,
+               public name:string,
+               public description:string,
+               public quantity:number,
+               public amount:number
+  ) {}
+}
+
+export class Bill
+{
+  constructor( public id:number,
+               public billItemSet:BillItem[],
+               public date:Date
+  ) {}
+}
+
+export class FirmDTO
+{
+  constructor( public id:number,
+               public username:string,
+               public address:Address,
+               public name:string,
+               public description:string
   ) {}
 }
 

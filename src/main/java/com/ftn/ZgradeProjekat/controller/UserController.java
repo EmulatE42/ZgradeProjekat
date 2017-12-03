@@ -103,4 +103,15 @@ public class UserController
         else
             return new ResponseEntity<>(locationDTOs, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/user/getAllFirms", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<FirmDTO>> getAllFirms()
+    {
+        List<FirmDTO> firmDTOs = this.userService.getAllFirms();
+        if(firmDTOs == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(firmDTOs, HttpStatus.OK);
+
+    }
 }

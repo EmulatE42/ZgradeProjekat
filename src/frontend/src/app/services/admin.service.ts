@@ -3,16 +3,16 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import {LoggedUtils} from "../utils/logged.utils";
-import {BuildingDTO, LocationDTO, ResponsiblePersonDTO} from "../models";
+import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address} from "../models";
 
 @Injectable()
 export class AdminService
 {
   constructor(private http: Http) {}
 
-  registerUser(username: string, pass: string, role: string, firstname: string, lastname: string)
+  registerUser(username: string, pass: string, role: string, firstname: string, lastname: string, institutionName: string, address: Address, firmName: string, firmDescription: string)
   {
-    let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname};
+    let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname, institutionName: institutionName, address: address, firmName: firmName, firmDescription: firmDescription};
     let param = JSON.stringify(registerRequest);
     let headers = new Headers();
 

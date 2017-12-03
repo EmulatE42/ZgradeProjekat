@@ -27,6 +27,8 @@ public class BugDTO
     private Set<CommentDTO> comments;
     private Boolean finished;
     private ResponsiblePersonDTO responsiblePersonDTO;
+    private FirmDTO responsibleFirm;
+    private Boolean paid;
 
     public BugDTO(Bug bug)
     {
@@ -40,5 +42,10 @@ public class BugDTO
             this.comments.add(new CommentDTO(comment));
         }
         this.responsiblePersonDTO = new ResponsiblePersonDTO(bug.getResponsiblePerson());
+        if(bug.getResponsibleFirm()!=null)
+        {
+            this.responsibleFirm = new FirmDTO(bug.getResponsibleFirm());
+        }
+        this.paid = bug.getPaid();
     }
 }

@@ -6,28 +6,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
 
 /**
- * Created by Momir on 14.11.2017.
+ * Created by djuro on 12/2/2017.
  */
 @Entity
 @AllArgsConstructor(suppressConstructorProperties = true)
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "bill")
-public class Bill {
-
+@Table(name = "bill_item")
+public class BillItem
+{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id" , unique = true, nullable = false)
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    Set<BillItem> billItemSet;
+    @Column(name = "bill_item_name")
+    private String name;
 
-    @Column(name = "date")
-    private Date date;
+    @Column(name = "bill_item_description")
+    private String description;
+
+    @Column(name = "bill_item_quantity")
+    private Integer quantity;
+
+    @Column(name = "bill_item_amount")
+    private double amount;
 }
