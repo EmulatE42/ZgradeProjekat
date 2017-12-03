@@ -20,6 +20,7 @@ import {TenantPageComponent} from "./components/tenantPage/tenantPage.component"
 import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllBugs.component";
 import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
 import {BugComponent} from "./components/bug/bug.component";
+import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
 
 import { routing } from "./app.routes";
 
@@ -49,7 +50,8 @@ import { routing } from "./app.routes";
     TenantPageComponent,
     ShowAllBugsComponent,
     AddNewBugComponent,
-    BugComponent
+    BugComponent,
+    ParlamentViewComponent,
   ],
   providers: [],
   bootstrap:    [ AppComponent ]

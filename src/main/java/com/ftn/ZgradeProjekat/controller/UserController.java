@@ -1,9 +1,12 @@
 package com.ftn.ZgradeProjekat.controller;
 
+import com.ftn.ZgradeProjekat.domain.Building;
 import com.ftn.ZgradeProjekat.domain.DTO.*;
-import com.ftn.ZgradeProjekat.domain.Institution;
+import com.ftn.ZgradeProjekat.domain.Parliament;
 import com.ftn.ZgradeProjekat.domain.User;
 import com.ftn.ZgradeProjekat.security.TokenUtils;
+import com.ftn.ZgradeProjekat.service.BuildingService;
+import com.ftn.ZgradeProjekat.service.ParliamentService;
 import com.ftn.ZgradeProjekat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by djuro on 11/4/2017.
@@ -34,6 +37,9 @@ public class UserController
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private BuildingService buildingService;
 
     @Autowired
     TokenUtils tokenUtils;
@@ -102,5 +108,44 @@ public class UserController
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(locationDTOs, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user/getParliamentsOfTenant/{tenantId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ParliamentDTO>> getParliamentsOfTenant(@PathVariable("tenantId") Integer tenantId)
+    {
+        List<LocationDTO> locationDTOs = this.userService.getApartmentsOfTenant(tenantId);
+
+        if(locationDTOs == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else {
+
+            Map<Long, ParliamentDTO> tenantParlaments = new HashMap<>();
+
+            for(LocationDTO locationDTO: locationDTOs)
+            {
+                Long buildingId = locationDTO.getBuildingId();
+                BuildingDTO building = this.buildingService.getById(buildingId);
+
+                if(tenantParlaments != null) {
+
+                    if (!tenantParlaments.containsKey(building.getParliamentDTO().getId())) {
+                        tenantParlaments.put(building.getParliamentDTO().getId(), building.getParliamentDTO());
+                        break;
+                    }
+                }
+                else
+                {
+                    tenantParlaments.put(building.getParliamentDTO().getId(), building.getParliamentDTO());
+                    break;
+                }
+            }
+
+            List<ParliamentDTO> parliaments = new ArrayList<>();
+
+            for(ParliamentDTO parliamentDTO: tenantParlaments.values())
+                parliaments.add(parliamentDTO);
+
+            return new ResponseEntity<>(parliaments, HttpStatus.OK);
+        }
     }
 }
