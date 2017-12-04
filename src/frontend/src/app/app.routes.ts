@@ -107,6 +107,10 @@ const appRoutes : Routes =
       component: ShowBillComponent
     },
     {
+      path : "showBill/:p1/:p2",
+      component : ShowBillComponent
+    },
+    {
       path : "parlaments",
       component : ParlamentViewComponent
     },

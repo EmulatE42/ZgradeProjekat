@@ -20,7 +20,6 @@ import {TenantPageComponent} from "./components/tenantPage/tenantPage.component"
 import {ShowAllBugsComponent} from "./components/tenantPage/showAllBugs/showAllBugs.component";
 import {AddNewBugComponent} from "./components/tenantPage/addNewBug/addNewBug.component";
 import {BugComponent} from "./components/bug/bug.component";
-
 import {InstitutionBugsComponent} from "./components/bug/institutionBugs/institutionBugs.component";
 import {BillComponent} from "./components/bug/bill/bill.component";
 import {SetResponsibleFirmComponent} from "./components/bug/setResponsibleFirm/setResponsibleFirm.component";
