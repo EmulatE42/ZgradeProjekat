@@ -1,6 +1,8 @@
 package com.ftn.ZgradeProjekat.controller;
 
+import com.ftn.ZgradeProjekat.domain.DTO.ParliamentDTO;
 import com.ftn.ZgradeProjekat.domain.Parliament;
+import com.ftn.ZgradeProjekat.domain.Session;
 import com.ftn.ZgradeProjekat.service.ParliamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,6 +67,18 @@ public class ParliamentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(parliaments, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getSessions/{parlamentId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Set<Session>> getSessions(@PathVariable("parlamentId") Long parlamentId)
+    {
+        Parliament parliament = this.parliamentService.getParliament(parlamentId);
+
+        if(parliament == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else {
+            return new ResponseEntity<>(parliament.getSessions(), HttpStatus.OK);
+        }
     }
 
 }

@@ -21,6 +21,8 @@ import {BillComponent} from "./components/bug/bill/bill.component";
 import {SetResponsibleFirmComponent} from "./components/bug/setResponsibleFirm/setResponsibleFirm.component";
 import {FirmPageComponent} from "./components/firmPage/firmPage.component";
 import {ShowBillComponent} from "./components/tenantPage/showBill/showBill.component";
+import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
+import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 
 const appRoutes : Routes =
   [
@@ -101,9 +103,18 @@ const appRoutes : Routes =
       component : FirmPageComponent
     },
     {
-      path : "showBill/:p1/:p2",
-      component : ShowBillComponent
+      path: "showBill/:p1/:p2",
+      component: ShowBillComponent
+    },
+    {
+      path : "parlaments",
+      component : ParlamentViewComponent
+    },
+    {
+      path : "parlament/:p1/sessions",
+      component : SessionViewComponent
     }
+
   ];
 
 export const routing : ModuleWithProviders = RouterModule.forRoot(appRoutes);
