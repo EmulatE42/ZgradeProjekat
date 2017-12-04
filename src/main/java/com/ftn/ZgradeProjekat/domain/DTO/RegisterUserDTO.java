@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain.DTO;
 
+import com.ftn.ZgradeProjekat.domain.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,8 @@ public class RegisterUserDTO
     private String role;
     private String firstname;
     private String lastname;
+    private String institutionName;
+    private Address address;
+    private String firmName;
+    private String firmDescription;
 }

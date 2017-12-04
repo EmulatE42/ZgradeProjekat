@@ -1,0 +1,15 @@
+<div class="location_container" *ngIf="bug!=null">
+  <div class="form-group" *ngIf="bug.responsibleFirm != null">
+    <label for="description">Current responsible firm</label>
+    <input type="text" class="form-control" id="description" placeholder="Enter floor" name="description" [(ngModel)]="bug.responsibleFirm.name" >
+  </div>
+  <div class="form-group">
+    <label for="exampleSelect2">Choose responsible firm</label>
+    <select class="form-control" id="exampleSelect2" [(ngModel)]="responsibleFirm">
+      <option *ngFor="let c of firms" [ngValue]="c" >{{c.username}}--{{c.name}}--{{c.description}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+</div>

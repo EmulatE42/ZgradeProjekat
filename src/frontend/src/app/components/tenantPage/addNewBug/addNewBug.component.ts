@@ -31,7 +31,7 @@ export class AddNewBugComponent {
 
   add()
   {
-    this.tenantService.addNewBug(this.route.snapshot.params['p1'], new BugDTO(null, this.description,new Date(),null,false,this.selectedResponsiblePerson)).subscribe
+    this.tenantService.addNewBug(this.route.snapshot.params['p1'], new BugDTO(null, this.description,new Date(),null,false,this.selectedResponsiblePerson, null, false)).subscribe
     (
       () => this.goBack()
     );

@@ -5,7 +5,6 @@
     <label for="exampleSelect1">Example select</label>
     <select class="form-control" id="exampleSelect1" [(ngModel)]="userType">
       <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-      <option value="RESPONSIBLE_PERSON">RESPONSIBLE_PERSON</option>
       <option value="FIRM">FIRM</option>
       <option value="INSTITUTION">INSTITUTION</option>
       <option value="TENANT">TENANT</option>
@@ -28,9 +27,49 @@
     <input type="text" class="form-control" id="firstname" placeholder="Enter first name" name="firstname" [(ngModel)]="firstname" >
   </div>
 
-  <div class="form-group" *ngIf="userType=='TENANT'">
+  <div class="form-group" *ngIf="userType=='TENANT' ">
     <label for="lastname">Last name</label>
     <input type="text" class="form-control" id="lastname" placeholder="Enter last name" name="lastname" [(ngModel)]="lastname" >
+  </div>
+
+  <div class="form-group" *ngIf="userType=='INSTITUTION'">
+    <label for="institutionName">Institution name</label>
+    <input type="text" class="form-control" id="institutionName" placeholder="Enter institucion name" name="institutionName" [(ngModel)]="institutionName" >
+  </div>
+
+  <div class="form-group" *ngIf="userType=='FIRM'">
+    <label for="firmName">Firm name</label>
+    <input type="text" class="form-control" id="firmName" placeholder="Enter firm name" name="firmName" [(ngModel)]="firmName" >
+  </div>
+
+  <div class="form-group" *ngIf="userType=='FIRM'">
+    <label for="firmDescription">Firm description</label>
+    <input type="text" class="form-control" id="firmDescription" placeholder="Enter firm description" name="firmDescription" [(ngModel)]="firmDescription" >
+  </div>
+
+  <div class="form-group" *ngIf="userType=='INSTITUTION' || userType=='FIRM'">
+    <label class="col-form-label" for="inputDefault1">City</label>
+    <input type="text" class="form-control" id="inputDefault1" [(ngModel)]="city">
+  </div>
+
+  <div class="form-group" *ngIf="userType=='INSTITUTION' || userType=='FIRM'">
+    <label class="col-form-label" for="inputDefault2">Number</label>
+    <input type="text" class="form-control" id="inputDefault2" [(ngModel)]="buildingNumber">
+  </div>
+
+  <div class="form-group" *ngIf="userType=='INSTITUTION' || userType=='FIRM'">
+    <label class="col-form-label" for="inputDefault3">Street</label>
+    <input type="text" class="form-control" id="inputDefault3" [(ngModel)]="buildingStreet">
+  </div>
+
+  <div class="form-group" *ngIf="userType=='INSTITUTION' || userType=='FIRM'">
+    <label class="col-form-label" for="inputDefault4">Postal code</label>
+    <input type="text" class="form-control" id="inputDefault4" [(ngModel)]="postalCode">
+  </div>
+
+  <div class="form-group" *ngIf="userType=='INSTITUTION' || userType=='FIRM'">
+    <label class="col-form-label" for="inputDefault5">Country</label>
+    <input type="text" class="form-control" id="inputDefault5" [(ngModel)]="country">
   </div>
 
   <button type="submit" (click)="register()"  class="btn btn-primary">Register</button>

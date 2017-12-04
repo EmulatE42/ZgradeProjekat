@@ -28,4 +28,6 @@ public interface UserService {
     List<LocationDTO> getApartmentsOfTenant(Integer tenantId);
 
     User getUserByUsername(String username);
+
+    List<FirmDTO> getAllFirms();
 }

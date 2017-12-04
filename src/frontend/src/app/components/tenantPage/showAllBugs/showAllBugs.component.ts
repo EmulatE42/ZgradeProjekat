@@ -15,9 +15,11 @@ import { ActivatedRoute, Router }    from '@angular/router';
 export class ShowAllBugsComponent {
 
   bugs:BugDTO[];
+  locationId:number;
 
   constructor(private tenantService: TenantService, private route: ActivatedRoute, private _router: Router)
   {
+    this.locationId = this.route.snapshot.params['p1'];
     this.tenantService.getAllBugs(this.route.snapshot.params['p1']).subscribe
     (
       (data:BugDTO[]) => this.bugs = data,
