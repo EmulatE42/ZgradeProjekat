@@ -30,7 +30,8 @@ export class BuildingDTO
                public adress:Address,
                public locations:LocationDTO[],
                public responsiblePersonDTOs:ResponsiblePersonDTO[],
-               public buildingManager:TenantDTO
+               public buildingManager:TenantDTO,
+               public parliamentDTO:ParliamentDTO
   ) {}
 }
 
@@ -128,4 +129,44 @@ export class FirmDTO
   ) {}
 }
 
+export class ParliamentDTO
+{
+  constructor( public id:number,
+               public sessions:SessionDTO[],
+               public buildingAddress: AddressDTO
+  ) {}
+}
+
+export class SessionDTO
+{
+  constructor( public id:number,
+               public date:Date,
+               public topics:TopicDTO[],
+               public record:string,
+               public timetable: string,
+               public creator: UserDTO,
+               public parliament: ParliamentDTO
+  ) {}
+}
+
+export class TopicDTO
+{
+  constructor( public id:number,
+               public description:string,
+               public creator: UserDTO,
+               public accepted: boolean,
+               public votes: number,
+               public session: SessionDTO
+  ) {}
+}
+
+export class AddressDTO
+{
+  constructor( public id:number,
+               public number:string,
+               public street: string,
+               public postalCode: string,
+               public country: string
+  ) {}
+}
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import {Address, BuildingDTO} from "../../models";
+import {Address, BuildingDTO, ParliamentDTO} from "../../models";
 import { AdminService } from "../../services/admin.service";
 import { Router }    from '@angular/router';
 
@@ -28,7 +28,7 @@ export class BuildingComponent
   addBuilding()
   {
     this.adminService.addBuilding(new BuildingDTO(null,this.dateOfConstruction,new Address(null,this.city,
-      this.buildingNumber, this.buildingStreet, this.postalCode, this.country),null,null,null)).subscribe(
+      this.buildingNumber, this.buildingStreet, this.postalCode, this.country),null,null,null, new ParliamentDTO(null, null, null))).subscribe(
       ()=>this.goToDisplayAllBuildings()
     );
   }

@@ -25,8 +25,11 @@ import {BillComponent} from "./components/bug/bill/bill.component";
 import {SetResponsibleFirmComponent} from "./components/bug/setResponsibleFirm/setResponsibleFirm.component";
 import {FirmPageComponent} from "./components/firmPage/firmPage.component";
 import {ShowBillComponent} from "./components/tenantPage/showBill/showBill.component";
+import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
+import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 
 import { routing } from "./app.routes";
+
 
 
 @NgModule({
@@ -59,7 +62,9 @@ import { routing } from "./app.routes";
     BillComponent,
     SetResponsibleFirmComponent,
     FirmPageComponent,
-    ShowBillComponent
+    ShowBillComponent,
+    ParlamentViewComponent,
+    SessionViewComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]

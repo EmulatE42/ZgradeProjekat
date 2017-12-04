@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,7 @@ public class Session {
     @JoinColumn(referencedColumnName = "id", name = "session_user_id")
     private User creator;
 
+    @JsonIgnore
     @ManyToOne
     private Parliament parliament;
 }
