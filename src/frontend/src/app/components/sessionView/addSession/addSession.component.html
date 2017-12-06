@@ -1,0 +1,43 @@
+<div>
+<div class="session_container">
+  <div class="form-group">
+    <label class="col-form-label" for="date">Date of session</label>
+    <input type="date" class="form-control" id="date" name="date" [(ngModel)]="date"
+           placeholder="yyyy-MM-dd" required />
+  </div>
+
+</div>
+
+<div class="table_container">
+  <legend>Add topics</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Description</th>
+      <th>Add</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let topic of topics; let i = index">
+      <td>{{i}}</td>
+      <td>{{topic.description}} </td>
+      <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteTopic(i)">Delete</button></div></th>
+    </tr>
+
+    <tr class="table-success">
+      <td> </td>
+      <td>
+        <div class="form-group">
+          <textarea class="form-control" rows="1" id="description" placeholder="Enter description" name="description" [(ngModel)]="description"> </textarea>
+        </div>
+      </td>
+      <th>
+        <div class="container"><button type="button" class="btn btn-success" (click)="addTopic()">Add</button></div>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  <div class="container"><button type="button" class="btn btn-primary" (click)="addSession()">Add session</button></div>
+</div>
+</div>

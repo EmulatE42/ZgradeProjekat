@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ftn.ZgradeProjekat.domain.DTO.BugDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,12 +40,14 @@ public class Bug
     @Column(name = "bug_finished")
     private Boolean finished;
 
+    @JsonIgnore
     @ManyToOne
     private ResponsiblePerson responsiblePerson;
 
     @OneToOne
     private Bill bill;
 
+    @JsonIgnore
     @ManyToOne
     private Firm responsibleFirm;
 

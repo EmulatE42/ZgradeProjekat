@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class Tenant extends User {
 
     //@ManyToOne
     @ManyToMany
+    @JsonIgnore
     private Set<Apartment> apartments;
 
     @Column(name = "tenant_is_building_manager")

@@ -30,7 +30,7 @@ public class Session {
     @Column(name = "session_date")
     private Date date;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private Set<Topic> topics;
 
     @Column(name = "session_record")
@@ -44,6 +44,6 @@ public class Session {
     private User creator;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Parliament parliament;
 }
