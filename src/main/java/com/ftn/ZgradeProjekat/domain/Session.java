@@ -43,7 +43,6 @@ public class Session {
     @JoinColumn(referencedColumnName = "id", name = "session_user_id")
     private User creator;
 
-    @JsonIgnore
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.MERGE)
     private Parliament parliament;
 }

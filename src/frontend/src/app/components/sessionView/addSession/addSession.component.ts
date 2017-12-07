@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {TopicDTO, SessionDTO, ParliamentDTO} from "../../../models";
+import {TopicDTO, SessionDTO, ParliamentDTO, Parliament} from "../../../models";
 import {LoggedUtils} from "../../../utils/logged.utils";
 import {SessionService} from "../../../services/session.service";
 
@@ -27,8 +27,10 @@ export class AddSessionComponent
 
   addSession()
   {
-    this.session = new SessionDTO(null,this.date,this.topics,null,null,LoggedUtils.getUser(), new ParliamentDTO(this.route.snapshot.params['p1'], null, null));
-    var nesto = new ParliamentDTO(null,null,null)
+    var parlament = new Parliament(this.route.snapshot.params['p1'], null)
+    this.session = new SessionDTO(null,this.date,this.topics,null,null,LoggedUtils.getUser(), parlament);
+    console.log(JSON.stringify(this.session));
+
     this.sessionService.addSession(this.session).subscribe
     (
       (data: SessionDTO) => this.session = data,
