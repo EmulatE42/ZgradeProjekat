@@ -2,6 +2,7 @@ package com.ftn.ZgradeProjekat.controller;
 
 import com.ftn.ZgradeProjekat.domain.Parliament;
 import com.ftn.ZgradeProjekat.domain.Session;
+import com.ftn.ZgradeProjekat.service.ParliamentService;
 import com.ftn.ZgradeProjekat.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,25 @@ public class SessionController {
     @Autowired
     private SessionService sessionService;
 
+    @Autowired
+    private ParliamentService parliamentService;
+
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Session> addSession(@RequestBody Session session)
     {
         Session saved = sessionService.addSession(session);
+
+        if(session.getParliament() != null)
+        {
+            System.out.println("Nije null");
+
+        }
+        else
+            System.out.println("Jeste null");
+
+        //Parliament parliament = parliamentService.getParliament(session.getParliament().getId());
+        //parliament.getSessions().add(session);
+
         if(saved == null)
         {
             return new ResponseEntity<>(HttpStatus.CONFLICT);

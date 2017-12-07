@@ -137,6 +137,13 @@ export class ParliamentDTO
   ) {}
 }
 
+export class Parliament
+{
+  constructor( public id:number,
+               public sessions:SessionDTO[]
+  ) {}
+}
+
 export class SessionDTO
 {
   constructor( public id:number,
@@ -145,7 +152,7 @@ export class SessionDTO
                public record:string,
                public timetable: string,
                public creator: UserDTO,
-               public parliament: ParliamentDTO
+               public parliament: Parliament
   ) {}
 }
 

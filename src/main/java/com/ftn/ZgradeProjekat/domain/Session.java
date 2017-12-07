@@ -30,7 +30,7 @@ public class Session {
     @Column(name = "session_date")
     private Date date;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private Set<Topic> topics;
 
     @Column(name = "session_record")
@@ -43,7 +43,6 @@ public class Session {
     @JoinColumn(referencedColumnName = "id", name = "session_user_id")
     private User creator;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     private Parliament parliament;
 }
