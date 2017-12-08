@@ -1,0 +1,28 @@
+<div class="my_table">
+  <legend>List of sessions</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Date</th>
+      <th>Creator</th>
+      <th>Topics</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let session of sessions; let i = index">
+      <td>{{i}}</td>
+      <td>{{session.date}} </td>
+      <td>{{session.creator.username}} </td>
+      <th><div class="container"><button type="button" class="btn btn-danger" (click)="goToListOfTopics(session.id)">Topics</button></div></th>
+    </tr>
+
+    <tr class="table-success">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><div class="container"><button type="button" class="btn btn-success" (click)="goToAddNewSession()">Add new</button></div></th>
+    </tr>
+    </tbody>
+  </table>
+</div>

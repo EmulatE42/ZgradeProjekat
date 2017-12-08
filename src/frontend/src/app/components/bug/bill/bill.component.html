@@ -1,0 +1,46 @@
+<div class="container" ng-app="invoice">
+  <section class="jumbotron">
+    <h1>AngularJS invoice example</h1>
+    <p>Createing simple invoice example by Amro Eldewiny - Arabic HTML</p>
+    <p>Add more invoice as you like.</p>
+  </section>
+  <section class="row" ng-controller="InvoiceController">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of bill.billItemSet; let i = index">
+        <td><fieldset disabled=""><input type="text" [(ngModel)]="item.name" class="form-control" /></fieldset></td>
+        <td><fieldset disabled=""><input type="text" [(ngModel)]="item.description" class="form-control" /></fieldset></td>
+        <td><fieldset disabled=""><input type="number" [(ngModel)]="item.quantity" class="form-control" /></fieldset></td>
+        <td><fieldset disabled=""><input type="number" [(ngModel)]="item.amount" class="form-control" /></fieldset></td>
+        <td>{{item.quantity * item.amount}} €</td>
+        <td><button type="button" class="btn btn-danger" (click)="remove(i)">Delete</button></td>
+      </tr>
+      <tr *ngIf="billItem != null">
+        <td><input type="text" [(ngModel)]="billItem.name" class="form-control" /></td>
+        <td><input type="text" [(ngModel)]="billItem.description" class="form-control" /></td>
+        <td><input type="number" [(ngModel)]="billItem.quantity" class="form-control" /></td>
+        <td><input type="number" [(ngModel)]="billItem.amount" class="form-control" /></td>
+        <td>{{billItem.quantity * billItem.amount}} €</td>
+        <td><button type="button" class="btn btn-danger" (click)="remove($index)">Delete</button></td>
+      </tr>
+      <tr>
+        <td><button type="button" class="btn btn-primary" (click)="add()">Add item</button></td>
+        <td><button type="button" class="btn btn-success" (click)="createBill()">Create bill</button></td>
+        <td></td>
+        <td>Total : </td>
+        <td>{{ttt}} €</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

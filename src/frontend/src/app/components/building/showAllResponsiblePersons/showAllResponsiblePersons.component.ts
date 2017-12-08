@@ -29,7 +29,7 @@ export class ShowAllResponsiblePersonsComponent
   delete(id:number,index:number)
   {
     this.responsiblePeople.splice(index,1);
-    this.adminService.deleteResponsePerson(id).subscribe
+    this.adminService.deleteResponsePerson(id, this.route.snapshot.params['p1']).subscribe
     (
       error => alert(error)
     );

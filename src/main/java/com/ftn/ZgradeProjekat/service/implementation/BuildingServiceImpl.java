@@ -28,6 +28,7 @@ public class BuildingServiceImpl implements BuildingService
     private final TenantRepository tenantRepository;
     private final ResponsiblePersonRepository responsiblePersonRepository;
     private final InstitutionRepository institutionRepository;
+    private final LocationRepository locationRepository;
 
     @Autowired
     public BuildingServiceImpl(BuildingRepository buildingRepository,
@@ -37,7 +38,8 @@ public class BuildingServiceImpl implements BuildingService
                                AtticRepository atticRepository,
                                TenantRepository tenantRepository,
                                ResponsiblePersonRepository responsiblePersonRepository,
-                               InstitutionRepository institutionRepository)
+                               InstitutionRepository institutionRepository,
+                               LocationRepository locationRepository)
     {
 
         this.buildingRepository = buildingRepository;
@@ -48,7 +50,7 @@ public class BuildingServiceImpl implements BuildingService
         this.tenantRepository = tenantRepository;
         this.responsiblePersonRepository = responsiblePersonRepository;
         this.institutionRepository = institutionRepository;
-
+        this.locationRepository = locationRepository;
     }
 
     @Override
@@ -202,19 +204,55 @@ public class BuildingServiceImpl implements BuildingService
         return responsiblePersonDTOs;
     }
 
-    //brisanje ne radi zato sto se mora izbrisati iz liste odgovornih lica u zgradi 
     @Override
-    public Boolean deleteResponsiblePerson(Long id)
+    public Boolean deleteResponsiblePerson(Long id, Long buildingId)
     {
         ResponsiblePerson deletedResponsiblePerson = null;
         Boolean deleted = false;
         deletedResponsiblePerson = this.responsiblePersonRepository.findOne(id);
         if(deletedResponsiblePerson!=null)
         {
+            Building building = this.buildingRepository.findById(buildingId);
+            building.removeResponsiblePerson(deletedResponsiblePerson);
+            this.buildingRepository.save(building);
             this.responsiblePersonRepository.delete(deletedResponsiblePerson);
             deleted = true;
         }
         return deleted;
+    }
+
+    @Override
+    public Boolean setBuildingManager(Long buildingId, Integer tenantId)
+    {
+        Building building = this.buildingRepository.findById(buildingId);
+        Tenant tenant = null;
+        Boolean saved = false;
+        tenant = this.tenantRepository.findById(tenantId);
+        if(tenant!= null) saved=true;
+        tenant.setIsBuildingmManager(true);
+        this.tenantRepository.save(tenant);
+        if(building.getBuildingManager()!=null)
+        {
+            Tenant oldBuildingManager = (Tenant) building.getBuildingManager();
+            oldBuildingManager.setIsBuildingmManager(false);
+            this.tenantRepository.save(oldBuildingManager);
+        }
+        building.setBuildingManager(tenant);
+        this.buildingRepository.save(building);
+        return saved;
+    }
+
+    @Override
+    public List<ResponsiblePersonDTO> getAllResponsiblePersonsByLocationId(Long id)
+    {
+        Location location = this.locationRepository.findById(id);
+        Set<ResponsiblePerson> responsiblePeople = location.getBuilding().getResponsiblePersons();
+        List<ResponsiblePersonDTO> responsiblePersonDTOs = new ArrayList<>();
+        for(ResponsiblePerson rp : responsiblePeople)
+        {
+            responsiblePersonDTOs.add(new ResponsiblePersonDTO(rp));
+        }
+        return responsiblePersonDTOs;
     }
 
 }

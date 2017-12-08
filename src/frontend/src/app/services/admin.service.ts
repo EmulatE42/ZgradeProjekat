@@ -3,16 +3,16 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import {LoggedUtils} from "../utils/logged.utils";
-import {BuildingDTO, LocationDTO, ResponsiblePersonDTO} from "../models";
+import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address} from "../models";
 
 @Injectable()
 export class AdminService
 {
   constructor(private http: Http) {}
 
-  registerUser(username: string, pass: string, role: string, firstname: string, lastname: string)
+  registerUser(username: string, pass: string, role: string, firstname: string, lastname: string, institutionName: string, address: Address, firmName: string, firmDescription: string)
   {
-    let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname};
+    let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname, institutionName: institutionName, address: address, firmName: firmName, firmDescription: firmDescription};
     let param = JSON.stringify(registerRequest);
     let headers = new Headers();
 
@@ -136,12 +136,39 @@ export class AdminService
       .map(res => res.json());
   }
 
-  deleteResponsePerson(id:number)
+  deleteResponsePerson(id:number, buildingId:number)
   {
     var headers = new Headers();
     headers.append("X-Auth-Token", LoggedUtils.getToken());
     headers.append('Content-Type', 'application/json');
-    return this.http.delete("http://localhost:8080/building/deleteResponsiblePerson/"+id, { headers : headers })
+    return this.http.delete("http://localhost:8080/building/deleteResponsiblePerson/"+id+"/"+buildingId, { headers : headers })
+      .map(res => res.json());
+  }
+
+  getAllTenantsFromBuilding(buildingId:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/user/getAllTenantsFromBuilding/"+buildingId, { headers : headers })
+      .map(res => res.json());
+  }
+
+  setBuildingManager(buildingId:number, tenantId:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.put("http://localhost:8080/building/setBuildingManager/"+buildingId+"/"+tenantId, { headers : headers })
+      .map(res => res.json());
+  }
+
+  getAllResponsiblePersonsByLocationId(id:number)
+  {
+    var headers = new Headers();
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/building/getAllResponsiblePersonsByLocationId/"+id, { headers : headers })
       .map(res => res.json());
   }
 

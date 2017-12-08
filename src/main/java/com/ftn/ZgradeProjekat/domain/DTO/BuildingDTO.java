@@ -24,6 +24,8 @@ public class BuildingDTO
     private Address adress;
     private Set<LocationDTO> locations;
     private Set<ResponsiblePersonDTO> responsiblePersonDTOs;
+    private TenantDTO buildingManager;
+    private ParliamentDTO parliamentDTO;
 
     public BuildingDTO(Building building)
     {
@@ -31,6 +33,7 @@ public class BuildingDTO
         this.dateOfConstruction = building.getDateOfConstruction();
         this.adress = building.getAddress();
         this.locations = new HashSet<>();
+        this.parliamentDTO = new ParliamentDTO(building);
         for(Location location : building.getLocations())
         {
             LocationDTO locationDTO = new LocationDTO(location);
@@ -66,6 +69,7 @@ public class BuildingDTO
         {
             this.responsiblePersonDTOs.add(new ResponsiblePersonDTO(responsiblePerson));
         }
+        if(building.getBuildingManager()!=null) this.buildingManager = new TenantDTO((Tenant) building.getBuildingManager());
     }
 
 

@@ -1,0 +1,30 @@
+<div class="container" ng-app="invoice">
+  <section class="row" ng-controller="InvoiceController">
+    <table class="table table-hover" *ngIf="bill!=null">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of bill.billItemSet; let i = index">
+        <td><fieldset disabled=""><input type="text" [(ngModel)]="item.name" class="form-control" /></fieldset></td>
+        <td><fieldset disabled=""><input type="text" [(ngModel)]="item.description" class="form-control" /></fieldset></td>
+        <td><fieldset disabled=""><input type="number" [(ngModel)]="item.quantity" class="form-control" /></fieldset></td>
+        <td><fieldset disabled=""><input type="number" [(ngModel)]="item.amount" class="form-control" /></fieldset></td>
+        <td>{{item.quantity * item.amount}} €</td>
+      </tr>
+      <tr>
+        <td><button type="button" class="btn btn-success" (click)="payBill()">Pay</button></td>
+        <td></td>
+        <td>Total : </td>
+        <td>{{ttt}} €</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

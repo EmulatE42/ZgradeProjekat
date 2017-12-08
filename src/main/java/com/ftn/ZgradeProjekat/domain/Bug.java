@@ -1,11 +1,15 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ftn.ZgradeProjekat.domain.DTO.BugDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,6 +17,7 @@ import java.util.Set;
  */
 @Entity
 @AllArgsConstructor(suppressConstructorProperties = true)
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "bug")
@@ -34,4 +39,37 @@ public class Bug
 
     @Column(name = "bug_finished")
     private Boolean finished;
+
+    @JsonIgnore
+    @ManyToOne
+    private ResponsiblePerson responsiblePerson;
+
+    @OneToOne
+    private Bill bill;
+
+    @JsonIgnore
+    @ManyToOne
+    private Firm responsibleFirm;
+
+    @Column(name = "bug_paid")
+    private Boolean paid;
+
+    public Bug(BugDTO bugDTO)
+    {
+        this.description = bugDTO.getDescription();
+        this.dateOfBug = bugDTO.getDateOfBug();
+        this.comments = new HashSet<>();
+        this.finished = false;
+        this.paid = false;
+    }
+
+    public void addComment(Comment comment)
+    {
+        this.comments.add(comment);
+    }
+
+    public void removeComment(Comment comment)
+    {
+        this.comments.remove(comment);
+    }
 }

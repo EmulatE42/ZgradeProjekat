@@ -1,5 +1,7 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,11 +9,13 @@ public class UserAuthority {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JsonIgnore
 	private User user;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Authority authority;
 
 	public Long getId() {

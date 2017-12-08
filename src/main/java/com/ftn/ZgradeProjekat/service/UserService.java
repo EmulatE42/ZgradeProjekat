@@ -22,4 +22,12 @@ public interface UserService {
     List<TenantDTO> getAllTenants();
 
     List<InstitutionDTO> getAllInstitution();
+
+    List<TenantDTO> getAllTenantsFromBuilding(Long buildingId);
+
+    List<LocationDTO> getApartmentsOfTenant(Integer tenantId);
+
+    User getUserByUsername(String username);
+
+    List<FirmDTO> getAllFirms();
 }
