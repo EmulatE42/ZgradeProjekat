@@ -42,7 +42,7 @@ export class AddSessionComponent
 
   addTopic()
   {
-    this.topics.push(new TopicDTO(null, this.description, LoggedUtils.getUser(),false,0,null));
+    this.topics.push(new TopicDTO(null, this.description, LoggedUtils.getUser(),false,0));
     this.description = '';
   }
 
