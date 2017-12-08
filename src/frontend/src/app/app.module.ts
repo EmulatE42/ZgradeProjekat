@@ -30,6 +30,7 @@ import {SessionViewComponent} from "./components/sessionView/sessionView.compone
 import {AddSessionComponent} from "./components/sessionView/addSession/addSession.component";
 
 import { routing } from "./app.routes";
+import {TopicViewComponent} from "./components/topicView/topicView.component";
 
 
 
@@ -67,7 +68,8 @@ import { routing } from "./app.routes";
     ShowBillComponent,
     ParlamentViewComponent,
     SessionViewComponent,
-    AddSessionComponent
+    AddSessionComponent,
+    TopicViewComponent
   ],
   providers: [],
   bootstrap:    [ AppComponent ]

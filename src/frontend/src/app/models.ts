@@ -162,8 +162,7 @@ export class TopicDTO
                public description:string,
                public creator: UserDTO,
                public accepted: boolean,
-               public votes: number,
-               public session: SessionDTO
+               public votes: number
   ) {}
 }
 

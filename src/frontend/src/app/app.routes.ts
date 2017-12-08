@@ -24,6 +24,7 @@ import {ShowBillComponent} from "./components/tenantPage/showBill/showBill.compo
 import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
 import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 import {AddSessionComponent} from "./components/sessionView/addSession/addSession.component";
+import {TopicViewComponent} from "./components/topicView/topicView.component";
 
 const appRoutes : Routes =
   [
@@ -118,6 +119,10 @@ const appRoutes : Routes =
     {
       path : "parlament/:p1/add_session",
       component : AddSessionComponent
+    },
+    {
+      path : "parlament/:p1/session/:p2/topics",
+      component : TopicViewComponent
     }
 
   ];
