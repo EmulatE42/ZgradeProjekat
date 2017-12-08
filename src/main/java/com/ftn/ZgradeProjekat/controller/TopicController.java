@@ -82,9 +82,8 @@ public class TopicController {
     {
         Session session = this.sessionService.getSession(sessionId);
 
-        if(session == null) {
+        if(session == null) 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         else {
             Set<TopicDTO> topics = new HashSet<>();
 
