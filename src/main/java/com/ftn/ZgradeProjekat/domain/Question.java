@@ -25,7 +25,7 @@ public class Question
     @Column(name = "question_text")
     private String text;
 
-    @OneToMany(mappedBy = "answer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany
     private Set<Answer> answers;
 
     @Column(name = "secondType")
