@@ -46,7 +46,7 @@ public class Building
     private Parliament parliament;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<ResponsiblePerson> responsiblePersons;
+    private Set<ResponsiblePerson> responsiblePersons;  //brisanjem responsible persona brise se i ovde
 
     @OneToOne
     private User buildingManager;
@@ -70,6 +70,11 @@ public class Building
     public void removeResponsiblePerson(ResponsiblePerson responsiblePerson)
     {
         this.responsiblePersons.remove(responsiblePerson);
+    }
+
+    public void removeLocation(Location location)
+    {
+        this.locations.remove(location);
     }
 
 }

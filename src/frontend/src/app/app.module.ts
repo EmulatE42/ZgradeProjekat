@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './auth/token.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent }  from './app.component';
@@ -40,7 +43,8 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
     BrowserModule,
     routing,
     HttpModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -71,7 +75,13 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
     AddSessionComponent,
     TopicViewComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

@@ -27,7 +27,7 @@ public abstract class Location
     protected Long id;
 
     @OneToMany
-    protected Set<Bug> bugs;
+    protected Set<Bug> bugs; //brisanjem buga brise se ovde
 
     @JsonIgnore
     @ManyToOne

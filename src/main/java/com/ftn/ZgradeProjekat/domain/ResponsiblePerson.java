@@ -37,7 +37,7 @@ public class ResponsiblePerson
     private String description;
 
     @OneToMany
-    private Set<Bug> bugs;
+    private Set<Bug> bugs; //brisanjem buga brise se i ovde
 
     public ResponsiblePerson(ResponsiblePersonDTO responsiblePersonDTO, Tenant tenant)
     {
@@ -58,6 +58,11 @@ public class ResponsiblePerson
     public void addBug(Bug bug)
     {
         this.bugs.add(bug);
+    }
+
+    public void removeBug(Bug bug)
+    {
+        this.bugs.remove(bug);
     }
 
     /*

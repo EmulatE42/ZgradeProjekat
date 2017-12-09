@@ -23,7 +23,7 @@ import java.util.Set;
 public class Admin extends User {
 
     @OneToMany
-    private Set<Building> buildings = new HashSet<Building>();
+    private Set<Building> buildings = new HashSet<Building>(); //kad kreiramno zgrade treba ih dodavati kod admina
 
     public Admin(User user)
     {

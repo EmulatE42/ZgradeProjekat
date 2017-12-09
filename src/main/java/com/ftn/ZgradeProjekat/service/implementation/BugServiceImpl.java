@@ -91,6 +91,26 @@ public class BugServiceImpl implements BugService
         {
             Location location = this.locationRepository.findById(locationId);
             location.removeBug(bug);
+            Building building = location.getBuilding();
+            for(ResponsiblePerson rp : building.getResponsiblePersons())
+            {
+                if(rp.getBugs().contains(bug))
+                {
+                    rp.removeBug(bug);
+                    this.responsiblePersonRepository.save(rp);
+                    break;
+                }
+            }
+            List<Firm> firms  = this.firmRepository.findAll();
+            for(Firm f : firms)
+            {
+                if(f.getBugs().contains(bug))
+                {
+                    f.removeBug(bug);
+                    this.firmRepository.save(f);
+                    break;
+                }
+            }
             this.locationRepository.save(location);
             this.bugRepository.delete(bug);
             deleted = true;

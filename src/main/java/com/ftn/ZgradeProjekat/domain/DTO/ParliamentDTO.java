@@ -28,12 +28,15 @@ public class ParliamentDTO {
     public ParliamentDTO(Building building)
     {
         this();
-        this.id = building.getParliament().getId();
+        if(building.getParliament() != null)
+        {
+            this.id = building.getParliament().getId();
+            for(Session session: building.getParliament().getSessions())
+            {
+                this.sessions.add(new SessionDTO(session));
+            }
+        }
         this.buildingAddress = new AddressDTO(building.getAddress());
 
-        for(Session session: building.getParliament().getSessions())
-        {
-            this.sessions.add(new SessionDTO(session));
-        }
     }
 }
