@@ -1,6 +1,7 @@
 package com.ftn.ZgradeProjekat.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ftn.ZgradeProjekat.domain.DTO.TopicDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +38,16 @@ public class Topic
     @Column(name = "topic_votes")
     private Long votes;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JsonIgnore
     private Session session;
+
+    public Topic(TopicDTO topicDTO)
+    {
+        this.id = topicDTO.getId();
+        this.description = topicDTO.getDescription();
+        this.creator = topicDTO.getCreator();
+        this.accepted = topicDTO.getAccepted();
+        this.votes = topicDTO.getVotes();
+    }
 }

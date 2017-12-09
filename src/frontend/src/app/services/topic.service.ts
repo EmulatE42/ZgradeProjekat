@@ -18,13 +18,13 @@ export class TopicService {
       .map(res => res.json());
   }
 
-  addTopic(topic: TopicDTO) {
+  addTopic(sessionID:number, topic: TopicDTO) {
     var param = JSON.stringify(topic);
     var headers = new Headers();
     console.log("Token:   " + LoggedUtils.getToken());
     headers.append("X-Auth-Token", LoggedUtils.getToken());
     headers.append('Content-Type', 'application/json');
-    return this.http.post("http://localhost:8080/topic/add", param, {headers: headers})
+    return this.http.post("http://localhost:8080/topic/addBySessionId/" + sessionID, param, {headers: headers})
       .map(res => res.json());
   }
 
