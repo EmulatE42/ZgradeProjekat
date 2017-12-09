@@ -18,6 +18,7 @@ export class TopicViewComponent
 {
   topics: TopicDTO[];
   description: string;
+  topic: TopicDTO;
 
   constructor(private topicService: TopicService, private route: ActivatedRoute, private _router: Router)
   {
@@ -32,6 +33,11 @@ export class TopicViewComponent
   addTopic()
   {
     var topic = new TopicDTO(null,this.description, LoggedUtils.getUser(),false,0);
+    this.topicService.addTopic(this.route.snapshot.params['p2'],topic).subscribe
+    (
+      (data: TopicDTO) => this.topic = data,
+      error => alert(error)
+    );
 
     if(typeof this.topics === 'undefined')
     {
