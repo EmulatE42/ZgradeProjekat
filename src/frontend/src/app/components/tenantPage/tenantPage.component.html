@@ -1,0 +1,21 @@
+<div class="my_table">
+  <legend>All your apartments</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Floor</th>
+      <th>Square</th>
+      <th>Bugs</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let l of locations; let i = index">
+      <td>{{i}}</td>
+      <td>{{l.floor}}</td>
+      <td>{{l.square}}</td>
+      <th><div class="container"><button type="button" class="btn btn-danger" routerLink="/showAllBugs/{{l.locationId}}" routerLinkActive="active">Bugs</button></div></th>
+    </tr>
+    </tbody>
+  </table>
+</div>

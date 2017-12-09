@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Momir on 14.11.2017.
@@ -35,6 +36,9 @@ public class ResponsiblePerson
     @Column(name = "responsible_person_description")
     private String description;
 
+    @OneToMany
+    private Set<Bug> bugs; //brisanjem buga brise se i ovde
+
     public ResponsiblePerson(ResponsiblePersonDTO responsiblePersonDTO, Tenant tenant)
     {
         this.tenant = tenant;
@@ -49,6 +53,16 @@ public class ResponsiblePerson
         this.institution = institution;
         this.isTenant = responsiblePersonDTO.getIsTenant();
         this.description = responsiblePersonDTO.getDescription();
+    }
+
+    public void addBug(Bug bug)
+    {
+        this.bugs.add(bug);
+    }
+
+    public void removeBug(Bug bug)
+    {
+        this.bugs.remove(bug);
     }
 
     /*

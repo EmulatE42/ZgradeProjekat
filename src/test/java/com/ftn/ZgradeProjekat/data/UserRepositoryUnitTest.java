@@ -24,7 +24,6 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace= Replace.NONE)
 public class UserRepositoryUnitTest
 {
     @Autowired

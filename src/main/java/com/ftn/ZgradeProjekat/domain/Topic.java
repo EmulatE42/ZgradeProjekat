@@ -1,7 +1,9 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @AllArgsConstructor(suppressConstructorProperties = true)
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "topic")
@@ -35,5 +38,6 @@ public class Topic
     private Long votes;
 
     @ManyToOne
+    @JsonIgnore
     private Session session;
 }

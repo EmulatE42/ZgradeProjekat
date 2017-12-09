@@ -1,0 +1,33 @@
+<div class="my_table">
+  <legend>List of topics</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Description</th>
+      <th>Creator</th>
+      <th>Votes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let topic of topics; let i = index">
+      <td>{{i}}</td>
+      <td>{{topic.description}} </td>
+      <td>{{topic.creator.username}} </td>
+      <th>{{topic.votes}}</th>
+    </tr>
+
+    <tr class="table-success">
+      <th></th>
+      <td>
+        <div class="form-group">
+          <textarea class="form-control" rows="1" id="description" placeholder="Enter description" name="description" [(ngModel)]="description"> </textarea>
+        </div>
+      </td>
+      <th colspan="2">
+        <div class="container"><button type="button" class="btn btn-success" (click)="addTopic()">Add</button></div>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>

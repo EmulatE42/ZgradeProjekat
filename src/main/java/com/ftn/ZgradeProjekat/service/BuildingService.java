@@ -28,5 +28,9 @@ public interface BuildingService
 
     List<ResponsiblePersonDTO> getAllResponsiblePersons(Long id);
 
-    Boolean deleteResponsiblePerson(Long id);
+    Boolean deleteResponsiblePerson(Long id, Long buildingId);
+
+    Boolean setBuildingManager(Long buildingId, Integer tanantId);
+
+    List<ResponsiblePersonDTO> getAllResponsiblePersonsByLocationId(Long id);
 }

@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,18 @@ import java.util.Set;
 public class Admin extends User {
 
     @OneToMany
-    private Set<Building> buildings = new HashSet<Building>();
+    private Set<Building> buildings = new HashSet<Building>(); //kad kreiramno zgrade treba ih dodavati kod admina
 
     public Admin(User user)
     {
         this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
         this.setUserAuthorities(user.getUserAuthorities());
+    }
+
+    public Admin(RegisterUserDTO registerUserDTO)
+    {
+        this.setUsername(registerUserDTO.getUsername());
+        this.setPassword(registerUserDTO.getPassword());
     }
 }

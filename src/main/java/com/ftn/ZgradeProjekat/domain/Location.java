@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,19 @@ public abstract class Location
     protected Long id;
 
     @OneToMany
-    protected Set<Bug> bugs;
+    protected Set<Bug> bugs; //brisanjem buga brise se ovde
 
+    @JsonIgnore
     @ManyToOne
     protected Building building;
+
+    public void addBug(Bug bug)
+    {
+        this.bugs.add(bug);
+    }
+
+    public void removeBug(Bug bug)
+    {
+        this.bugs.remove(bug);
+    }
 }

@@ -29,7 +29,9 @@ export class BuildingDTO
                public dateOfConstruction:Date,
                public adress:Address,
                public locations:LocationDTO[],
-               public responsiblePersonDTOs:ResponsiblePersonDTO[]
+               public responsiblePersonDTOs:ResponsiblePersonDTO[],
+               public buildingManager:TenantDTO,
+               public parliamentDTO:ParliamentDTO
   ) {}
 }
 
@@ -47,7 +49,8 @@ export class TenantDTO
   constructor( public id:number,
                public username:string,
                public firstname:string,
-               public lastname:string
+               public lastname:string,
+               public isBuildingManager:boolean
   ) {}
 }
 
@@ -69,3 +72,107 @@ export class ResponsiblePersonDTO
                public description:string
   ) {}
 }
+
+export class BugDTO
+{
+  constructor( public id:number,
+               public description:string,
+               public dateOfBug:Date,
+               public comments:CommentDTO[],
+               public finished:boolean,
+               public responsiblePersonDTO:ResponsiblePersonDTO,
+               public responsibleFirm:FirmDTO,
+               public paid:boolean
+  ) {}
+}
+
+export class CommentDTO
+{
+  constructor( public id:number,
+               public text:string,
+               public user:UserDTO
+  ) {}
+}
+
+export class UserDTO
+{
+  constructor( public id:number,
+               public username:string
+  ) {}
+}
+
+export class BillItem
+{
+  constructor( public id:number,
+               public name:string,
+               public description:string,
+               public quantity:number,
+               public amount:number
+  ) {}
+}
+
+export class Bill
+{
+  constructor( public id:number,
+               public billItemSet:BillItem[],
+               public date:Date
+  ) {}
+}
+
+export class FirmDTO
+{
+  constructor( public id:number,
+               public username:string,
+               public address:Address,
+               public name:string,
+               public description:string
+  ) {}
+}
+
+export class ParliamentDTO
+{
+  constructor( public id:number,
+               public sessions:SessionDTO[],
+               public buildingAddress: AddressDTO
+  ) {}
+}
+
+export class Parliament
+{
+  constructor( public id:number,
+               public sessions:SessionDTO[]
+  ) {}
+}
+
+export class SessionDTO
+{
+  constructor( public id:number,
+               public date:Date,
+               public topics:TopicDTO[],
+               public record:string,
+               public timetable: string,
+               public creator: UserDTO,
+               public parliament: Parliament
+  ) {}
+}
+
+export class TopicDTO
+{
+  constructor( public id:number,
+               public description:string,
+               public creator: UserDTO,
+               public accepted: boolean,
+               public votes: number
+  ) {}
+}
+
+export class AddressDTO
+{
+  constructor( public id:number,
+               public number:string,
+               public street: string,
+               public postalCode: string,
+               public country: string
+  ) {}
+}
+

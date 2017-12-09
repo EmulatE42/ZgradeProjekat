@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Momir on 14.11.2017.
@@ -24,8 +25,8 @@ public class Bill {
     @Column(name = "id" , unique = true, nullable = false)
     private Integer id;
 
-    @Column(name = "amount")
-    private double amount;
+    @OneToMany(cascade = CascadeType.ALL)
+    Set<BillItem> billItemSet;
 
     @Column(name = "date")
     private Date date;

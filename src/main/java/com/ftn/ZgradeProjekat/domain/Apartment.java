@@ -26,7 +26,7 @@ public class Apartment extends Location
     //ManyToOne
     @ManyToMany
     //@JoinColumn(referencedColumnName = "id", name = "apartment_user_id")
-    private Set<User> owners;
+    private Set<User> owners;   //brisanje usera brisu se useri iz location
 
     public void addAddTenant(User user)
     {

@@ -1,0 +1,29 @@
+<div class="my_table">
+  <legend>All your bugs</legend>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Description</th>
+      <th>Date of bug</th>
+      <th>Paid</th>
+      <th>Finished</th>
+      <th>Open</th>
+      <th>Create bill</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-active" *ngFor="let b of bugs; let i = index">
+      <td>{{i}}</td>
+      <td>{{b.description}}</td>
+      <td>{{b.dateOfBug | date:'medium'}}</td>
+      <td *ngIf="b.paid == true"><span class="badge badge-success">{{b.paid}}</span></td>
+      <td *ngIf="b.paid == false"><span class="badge badge-danger">{{b.paid}}</span></td>
+      <td *ngIf="b.finished == true"><span class="badge badge-success">{{b.finished}}</span></td>
+      <td *ngIf="b.finished == false"><span class="badge badge-danger">{{b.finished}}</span></td>
+      <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/bug/{{b.id}}" routerLinkActive="active">Open</button></div></th>
+      <th><div class="container" *ngIf="b.finished == false"><button type="button" class="btn btn-secondary" routerLink="/createBill/{{b.id}}" routerLinkActive="active">Create bill</button></div></th>
+    </tr>
+    </tbody>
+  </table>
+</div>

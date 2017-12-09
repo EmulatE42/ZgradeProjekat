@@ -1,11 +1,13 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by EmulatE on 26-Nov-17.
@@ -17,7 +19,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "institution")
-
 public class Institution extends User {
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -25,7 +26,25 @@ public class Institution extends User {
 
     @Column(name = "institution_name")
     private String name;
-    private String konacnomenanje;
+
+    //private String konacnomenanje;
+
+    public Institution(User user)
+    {
+        this.setId(user.getId());
+        this.setUsername(user.getUsername());
+        this.setPassword(user.getPassword());
+        this.setUserAuthorities(user.getUserAuthorities());
+    }
+
+    public Institution(RegisterUserDTO registerUserDTO)
+    {
+        this.setUsername(registerUserDTO.getUsername());
+        this.setPassword(registerUserDTO.getPassword());
+        this.setName(registerUserDTO.getInstitutionName());
+        this.setAddress(registerUserDTO.getAddress());
+    }
+
     /*
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
