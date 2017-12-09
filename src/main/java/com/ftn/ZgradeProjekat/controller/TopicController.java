@@ -43,6 +43,22 @@ public class TopicController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/addBySessionId/{sessionId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Topic> addTopicBySessionId(@PathVariable("sessionId") Long sessionId, @RequestBody TopicDTO topicDTO)
+    {
+        Session session = this.sessionService.getSession(sessionId);
+
+        if(session == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else {
+            Topic topic = new Topic(topicDTO);
+            session.getTopics().add(topic);
+            this.sessionService.addSession(session);
+
+            return new ResponseEntity<>(topic, HttpStatus.OK);
+        }
+    }
+
 
     @RequestMapping(value = "/getById/{topicId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Topic> getById(@PathVariable("topicId") Long topicId)
