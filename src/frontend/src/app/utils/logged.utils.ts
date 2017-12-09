@@ -21,6 +21,11 @@ export class LoggedUtils
     return JSON.parse(localStorage.getItem("loggedUser")).username;
   }
 
+  static getUser()
+  {
+    return JSON.parse(localStorage.getItem("loggedUser"));
+  }
+
   static clearLocalStorage()
   {
     localStorage.clear();

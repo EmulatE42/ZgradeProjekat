@@ -18,7 +18,6 @@ public class TopicDTO {
     private User creator;
     private Boolean accepted;
     private Long votes;
-    private Session session;
 
     public TopicDTO() {}
 
@@ -29,6 +28,5 @@ public class TopicDTO {
         this.creator = topic.getCreator();
         this.accepted = topic.getAccepted();
         this.votes = topic.getVotes();
-        this.session = topic.getSession();
     }
 }

@@ -137,6 +137,13 @@ export class ParliamentDTO
   ) {}
 }
 
+export class Parliament
+{
+  constructor( public id:number,
+               public sessions:SessionDTO[]
+  ) {}
+}
+
 export class SessionDTO
 {
   constructor( public id:number,
@@ -145,7 +152,7 @@ export class SessionDTO
                public record:string,
                public timetable: string,
                public creator: UserDTO,
-               public parliament: ParliamentDTO
+               public parliament: Parliament
   ) {}
 }
 
@@ -155,8 +162,7 @@ export class TopicDTO
                public description:string,
                public creator: UserDTO,
                public accepted: boolean,
-               public votes: number,
-               public session: SessionDTO
+               public votes: number
   ) {}
 }
 

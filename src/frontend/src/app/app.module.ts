@@ -30,8 +30,11 @@ import {FirmPageComponent} from "./components/firmPage/firmPage.component";
 import {ShowBillComponent} from "./components/tenantPage/showBill/showBill.component";
 import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.component";
 import {SessionViewComponent} from "./components/sessionView/sessionView.component";
+import {AddSessionComponent} from "./components/sessionView/addSession/addSession.component";
 
 import { routing } from "./app.routes";
+import {TopicViewComponent} from "./components/topicView/topicView.component";
+
 
 
 
@@ -68,7 +71,9 @@ import { routing } from "./app.routes";
     FirmPageComponent,
     ShowBillComponent,
     ParlamentViewComponent,
-    SessionViewComponent
+    SessionViewComponent,
+    AddSessionComponent,
+    TopicViewComponent
   ],
   providers: [
     {

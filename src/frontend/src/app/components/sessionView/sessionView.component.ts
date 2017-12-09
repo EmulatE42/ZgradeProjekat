@@ -24,4 +24,14 @@ export class SessionViewComponent
       error => alert(error)
     );
   }
+
+  goToAddNewSession()
+  {
+    this._router.navigate(['/parlament/'+this.route.snapshot.params['p1'] + '/add_session']);
+  }
+
+  goToListOfTopics(id: number)
+  {
+    this._router.navigate(['/parlament/'+this.route.snapshot.params['p1'] + '/session/' + id + '/topics']);
+  }
 }

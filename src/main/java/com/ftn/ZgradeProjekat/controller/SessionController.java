@@ -1,6 +1,5 @@
 package com.ftn.ZgradeProjekat.controller;
 
-import com.ftn.ZgradeProjekat.domain.Parliament;
 import com.ftn.ZgradeProjekat.domain.Session;
 import com.ftn.ZgradeProjekat.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ public class SessionController {
     public ResponseEntity<Session> addSession(@RequestBody Session session)
     {
         Session saved = sessionService.addSession(session);
+
         if(saved == null)
         {
             return new ResponseEntity<>(HttpStatus.CONFLICT);

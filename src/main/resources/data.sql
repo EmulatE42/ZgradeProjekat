@@ -29,7 +29,7 @@ INSERT INTO user_authority(
 INSERT INTO parliament(parliament_id) VALUES (-1);
 
 INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
-  VALUES (-1, '2017-11-30 19:00:00', 'nesto', null, null, -1);
+  VALUES (-1, '2017-11-30 19:00:00', 'nesto', null, -3, -1);
 
 INSERT INTO address(
   id, address_city, address_country, address_number, address_postal_code, address_street)
@@ -58,8 +58,8 @@ INSERT INTO location(
 INSERT INTO tenant(
   id, password, username, firstname, tenant_is_building_manager, lastname)
   VALUES (-2,'$2a$10$m0vzull2J6eDyN4cqAsfguP2bbIZy//CuhPo9vRXgx4WFpdbZnUQq', 'hhh', 'hhh', false, 'hhh');
-
-INSERT INTO tenant(
+  
+ INSERT INTO tenant(
   id, password, username, firstname, tenant_is_building_manager, lastname)
   VALUES (-3,'$2a$10$g8bQYJ1ZkWM8H3SLEe/oYukJ3jxUrwOm2bEHh2CQllT/NJIm87RbC', 'aaa', 'aaa', false, 'aaa');
 
