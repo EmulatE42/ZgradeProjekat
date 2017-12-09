@@ -18,8 +18,8 @@ export class AdminPageComponent
   constructor(private adminService: AdminService )
   {
      this.adminService.addAllBuildings().subscribe(
-     data => this.buildings = data,
-     error => alert(error)
+       data => this.buildings = data,
+       error => alert(error)
      );
   }
 

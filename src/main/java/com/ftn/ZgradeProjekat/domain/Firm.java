@@ -32,7 +32,7 @@ public class Firm extends User
     private String description;
 
     @OneToMany
-    private Set<Bug> bugs;
+    private Set<Bug> bugs; //brisanjem buga brise i ovde
 
     public Firm(RegisterUserDTO registerUserDTO)
     {

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import { Http, Headers,RequestOptions} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import {LoggedUtils} from "../utils/logged.utils";
-import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address} from "../models";
+import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address, BuildingListItemDTO} from "../models";
 
 @Injectable()
 export class AdminService
@@ -12,10 +13,11 @@ export class AdminService
 
   registerUser(username: string, pass: string, role: string, firstname: string, lastname: string, institutionName: string, address: Address, firmName: string, firmDescription: string)
   {
+
     let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname, institutionName: institutionName, address: address, firmName: firmName, firmDescription: firmDescription};
     let param = JSON.stringify(registerRequest);
     let headers = new Headers();
-
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
     headers.append('Content-Type', 'application/json');
     return this.http.post("http://localhost:8080/api/registerUser", param, { headers : headers })
       .map(res => res.json());
@@ -27,7 +29,7 @@ export class AdminService
     console.log(param);
     var headers = new Headers();
     console.log("Token:   "+LoggedUtils.getToken());
-    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('X-Auth-Token', LoggedUtils.getToken());
     headers.append('Content-Type', 'application/json');
     return this.http.post("http://localhost:8080/building/add", param, { headers : headers })
       .map(res => res.json());
@@ -37,10 +39,13 @@ export class AdminService
   {
     var headers = new Headers();
     console.log("Token:   "+LoggedUtils.getToken());
-    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('X-Auth-Token', LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
     return this.http.get("http://localhost:8080/building/getAllBuildings",{ headers : headers })
       .map(res => res.json());
   }
+
+
 
   deleteBuilding(buildingId:number)
   {
@@ -59,7 +64,6 @@ export class AdminService
     return this.http.get("http://localhost:8080/building/findByBuildingId/"+buildingId,{ headers : headers })
       .map(res => res.json());
   }
-
 
   addLocation(location : LocationDTO)
   {
@@ -171,6 +175,7 @@ export class AdminService
     return this.http.get("http://localhost:8080/building/getAllResponsiblePersonsByLocationId/"+id, { headers : headers })
       .map(res => res.json());
   }
+
 
 }
 

@@ -57,10 +57,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				*/
 			.authorizeRequests()
-				.antMatchers("/index.html", "/api/login", "/api/registerUser").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/**")
-					.hasAuthority("ROLE_ADMIN") //only administrator can add and edit data
+				.antMatchers("/index.html", "/api/login").permitAll()
+				.antMatchers("/api/**").permitAll() //only administrator can add and edit data
 				.antMatchers("/test/hhh").hasAuthority("ROLE_ADMIN")
+				//.antMatchers("/building/add").hasAuthority("ROLE_ADMIN")
+				//.antMatchers("/building/deleteBuilding/**").hasAuthority("ROLE_ADMIN")
+				//.antMatchers("/building/getAllBuildings").hasAuthority("ROLE_ADMIN")
+				//.antMatchers("/building/findByBuildingId/**").permitAll()
+				//.antMatchers("/building/addLocationToBuilding").hasAuthority("ROLE_ADMIN")
+
+
+
 				.antMatchers("/building/**").permitAll()
 				.antMatchers("/location/**").permitAll()
 				.antMatchers("/parlament/**").permitAll()
