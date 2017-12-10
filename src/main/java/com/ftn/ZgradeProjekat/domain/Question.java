@@ -38,6 +38,11 @@ public class Question
     private String choices; // odvojeni zarezom da je slucaj 3
 
 
+    public Integer getTypeOfAnswer() {
+        if (secondType) return 2;
+        else if (thirdType) return 3;
+        return 1;
+    }
     // slucaj 1 je slobodan tekst kao odgovor
 
     // slucaj 2 je da doabere ocenu od 1 do 5 kao radio button
