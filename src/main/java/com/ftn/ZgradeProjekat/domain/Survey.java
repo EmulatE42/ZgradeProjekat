@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -19,11 +20,17 @@ public class Survey
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "bug_id", unique = true, nullable = false)
+    @Column(name = "survey_id", unique = true, nullable = false)
     private Long id;
 
     @Column(name = "survey_description")
     private String description;
+
+    @Column(name = "date_survey")
+    private Date dateOfSurvey;
+
+    @OneToOne
+    private Tenant creator;
 
     @OneToMany
     private Set<Question> questions;
