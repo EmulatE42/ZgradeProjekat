@@ -15,6 +15,10 @@ import java.util.Set;
 /**
  * Created by djuro on 11/19/2017.
  */
+
+/**
+ * Servis za rad sa lokacijama
+ */
 @Service
 public class LocationServiceImpl implements LocationService
 {
@@ -32,6 +36,11 @@ public class LocationServiceImpl implements LocationService
         this.buildingRepository = buildingRepository;
     }
 
+    /**
+     *
+     * @param locationId id lokacije koju zelimo
+     * @return DTO objekat pronadjene lokacije
+     */
     @Override
     public LocationDTO getLocationById(Long locationId)
     {
@@ -40,6 +49,11 @@ public class LocationServiceImpl implements LocationService
         return locationDTO;
     }
 
+    /**
+     *
+     * @param locationId id lokacije koju zelimo da izbrisemo
+     * @return da li je lokacija izbrisana
+     */
     @Override
     public Boolean deleteLocation(Long locationId)
     {
@@ -69,6 +83,12 @@ public class LocationServiceImpl implements LocationService
         return deleted;
     }
 
+    /**
+     *
+     * @param apartmentId id apartmana kome dodajemo stanara
+     * @param tenantId id stanara
+     * @return da li je stanar povezan sa stanom
+     */
     @Override
     public Boolean connectTenantAndApartment(Long apartmentId, Integer tenantId)
     {

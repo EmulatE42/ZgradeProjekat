@@ -25,6 +25,10 @@ import java.util.*;
 /**
  * Created by djuro on 11/4/2017.
  */
+
+/**
+ * Kontroler za rad sa svi tipovima korisnika
+ */
 @RestController
 @CrossOrigin
 public class UserController
@@ -44,6 +48,11 @@ public class UserController
     @Autowired
     TokenUtils tokenUtils;
 
+    /**
+     *
+     * @param loginDTO DTO objekat sa podacima korisnika koji pokusava da se loguje
+     * @return login response
+     */
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginDTO) {
         try {
@@ -60,6 +69,11 @@ public class UserController
         }
     }
 
+    /**
+     *
+     * @param registerUser DTO objekat korisnika kog registrujemo
+     * @return registrovani korisnik
+     */
     @RequestMapping(value = "/api/registerUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> register(@RequestBody RegisterUserDTO registerUser)
     {
@@ -70,6 +84,10 @@ public class UserController
             return new ResponseEntity<>(registerUser, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @return ista stanara
+     */
     @RequestMapping(value = "/user/getAllTenants", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TenantDTO>> getAllTenants()
     {
@@ -80,6 +98,10 @@ public class UserController
             return new ResponseEntity<>(tenantDTOs, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @return lista svih institucija
+     */
     @RequestMapping(value = "/user/getAllInstitution", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<InstitutionDTO>> getAllInstitutions()
     {
@@ -90,6 +112,11 @@ public class UserController
             return new ResponseEntity<>(institutionDTOs, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param buildingId id zgrade iz koje zelimo listu stanara
+     * @return lista stanara
+     */
     @RequestMapping(value = "/user/getAllTenantsFromBuilding/{buildingId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TenantDTO>> getAllTenantsFromBuilding(@PathVariable("buildingId") Long buildingId)
     {
@@ -100,6 +127,11 @@ public class UserController
             return new ResponseEntity<>(tenantDTOs, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param tenantId id stanara ciju listu stanova zelimo
+     * @return
+     */
     @RequestMapping(value = "/user/getApartmentsOfTenant/{tenantId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<LocationDTO>> getApartmentsOfTenant(@PathVariable("tenantId") Integer tenantId)
     {
@@ -110,6 +142,10 @@ public class UserController
             return new ResponseEntity<>(locationDTOs, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @return lista svim firmi
+     */
     @RequestMapping(value = "/user/getAllFirms", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<FirmDTO>> getAllFirms()
     {
@@ -120,6 +156,11 @@ public class UserController
             return new ResponseEntity<>(firmDTOs, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param tenantId id stanara ciju istu parlamenata zelimo da dodbijemo
+     * @return lista parlamenata
+     */
     @RequestMapping(value = "/user/getParliamentsOfTenant/{tenantId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ParliamentDTO>> getParliamentsOfTenant(@PathVariable("tenantId") Integer tenantId)
     {
