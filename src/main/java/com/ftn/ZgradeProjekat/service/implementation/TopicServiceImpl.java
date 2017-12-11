@@ -38,7 +38,7 @@ public class TopicServiceImpl implements TopicService{
     /**
      * Return one a topic by id.
      *
-     * @param id
+     * @param id -
      * @return topic
      */
     @Override
@@ -51,7 +51,7 @@ public class TopicServiceImpl implements TopicService{
     /**
      * Delete one a topic by id.
      *
-     * @param id
+     * @param id -
      * @return true if topic is being deleted or false
      */
     @Override

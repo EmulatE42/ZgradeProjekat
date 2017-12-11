@@ -38,7 +38,7 @@ public class TopicController {
     /**
      * POST  /add : Create a new topic.
      *
-     * @param topic
+     * @param topic -
      * @return the ResponseEntity with status 201 (Created) and with body the new topic, or with status 409 (Conflict) if the topic has already an ID
      */
 
@@ -57,7 +57,7 @@ public class TopicController {
     /**
      * POST  /addBySessionId/{sessionId} : Create a new topic which contains a session with sessionID
      *
-     * @param sessionId,topicDTO
+     * @param sessionId,topicDTO -
      * @return the ResponseEntity with status 201 (Created) and with body the new topic, or with status 404 (Not Found) if the session with sessionID doesn't exist
      */
 
@@ -80,7 +80,7 @@ public class TopicController {
     /**
      * GET  /getById/{topicId} : Returning a topic which has a topicId
      *
-     * @param topicId
+     * @param topicId -
      * @return the ResponseEntity with status 200 (OK) and with body the new topic, or with status 404 (Not Found) if the topic hasn't a topicId
      */
 
@@ -98,7 +98,7 @@ public class TopicController {
     /**
      * GET  /deleteTopic/{topicId} : Deleting a topic which has a topicId
      *
-     * @param topicId
+     * @param topicId -
      * @return the ResponseEntity with status 200 (OK) and with body the new topic, or with status 404 (Not Found) if the topic hasn't a topicId
      */
 

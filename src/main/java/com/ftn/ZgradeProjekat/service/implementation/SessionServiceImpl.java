@@ -39,7 +39,7 @@ public class SessionServiceImpl implements SessionService{
     /**
      * Return one a session by id.
      *
-     * @param id
+     * @param id -
      * @return session
      */
     @Override
@@ -52,7 +52,7 @@ public class SessionServiceImpl implements SessionService{
     /**
      * Delete one a session by id.
      *
-     * @param id
+     * @param id -
      * @return true if session is being deleted or false
      */
     @Override

@@ -149,7 +149,7 @@ INSERT INTO firm_bugs(
 
 INSERT  INTO survey(
   survey_id, date_survey, survey_description)
-  VALUES(-1,'2017-12-31',"Cistoca");
+  VALUES(-1,'2017-12-31','Cistoca');
 
 INSERT INTO question(
   question_id,choices,second_type,question_text,third_type,survey1_survey_id)
@@ -170,7 +170,6 @@ INSERT INTO answer(
 INSERT INTO answer(
   answer_id,choiced,rate,text,question1_question_id)
   VALUES(-2,'qwe',1,'fgh',-2);
-
 
 
 

@@ -44,6 +44,12 @@ public class BugServiceImpl implements BugService
         this.firmRepository = firmRepository;
     }
 
+    /**
+     *
+     * @param locationId - id lokacije gde se kvar dogodio
+     * @param bugDTO - kvar koji se desio
+     * @return - kvar koji je prijavljen
+     */
     @Override
     public BugDTO reportBug(Long locationId, BugDTO bugDTO)
     {
@@ -64,6 +70,11 @@ public class BugServiceImpl implements BugService
         return bugDTO;
     }
 
+    /**
+     *
+     * @param locationId - lokacija za koju zelimo da dobavimo sve kvarove
+     * @return - lista svih kvarova za datu lokaciju
+     */
     @Override
     public List<BugDTO> getAllBugs(Long locationId)
     {
@@ -81,6 +92,12 @@ public class BugServiceImpl implements BugService
         return null;
     }
 
+    /**
+     *
+     * @param bugId - id kvara koji se brise
+     * @param locationId - lokacija gde se kvar desio
+     * @return - bool u zavisnosti od uspesnosti brisanja
+     */
     @Override
     public Boolean deleteBug(Long bugId, Long locationId)
     {
@@ -118,6 +135,12 @@ public class BugServiceImpl implements BugService
         return deleted;
     }
 
+    /**
+     *
+     * @param commentDTO - komentar koji se dodaje
+     * @param bugId - kvar za koji je dodat komentar
+     * @return - komentar koji je upisan
+     */
     @Override
     public CommentDTO addComment(CommentDTO commentDTO, Long bugId)
     {
@@ -139,6 +162,11 @@ public class BugServiceImpl implements BugService
         return commentDTO;
     }
 
+    /**
+     *
+     * @param bugId - za dati Id dobavlja se kvar
+     * @return kvar koji se dobavio
+     */
     @Override
     public BugDTO getBug(Long bugId)
     {
@@ -152,6 +180,12 @@ public class BugServiceImpl implements BugService
         return bugDTO;
     }
 
+    /**
+     *
+     * @param id - id komentara koji se brise
+     * @param bugId - kvar za koji se brise komentar
+     * @return - bool u zavinosti od brisanja komentara
+     */
     @Override
     public Boolean deleteComment(Long id, Long bugId)
     {
@@ -169,6 +203,11 @@ public class BugServiceImpl implements BugService
         return deleted;
     }
 
+    /**
+     *
+     * @param userId - id odgovornog lica cije kvarove zelimo da dobavimo
+     * @return - lista svih kvarova odgovornog lica
+     */
     @Override
     public List<BugDTO> getBugsOfResponsiblePerson(Integer userId)
     {
@@ -189,6 +228,12 @@ public class BugServiceImpl implements BugService
         return bugs;
     }
 
+    /**
+     *
+     * @param bugId - id kvara koji se salje firmi
+     * @param firmId - id firme koja dobija kvar
+     * @return - bool u zavinosti od uspesnosti komunikacije
+     */
     @Override
     public Boolean connectBugAndFirm(Long bugId, Integer firmId)
     {
@@ -218,6 +263,11 @@ public class BugServiceImpl implements BugService
         return connected;
     }
 
+    /**
+     *
+     * @param firmId - id firme cije kvarove zelimo da vidimo
+     * @return - lista kvarova za datu firmu
+     */
     @Override
     public List<BugDTO> getBugsOfFirm(Integer firmId)
     {
@@ -234,6 +284,11 @@ public class BugServiceImpl implements BugService
         return bugDTOs;
     }
 
+    /**
+     *
+     * @param bugId - id kvara za koji se placa racun
+     * @return -- bool u zavisnosti od uspesnosti placanja
+     */
     @Override
     public Boolean payBill(Long bugId)
     {
