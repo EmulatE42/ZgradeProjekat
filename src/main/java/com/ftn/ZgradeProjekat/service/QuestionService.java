@@ -13,5 +13,6 @@ import java.util.Set;
 public interface QuestionService {
 
     QuestionDTO save(QuestionDTO questionDTO);
-    void delete(Integer id);
+    void delete(Long id);
+    List<QuestionDTO> getAllQuestions();
 }

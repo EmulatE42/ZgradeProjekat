@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ftn.ZgradeProjekat.domain.DTO.AnswerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,10 @@ public class Answer {
 
     @Column(name = "choiced")
     private String choiced; // ako je treci tip
+
+    @JsonIgnore
+    @ManyToOne
+    protected Question question1;
 
     public Answer(AnswerDTO answerDTO)
     {

@@ -51,8 +51,8 @@ public class SurveyController {
     }
 
 
-    @RequestMapping(value = "/deleteSurvey/{surveyId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> deleteSurvey(@PathVariable("surveyId") Integer Id)
+    @RequestMapping(value = "/deleteSurvey/{surveyId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> deleteSurvey(@PathVariable("surveyId") Long Id)
     {
         try {
             surveyService.delete(Id);
@@ -77,7 +77,7 @@ public class SurveyController {
 
 
     @RequestMapping(value = "/getSurveyById/{surveyId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SurveyDTO> addSurvey(@PathVariable("surveyId") Integer id)
+    public ResponseEntity<SurveyDTO> getSurveyById(@PathVariable("surveyId") Long id)
     {
 
         SurveyDTO s = surveyService.getById(id);
@@ -85,12 +85,13 @@ public class SurveyController {
         {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+
         return new ResponseEntity<>(s, HttpStatus.CREATED);
     }
 
 
     @RequestMapping(value = "/getSurveyBetweenDates", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<SurveyDTO>> addAnswer(@RequestBody String datumi)
+    public ResponseEntity<List<SurveyDTO>> getSurveyBetweenDates(@RequestBody String datumi)
     { // Datumi 01.01.2017;05.05.2017
         String[] s = datumi.split(";");
         String startDateString = s[0];
@@ -118,23 +119,20 @@ public class SurveyController {
     }
 
 
-    @RequestMapping(value = "/getSurveyByIdofTenant", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<SurveyDTO>> addAnswer(@RequestBody Integer id)
-    {
-
-        List<SurveyDTO> s = surveyService.getAllSurveysFromTenant(id);
-        if(s == null)
-        {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-        return new ResponseEntity<>(s, HttpStatus.CREATED);
-    }
-
-
     @RequestMapping(value = "/getAllAnswers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AnswerDTO>> getAllAnswers()
     {
         List<AnswerDTO>  allAnswers = this.answerService.getAllAnswers();
+        if(allAnswers == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(allAnswers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getAllQuestions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<QuestionDTO>> getAllQuestions()
+    {
+        List<QuestionDTO>  allAnswers = this.questionService. getAllQuestions();
         if(allAnswers == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
@@ -153,18 +151,20 @@ public class SurveyController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/deleteAnswer/{answerId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> deleteAnswer(@PathVariable("answerId") Integer Id)
+    @RequestMapping(value = "/deleteAnswer/{answerId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> deleteAnswer(@PathVariable("answerId") Long Id)
     {
         try {
             answerService.delete(Id);
         }
         catch(Exception e)
         {
+            System.out.print(e);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-        return new ResponseEntity<>(true, HttpStatus.CREATED);
+        System.out.print("Prosao");
+        Boolean a = true;
+        return new ResponseEntity<>(a, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -179,14 +179,15 @@ public class SurveyController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/deleteQuestion/{questionId}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> deleteQuestion(@PathVariable("questionId") Integer Id)
+    @RequestMapping(value = "/deleteQuestion/{questionId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> deleteQuestion(@PathVariable("questionId") Long Id)
     {
         try {
             questionService.delete(Id);
         }
         catch(Exception e)
         {
+            System.out.println(e);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 

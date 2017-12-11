@@ -14,7 +14,7 @@ public interface AnswerService {
 
     AnswerDTO save(AnswerDTO answerDTO);
 
-    void delete(Integer id);
+    void delete(Long id);
 
     List<AnswerDTO> getAllAnswers();
 

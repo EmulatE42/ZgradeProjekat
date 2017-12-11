@@ -146,12 +146,36 @@ INSERT INTO firm_bugs(
 	firm_id, bugs_bug_id)
 	VALUES (-5, -1);
 
-INSERT INTO answer(
-  answer_id,choiced,rate,text)
-  VALUES(-1,'asd',1,'zxc');
+
+INSERT  INTO survey(
+  survey_id, date_survey, survey_description)
+  VALUES(-1,'2017-12-31',"Cistoca");
+
+INSERT INTO question(
+  question_id,choices,second_type,question_text,third_type,survey1_survey_id)
+  VALUES(-1,'a,b,c,d',true,'fgh',false,-1);
+
+INSERT INTO question(
+  question_id,choices,second_type,question_text,third_type,survey1_survey_id)
+  VALUES(-2,'1a,1b2,4d4',false,'mozda',true,-1);
 
 INSERT INTO answer(
-  answer_id,choiced,rate,text)
-  VALUES(-2,'qwe',1,'fgh');
+  answer_id,choiced,rate,text,question1_question_id)
+  VALUES(-1,'asd',1,'zxc',-1);
+
+INSERT INTO answer(
+  answer_id,choiced,rate,text,question1_question_id)
+  VALUES(-3,'zum',2,'muz',-1);
+
+INSERT INTO answer(
+  answer_id,choiced,rate,text,question1_question_id)
+  VALUES(-2,'qwe',1,'fgh',-2);
+
+
+
+
+
+
+
 
 

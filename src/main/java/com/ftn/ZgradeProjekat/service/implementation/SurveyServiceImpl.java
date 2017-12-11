@@ -32,7 +32,7 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         surveyRepository.delete(id);
     }
 
@@ -52,7 +52,7 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     @Override
-    public SurveyDTO getById(Integer id) {
+    public SurveyDTO getById(Long id) {
 
 
         Survey s = surveyRepository.findOne(id);
@@ -73,20 +73,5 @@ public class SurveyServiceImpl implements SurveyService{
         }
         return ret;
     }
-
-    @Override
-    public List<SurveyDTO> getAllSurveysFromTenant(Integer id) {
-        List<Survey> surveys = surveyRepository.findAll();
-        List<SurveyDTO> ret = new ArrayList<>();
-        for (Survey s : surveys)
-        {
-            if (s.getCreator().getId().equals(id))
-            {
-                ret.add(new SurveyDTO(s));
-            }
-        }
-        return ret;
-    }
-
 
 }

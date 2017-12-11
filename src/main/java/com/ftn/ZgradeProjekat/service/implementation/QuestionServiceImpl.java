@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -30,10 +31,21 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         questionRepository.delete(id);
     }
 
+    @Override
+    public List<QuestionDTO> getAllQuestions() {
+        List<Question> a = questionRepository.findAll();
+        System.out.println("DOBAVIO SMA " + a.size());
+        List<QuestionDTO> rez = new ArrayList<>();
+        for (Question a1 : a)
+        {
+            rez.add( new QuestionDTO(a1));
+        }
+        return  rez;
+    }
 
 
 }

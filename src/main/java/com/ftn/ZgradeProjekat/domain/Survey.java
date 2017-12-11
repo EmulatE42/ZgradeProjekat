@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.ftn.ZgradeProjekat.domain.DTO.QuestionDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.SurveyDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,17 +33,17 @@ public class Survey
     @Column(name = "date_survey")
     private Date dateOfSurvey;
 
-    @OneToOne
-    private Tenant creator;
-
-    @OneToMany
+    @OneToMany(mappedBy = "survey1", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Question> questions;
 
     public Survey(SurveyDTO surveyDTO)
     {
         this.description = surveyDTO.getDescription();
         this.dateOfSurvey = surveyDTO.getDateOfSurvey();
-        this.creator = new Tenant(surveyDTO.getCreator());
+        for (QuestionDTO q : surveyDTO.getQuestions())
+        {
+            this.questions.add(new Question(q));
+        }
 
     }
 

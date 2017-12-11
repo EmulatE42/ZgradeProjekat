@@ -2,12 +2,10 @@ package com.ftn.ZgradeProjekat.domain.DTO;
 
 import com.ftn.ZgradeProjekat.domain.Answer;
 import com.ftn.ZgradeProjekat.domain.Question;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,6 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class QuestionDTO {
 
 
@@ -30,11 +29,15 @@ public class QuestionDTO {
 
     public QuestionDTO(Question question)
     {
+        this.answers = new HashSet<AnswerDTO>();
         this.id = question.getId();
         this.text = question.getText();
-        for( Answer a : question.getAnswers())
-        {
-            answers.add(new AnswerDTO(a));
+        if (question.getAnswers() != null) {
+
+            for (Answer a : question.getAnswers()) {
+
+                answers.add(new AnswerDTO(a));
+            }
         }
         this.secondType = question.isSecondType();
         this.thirdType = question.isThirdType();

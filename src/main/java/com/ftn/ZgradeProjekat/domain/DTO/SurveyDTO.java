@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -23,18 +24,18 @@ public class SurveyDTO {
     private Long id;
     private String description;
     private Date dateOfSurvey;
-    private TenantDTO creator;
     private Set<QuestionDTO> questions;
 
     public SurveyDTO(Survey survey)
     {
+        this.questions = new HashSet<>();
         this.id = survey.getId();
         this.description= survey.getDescription();
         this.dateOfSurvey = survey.getDateOfSurvey();
-        this.creator = new TenantDTO(survey.getCreator());
-        for (Question q : survey.getQuestions())
-        {
-            questions.add(new QuestionDTO(q));
+        if (survey.getQuestions() != null) {
+            for (Question q : survey.getQuestions()) {
+                questions.add(new QuestionDTO(q));
+            }
         }
     }
 

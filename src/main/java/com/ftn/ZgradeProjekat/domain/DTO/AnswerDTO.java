@@ -2,10 +2,7 @@ package com.ftn.ZgradeProjekat.domain.DTO;
 
 
 import com.ftn.ZgradeProjekat.domain.Answer;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * Created by EmulatE on 10-Dec-17.
@@ -14,6 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude="questionDTO")
 public class AnswerDTO {
 
 

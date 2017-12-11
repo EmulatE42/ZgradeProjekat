@@ -1,7 +1,9 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ftn.ZgradeProjekat.domain.DTO.AnswerDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.QuestionDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.SurveyDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +31,7 @@ public class Question
     @Column(name = "question_text")
     private String text;
 
-    @OneToMany
+    @OneToMany(mappedBy = "question1", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Answer> answers;
 
     @Column(name = "secondType")
@@ -41,6 +43,9 @@ public class Question
     @Column(name = "choices")
     private String choices; // odvojeni zarezom da je slucaj 3
 
+    @JsonIgnore
+    @ManyToOne
+    protected Survey survey1;
 
     public Question(QuestionDTO questionDTO)
     {
