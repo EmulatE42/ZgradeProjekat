@@ -10,6 +10,12 @@ import org.springframework.data.repository.query.Param;
 /**
  * Created by djuro on 11/19/2017.
  */
+
+/**
+ * Spring Data JPA repository for the Authority entity.
+ */
+
+
 public interface AuthorityRepository extends JpaRepository<Authority,Long>
 {
     @Query("SELECT w FROM Authority w WHERE w.name = :name")

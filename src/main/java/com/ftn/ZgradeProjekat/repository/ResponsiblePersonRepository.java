@@ -10,6 +10,11 @@ import java.util.Set;
 /**
  * Created by djuro on 11/19/2017.
  */
+
+/**
+ * Spring Data JPA repository for the ResponsiblePerson entity.
+ */
+
 public interface ResponsiblePersonRepository extends JpaRepository<ResponsiblePerson,Long>
 {
     @Query("SELECT rp FROM ResponsiblePerson rp WHERE " +
