@@ -41,7 +41,7 @@ public class Building
     @OneToMany
     private Set<Survey> surveys;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(referencedColumnName = "parliament_id", name = "building_parliament_id")
     private Parliament parliament;
 

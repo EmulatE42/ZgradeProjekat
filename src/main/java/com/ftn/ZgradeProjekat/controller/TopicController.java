@@ -55,7 +55,7 @@ public class TopicController {
             session.getTopics().add(topic);
             this.sessionService.addSession(session);
 
-            return new ResponseEntity<>(topic, HttpStatus.OK);
+            return new ResponseEntity<>(topic, HttpStatus.CREATED);
         }
     }
 
