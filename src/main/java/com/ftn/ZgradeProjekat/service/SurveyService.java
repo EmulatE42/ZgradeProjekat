@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.service;
 
+import com.ftn.ZgradeProjekat.domain.DTO.SurveyDTO;
 import com.ftn.ZgradeProjekat.domain.Survey;
 import com.ftn.ZgradeProjekat.domain.Tenant;
 
@@ -11,11 +12,11 @@ import java.util.List;
  */
 public interface SurveyService {
 
-    Survey save(Survey survey);
+    SurveyDTO save(SurveyDTO surveyDTO);
     void delete(Integer id);
-    List<Survey> getAllSurveys();
-    Survey getById(Integer id);
-    List<Survey> getAllSurveysBetweenDates(Date begin, Date end);
-    List<Survey> getAllSurveysFromTenant(Integer id);
+    List<SurveyDTO> getAllSurveys();
+    SurveyDTO getById(Integer id);
+    List<SurveyDTO> getAllSurveysBetweenDates(Date begin, Date end);
+    List<SurveyDTO> getAllSurveysFromTenant(Integer id);
 
 }

@@ -2,6 +2,7 @@ package com.ftn.ZgradeProjekat.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ftn.ZgradeProjekat.domain.DTO.RegisterUserDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.TenantDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,6 +51,14 @@ public class Tenant extends User {
         this.setFirstname(registerUserDTO.getFirstname());
         this.setLastname(registerUserDTO.getLastname());
         this.setIsBuildingmManager(false);
+    }
+
+    public Tenant(TenantDTO tenantDTO)
+    {
+        this.lastname = tenantDTO.getLastname();
+        this.firstname = tenantDTO.getFirstname();
+        this.setUsername(tenantDTO.getUsername());
+        this.setPassword(tenantDTO.getPassword());
     }
 
     public void addApartment(Apartment apartment)
