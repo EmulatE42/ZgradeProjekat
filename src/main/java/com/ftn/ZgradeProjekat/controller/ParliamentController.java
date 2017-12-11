@@ -103,7 +103,7 @@ public class ParliamentController {
     /**
      * GET  /getSessions/{parlamentId} : Returning a list of sessions which contain parlament with parlamentId
      *
-     * @return the ResponseEntity with status 200 (OK) and with body the new Set<Session> sessions, or with status 404 (Not Found) if the parliament with parlamentId doesn't exist
+     * @return the ResponseEntity with status 200 (OK) and with body the new Set Session sessions, or with status 404 (Not Found) if the parliament with parlamentId doesn't exist
      */
 
     @RequestMapping(value = "/getSessions/{parlamentId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

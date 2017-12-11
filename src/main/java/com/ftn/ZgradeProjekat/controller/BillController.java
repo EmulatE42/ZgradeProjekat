@@ -24,6 +24,12 @@ public class BillController
     @Autowired
     BugService bugService;
 
+    /**
+     *
+     * @param bugId - id kvara za koji se izdaje racun
+     * @param billDTO - id racuna koji se dodaje
+     * @return - upisan racun
+     */
     @RequestMapping(value = "/makeBill/{bugId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bill> makeBill(@PathVariable("bugId") Long bugId, @RequestBody Bill billDTO)
     {
@@ -35,6 +41,11 @@ public class BillController
         return new ResponseEntity<>(bill, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param bugId - id kvara ciji racun zelimo da dobavimo
+     * @return - racun za pomenuti kvar
+     */
     @RequestMapping(value = "/getBill/{bugId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bill> getBill(@PathVariable("bugId") Long bugId)
     {
@@ -46,6 +57,11 @@ public class BillController
         return new ResponseEntity<>(bill, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param bugId - id racuna koji zelimo da platimo
+     * @return - bool u zavinosti od uspeha placanja
+     */
     @RequestMapping(value = "/payBill/{bugId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> payBill(@PathVariable("bugId") Long bugId)
     {

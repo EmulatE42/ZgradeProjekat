@@ -130,7 +130,7 @@ public class UserController
     /**
      *
      * @param tenantId id stanara ciju listu stanova zelimo
-     * @return
+     * @return -
      */
     @RequestMapping(value = "/user/getApartmentsOfTenant/{tenantId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<LocationDTO>> getApartmentsOfTenant(@PathVariable("tenantId") Integer tenantId)

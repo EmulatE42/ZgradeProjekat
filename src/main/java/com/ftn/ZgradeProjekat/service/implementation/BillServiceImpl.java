@@ -43,6 +43,12 @@ public class BillServiceImpl implements BillService
         this.institutionRepository = institutionRepository;
     }
 
+    /**
+     *
+     * @param bugId - kvar kome se pravi racun
+     * @param bill - racun koji se pravi za dati kvar
+     * @return - napravljen racun
+     */
     @Override
     public Bill makeBill(Long bugId, Bill bill)
     {
@@ -59,6 +65,11 @@ public class BillServiceImpl implements BillService
         return null;
     }
 
+    /**
+     *
+     * @param bugId - id racuna koji zelimo da dobavimo
+     * @return - racun koji smo trazili
+     */
     @Override
     public Bill getBill(Long bugId)
     {

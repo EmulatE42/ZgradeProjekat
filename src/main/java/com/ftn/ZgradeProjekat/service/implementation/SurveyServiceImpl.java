@@ -22,7 +22,11 @@ public class SurveyServiceImpl implements SurveyService{
     @Autowired
     SurveyRepository surveyRepository;
 
-
+    /**
+     *
+     * @param surveyDto - anketa koja se snima
+     * @return - snimljena anketa
+     */
     @Override
     public SurveyDTO save(SurveyDTO surveyDto) {
 
@@ -31,10 +35,19 @@ public class SurveyServiceImpl implements SurveyService{
         return surveyDto;
     }
 
+    /**
+     *
+     * @param id - id koja se anketa brise
+     */
     @Override
     public void delete(Long id) {
         surveyRepository.delete(id);
     }
+
+    /**
+     *
+     * @return - lista svih anketa
+     */
 
     @Override
     public List<SurveyDTO> getAllSurveys() {
@@ -51,6 +64,11 @@ public class SurveyServiceImpl implements SurveyService{
 
     }
 
+    /**
+     *
+     * @param id - id ankete koja se dobavlja
+     * @return - anketa po idu
+     */
     @Override
     public SurveyDTO getById(Long id) {
 
@@ -60,6 +78,12 @@ public class SurveyServiceImpl implements SurveyService{
         return new SurveyDTO(s);
     }
 
+    /**
+     *
+     * @param begin - datum pocetka objave
+     * @param end - datum kraja objave
+     * @return - sve ankete koje su u intervalu
+     */
     @Override
     public List<SurveyDTO> getAllSurveysBetweenDates(Date begin, Date end) {
         List<Survey> surveys = surveyRepository.findAll();

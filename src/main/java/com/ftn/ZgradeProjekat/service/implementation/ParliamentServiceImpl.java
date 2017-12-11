@@ -39,7 +39,7 @@ public class ParliamentServiceImpl implements ParliamentService {
     /**
      * Return one a parliament by id.
      *
-     * @param id
+     * @param id -
      * @return parliament
      */
     @Override
@@ -52,7 +52,7 @@ public class ParliamentServiceImpl implements ParliamentService {
     /**
      * Delete one a parliament by id.
      *
-     * @param id
+     * @param id -
      * @return true if parliament is being deleted or false
      */
     @Override
