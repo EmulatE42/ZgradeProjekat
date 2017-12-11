@@ -19,7 +19,11 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     AnswerRepository answerRepository;
 
-
+    /**
+     *
+     * @param answerDTO - odgovor koji se dodaje
+     * @return - dodat odgovor
+     */
     @Override
     public AnswerDTO save(AnswerDTO answerDTO) {
 
@@ -27,11 +31,20 @@ public class AnswerServiceImpl implements AnswerService {
         return answerDTO;
     }
 
+    /**
+     *
+     * @param id -id odgovora koji se brise
+     */
     @Override
     public void delete(Long id) {
         answerRepository.delete(id);
     }
 
+    /**
+     *
+     * @return - lista svih odgovora
+     *
+     */
     @Override
     public List<AnswerDTO> getAllAnswers() {
         List<Answer> a = answerRepository.findAll();

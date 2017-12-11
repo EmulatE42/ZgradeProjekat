@@ -21,6 +21,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired
     QuestionRepository questionRepository;
 
+    /**
+     *
+     * @param questionDTO - pitanje koje se dodaje
+     * @return - dodato pitanje
+     */
     @Override
     public QuestionDTO save(QuestionDTO questionDTO) {
 
@@ -30,11 +35,20 @@ public class QuestionServiceImpl implements QuestionService {
         return questionDTO;
     }
 
+    /**
+     *
+     * @param id - id pitanja koji se brise
+     *
+     */
     @Override
     public void delete(Long id) {
         questionRepository.delete(id);
     }
 
+    /**
+     *
+     * @return - lista svih pitanja
+     */
     @Override
     public List<QuestionDTO> getAllQuestions() {
         List<Question> a = questionRepository.findAll();

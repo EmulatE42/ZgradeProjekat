@@ -1,0 +1,11 @@
+com.ftn.ZgradeProjekat
+com.ftn.ZgradeProjekat.constants
+com.ftn.ZgradeProjekat.controller
+com.ftn.ZgradeProjekat.data
+com.ftn.ZgradeProjekat.domain
+com.ftn.ZgradeProjekat.domain.DTO
+com.ftn.ZgradeProjekat.repository
+com.ftn.ZgradeProjekat.security
+com.ftn.ZgradeProjekat.service
+com.ftn.ZgradeProjekat.service.implementation
+com.ftn.ZgradeProjekat.web.controller

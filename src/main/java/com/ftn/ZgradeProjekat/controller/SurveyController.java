@@ -23,6 +23,10 @@ import java.util.List;
 /**
  * Created by EmulatE on 10-Dec-17.
  */
+
+/**
+ * Kontroler za rad sa anketama
+ */
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/survey")
@@ -37,7 +41,11 @@ public class SurveyController {
     @Autowired
     QuestionService questionService;
 
-
+    /**
+     *
+     * @param surveyDTO - anketa koja se upisuje
+     * @return - upisana anketa
+     */
     @RequestMapping(value = "/addSurvey", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SurveyDTO> addSurvey(@RequestBody SurveyDTO surveyDTO)
     {
@@ -51,6 +59,11 @@ public class SurveyController {
     }
 
 
+    /**
+     *
+     * @param Id id ankete koja se brise
+     * @return bool kao obavestenje da li je uspesno obrisana
+     */
     @RequestMapping(value = "/deleteSurvey/{surveyId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteSurvey(@PathVariable("surveyId") Long Id)
     {
@@ -65,6 +78,10 @@ public class SurveyController {
         return new ResponseEntity<>(true, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @return lista svih anketa
+     */
     @RequestMapping(value = "/getAllSurveys", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SurveyDTO>> getAllSurveys()
     {
@@ -75,7 +92,11 @@ public class SurveyController {
             return new ResponseEntity<>(allSurveys, HttpStatus.OK);
     }
 
-
+    /**
+     *
+     * @param id id ankete
+     * @return - pronadjena anketa, ili greska ako nismo uspeli da pronadjemo
+     */
     @RequestMapping(value = "/getSurveyById/{surveyId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SurveyDTO> getSurveyById(@PathVariable("surveyId") Long id)
     {
@@ -89,7 +110,11 @@ public class SurveyController {
         return new ResponseEntity<>(s, HttpStatus.CREATED);
     }
 
-
+    /**
+     *
+     * @param datumi - string koji sadrzi oba datuma ciji se interval trazi
+     * @return - lista anketa koja zadovoljava uslov
+     */
     @RequestMapping(value = "/getSurveyBetweenDates", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SurveyDTO>> getSurveyBetweenDates(@RequestBody String datumi)
     { // Datumi 01.01.2017;05.05.2017
@@ -118,7 +143,10 @@ public class SurveyController {
         return new ResponseEntity<>(rez, HttpStatus.CREATED);
     }
 
-
+    /**
+     *
+     * @return svi odgovori
+     */
     @RequestMapping(value = "/getAllAnswers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AnswerDTO>> getAllAnswers()
     {
@@ -129,6 +157,10 @@ public class SurveyController {
             return new ResponseEntity<>(allAnswers, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @return -- sva pitanja
+     */
     @RequestMapping(value = "/getAllQuestions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<QuestionDTO>> getAllQuestions()
     {
@@ -139,6 +171,11 @@ public class SurveyController {
             return new ResponseEntity<>(allAnswers, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param answerDTO - odgovor koje se dodaje
+     * @return - upisano pitanje
+     */
     @RequestMapping(value = "/addAnswer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AnswerDTO> addAnswer(@RequestBody AnswerDTO answerDTO)
     {
@@ -151,6 +188,11 @@ public class SurveyController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param Id - id koji se odgovor brise
+     * @return - bool u zavisnosti da li je brisanje uspesno
+     */
     @RequestMapping(value = "/deleteAnswer/{answerId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteAnswer(@PathVariable("answerId") Long Id)
     {
@@ -167,6 +209,11 @@ public class SurveyController {
         return new ResponseEntity<>(a, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param questionDTO - pitanje koje se dodaje
+     * @return - dodato pitanje
+     */
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<QuestionDTO> addQuesiton(@RequestBody QuestionDTO questionDTO)
     {
@@ -179,6 +226,11 @@ public class SurveyController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param Id - id pitanja koje se brise
+     * @return - bool u zavinosti da li je brisanje uspesno
+     */
     @RequestMapping(value = "/deleteQuestion/{questionId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteQuestion(@PathVariable("questionId") Long Id)
     {
