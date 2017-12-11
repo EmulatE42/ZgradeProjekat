@@ -1,6 +1,7 @@
 package com.ftn.ZgradeProjekat.service;
 
 import com.ftn.ZgradeProjekat.domain.Answer;
+import com.ftn.ZgradeProjekat.domain.DTO.QuestionDTO;
 import com.ftn.ZgradeProjekat.domain.Question;
 
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.Set;
  */
 public interface QuestionService {
 
-    Question save(Question question);
+    QuestionDTO save(QuestionDTO questionDTO);
     void delete(Integer id);
-    Double averageRateofSecondType(Question question);
 }
