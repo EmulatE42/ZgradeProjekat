@@ -1,7 +1,9 @@
 package com.ftn.ZgradeProjekat.domain;
 
+import com.ftn.ZgradeProjekat.domain.DTO.SurveyDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import java.util.Set;
  */
 @Entity
 @AllArgsConstructor(suppressConstructorProperties = true)
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "survey")
@@ -35,5 +38,12 @@ public class Survey
     @OneToMany
     private Set<Question> questions;
 
+    public Survey(SurveyDTO surveyDTO)
+    {
+        this.description = surveyDTO.getDescription();
+        this.dateOfSurvey = surveyDTO.getDateOfSurvey();
+        this.creator = new Tenant(surveyDTO.getCreator());
+
+    }
 
 }

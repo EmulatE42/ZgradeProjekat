@@ -145,3 +145,13 @@ INSERT INTO responsible_person_bugs(
 INSERT INTO firm_bugs(
 	firm_id, bugs_bug_id)
 	VALUES (-5, -1);
+
+INSERT INTO answer(
+  answer_id,choiced,rate,text)
+  VALUES(-1,"asd",1,"zxc");
+
+INSERT INTO answer(
+  answer_id,choiced,rate,text)
+  VALUES(-2,"qwe",1,"fgh");
+
+
