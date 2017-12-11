@@ -17,6 +17,10 @@ import java.util.Set;
 /**
  * Created by djuro on 11/17/2017.
  */
+
+/**
+ * Servis za rad sa zgradama
+ */
 @Service
 public class BuildingServiceImpl implements BuildingService
 {
@@ -53,6 +57,11 @@ public class BuildingServiceImpl implements BuildingService
         this.locationRepository = locationRepository;
     }
 
+    /**
+     *
+     * @param buildingDTO DTO objekat zgrade
+     * @return kreirana zgrada
+     */
     @Override
     public Building addBuilding(BuildingDTO buildingDTO)
     {
@@ -67,6 +76,11 @@ public class BuildingServiceImpl implements BuildingService
         return saved;
     }
 
+    /**
+     *
+     * @param buildingId id zgrade koju zelimo dobaviti
+     * @return DTO objekat pronadjene zgrade
+     */
     @Override
     public BuildingDTO getById(Long buildingId)
     {
@@ -75,6 +89,10 @@ public class BuildingServiceImpl implements BuildingService
         return buildingDTO;
     }
 
+    /**
+     *
+     * @return lista dto objekata svih zgrada
+     */
     @Override
     public List<BuildingListItemDTO> getBuildings()
     {
@@ -87,6 +105,11 @@ public class BuildingServiceImpl implements BuildingService
         return buildingDTOs;
     }
 
+    /**
+     *
+     * @param buildingId id zgrade za brisanje
+     * @return da li je zgrada izbrisana
+     */
     @Override
     public Boolean deleteBuilding(Long buildingId)
     {
@@ -116,6 +139,11 @@ public class BuildingServiceImpl implements BuildingService
         return deleted;
     }
 
+    /**
+     *
+     * @param locationDTO DTO objekat lokacije
+     * @return DTO objekat kreirane lokacije
+     */
     @Override
     public LocationDTO addLocationToBuilding(LocationDTO locationDTO)
     {
@@ -169,6 +197,12 @@ public class BuildingServiceImpl implements BuildingService
         return locationDTO;
     }
 
+    /**
+     *
+     * @param responsiblePersonDTO DTO objekat odgovorne osobe
+     * @param buildingId id zgrade u koju ubacujemo lokaciju
+     * @return DTO objekat kreirane odgovorne osobe
+     */
     @Override
     public ResponsiblePersonDTO addResponsiblePerson(ResponsiblePersonDTO responsiblePersonDTO, Long buildingId)
     {
@@ -192,6 +226,11 @@ public class BuildingServiceImpl implements BuildingService
         return responsiblePersonDTO;
     }
 
+    /**
+     *
+     * @param id id zgrade ciju listu odgovornih lica zelimo da dobijemo
+     * @return lista DTO objekata svih odgovornih lica iz zgrade
+     */
     @Override
     public List<ResponsiblePersonDTO> getAllResponsiblePersons(Long id)
     {
@@ -204,6 +243,12 @@ public class BuildingServiceImpl implements BuildingService
         return responsiblePersonDTOs;
     }
 
+    /**
+     *
+     * @param id id odgovorne osobe
+     * @param buildingId id zgrade iz koje brisemo odgovorno lice
+     * @return da li je odgovorno lice izbrisano
+     */
     @Override
     public Boolean deleteResponsiblePerson(Long id, Long buildingId)
     {
@@ -221,6 +266,12 @@ public class BuildingServiceImpl implements BuildingService
         return deleted;
     }
 
+    /**
+     *
+     * @param buildingId id zgrade u koju postavljamo predsednika
+     * @param tenantId id starana kog postavljamo za predsednika
+     * @return da li je stanar postavljen za predsednika
+     */
     @Override
     public Boolean setBuildingManager(Long buildingId, Integer tenantId)
     {
@@ -242,6 +293,11 @@ public class BuildingServiceImpl implements BuildingService
         return saved;
     }
 
+    /**
+     *
+     * @param id id lokacije cija odgovorna lica dobavljamo
+     * @return ista DTO objekata odgovornih lica
+     */
     @Override
     public List<ResponsiblePersonDTO> getAllResponsiblePersonsByLocationId(Long id)
     {

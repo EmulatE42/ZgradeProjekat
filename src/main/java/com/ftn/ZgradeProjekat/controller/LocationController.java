@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by djuro on 11/19/2017.
  */
+
+/**
+ * Kontroler za rad sa lokacijama u zgradi
+ */
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/location")
@@ -24,6 +28,11 @@ public class LocationController
         this.locationService = locationService;
     }
 
+    /**
+     *
+     * @param locationId id lokacije za pretragu
+     * @return pronadjeni objekat
+     */
     @RequestMapping(value = "/findByLocationId/{locationId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LocationDTO> getLocationById(@PathVariable("locationId") Long locationId)
     {
@@ -36,6 +45,11 @@ public class LocationController
             return new ResponseEntity<>(loc, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param locationId id lokacije za brisanje
+     * @return da li je lokacija izbrisana
+     */
     @RequestMapping(value = "/deleteLocation/{locationId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteLocation(@PathVariable("locationId") Long locationId)
     {
@@ -48,6 +62,12 @@ public class LocationController
             return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param apartmentId id apartmana sa kojim povezujemo stanara
+     * @param tenantId id starana
+     * @return da li je povezivanje uspjesno
+     */
     @RequestMapping(value = "/connectTenantAndApartment/{apartmentId}/{tenantId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> connectTenantAndApartment(@PathVariable("apartmentId") Long apartmentId, @PathVariable("tenantId") Integer tenantId)
     {

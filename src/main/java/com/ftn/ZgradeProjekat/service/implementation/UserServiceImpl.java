@@ -15,6 +15,10 @@ import java.util.Set;
 /**
  * Created by EmulatE on 02-Nov-17.
  */
+
+/**
+ * Servis za rad sa korisnicima
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -45,12 +49,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     FirmRepository firmRepository;
 
+    /**
+     *
+     * @param user korisnik koga cuvamo
+     * @return sacuvani korisnik
+     */
     @Override
     public User save(User user) {
         this.userRepository.save(user);
         return user;
     }
 
+    /**
+     *
+     * @param registerUser DTO objekat korisnika kog redistujemo
+     * @return registrovani korisnik
+     */
     @Override
     public LoginResponseDTO registerUser(RegisterUserDTO registerUser)
     {
@@ -111,6 +125,11 @@ public class UserServiceImpl implements UserService {
         return new LoginResponseDTO(user);
     }
 
+    /**
+     *
+     * @param userId id korisnika kog zelimo dobaviti
+     * @return korisnik
+     */
     @Override
     public User getUserById(Integer userId)
     {
@@ -118,6 +137,11 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    /**
+     *
+     * @param user DTO objekat korisnika sa novom lozinkom
+     * @return izmjenjeni korisnik
+     */
     @Override
     public User changePassword(LoginRequestDTO user)
     {
@@ -126,6 +150,10 @@ public class UserServiceImpl implements UserService {
         return usr;
     }
 
+    /**
+     *
+     * @return lista DTO objekata svih stanra
+     */
     @Override
     public List<TenantDTO> getAllTenants()
     {
@@ -138,6 +166,10 @@ public class UserServiceImpl implements UserService {
         return tenantDTOs;
     }
 
+    /**
+     *
+     * @return lista DTO objekata svih institucija
+     */
     @Override
     public List<InstitutionDTO> getAllInstitution()
     {
@@ -150,6 +182,11 @@ public class UserServiceImpl implements UserService {
         return institutionDTOs;
     }
 
+    /**
+     *
+     * @param buildingId id zgrade cije stanare zelimo dobaviti
+     * @return lista DTO objekata stanara
+     */
     @Override
     public List<TenantDTO> getAllTenantsFromBuilding(Long buildingId)
     {
@@ -170,6 +207,11 @@ public class UserServiceImpl implements UserService {
         return tenantDTOs;
     }
 
+    /**
+     *
+     * @param tenantId id stanara cije stanove zelimo dobaviti
+     * @return lista DTO objekata stanova
+     */
     @Override
     public List<LocationDTO> getApartmentsOfTenant(Integer tenantId)
     {
@@ -183,6 +225,11 @@ public class UserServiceImpl implements UserService {
         return locationDTOs;
     }
 
+    /**
+     *
+     * @param username korisnicko ime korisnika kog zelimo dobaviti
+     * @return korisnik
+     */
     @Override
     public User getUserByUsername(String username)
     {
@@ -191,6 +238,10 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    /**
+     *
+     * @return lista DTO objekata svih firmi 
+     */
     @Override
     public List<FirmDTO> getAllFirms()
     {
