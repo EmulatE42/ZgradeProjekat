@@ -38,7 +38,7 @@ public class BuildingConstants
     public static final LocationDTO LOCATION_DTO= new LocationDTO(null, "APARTMENT",
             -1L, 1L, 88L, null, null);
 
-    public static final TenantDTO tenantDTO = new TenantDTO(-2, "hhh","hhh","hhh",false);
+    public static final TenantDTO tenantDTO = new TenantDTO(-2, "hhh","hhh","hhh","hhh",false);
 
     public static final ResponsiblePersonDTO RESPONSIBLE_PERSON_DTO = new ResponsiblePersonDTO(null,tenantDTO,null,true,"klima urejaji");
     public static final String DESCRIPTION = "klima urejaji";

@@ -148,10 +148,10 @@ INSERT INTO firm_bugs(
 
 INSERT INTO answer(
   answer_id,choiced,rate,text)
-  VALUES(-1,"asd",1,"zxc");
+  VALUES(-1,'asd',1,'zxc');
 
 INSERT INTO answer(
   answer_id,choiced,rate,text)
-  VALUES(-2,"qwe",1,"fgh");
+  VALUES(-2,'qwe',1,'fgh');
 
 
