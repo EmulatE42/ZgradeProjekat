@@ -20,6 +20,10 @@ import java.util.Set;
  * Created by Momir on 08.12.2017.
  */
 
+/**
+ * REST controller for managing Topic
+ */
+
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/topic")
@@ -30,6 +34,13 @@ public class TopicController {
 
     @Autowired
     private SessionService sessionService;
+
+    /**
+     * POST  /add : Create a new topic.
+     *
+     * @param topic
+     * @return the ResponseEntity with status 201 (Created) and with body the new topic, or with status 409 (Conflict) if the topic has already an ID
+     */
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Topic> addTopic(@RequestBody Topic topic)
@@ -42,6 +53,13 @@ public class TopicController {
         }
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+
+    /**
+     * POST  /addBySessionId/{sessionId} : Create a new topic which contains a session with sessionID
+     *
+     * @param sessionId,topicDTO
+     * @return the ResponseEntity with status 201 (Created) and with body the new topic, or with status 404 (Not Found) if the session with sessionID doesn't exist
+     */
 
     @RequestMapping(value = "/addBySessionId/{sessionId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Topic> addTopicBySessionId(@PathVariable("sessionId") Long sessionId, @RequestBody TopicDTO topicDTO)
@@ -59,6 +77,12 @@ public class TopicController {
         }
     }
 
+    /**
+     * GET  /getById/{topicId} : Returning a topic which has a topicId
+     *
+     * @param topicId
+     * @return the ResponseEntity with status 200 (OK) and with body the new topic, or with status 404 (Not Found) if the topic hasn't a topicId
+     */
 
     @RequestMapping(value = "/getById/{topicId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Topic> getById(@PathVariable("topicId") Long topicId)
@@ -71,6 +95,13 @@ public class TopicController {
             return new ResponseEntity<>(topic, HttpStatus.OK);
     }
 
+    /**
+     * GET  /deleteTopic/{topicId} : Deleting a topic which has a topicId
+     *
+     * @param topicId
+     * @return the ResponseEntity with status 200 (OK) and with body the new topic, or with status 404 (Not Found) if the topic hasn't a topicId
+     */
+
     @RequestMapping(value = "/deleteTopic/{topicId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> deleteTopic(@PathVariable("topicId") Long topicId)
     {
@@ -82,6 +113,12 @@ public class TopicController {
             return new ResponseEntity<>(deleted, HttpStatus.OK);
     }
 
+    /**
+     * GET  /getTopics : Returning a list of topics
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the new topics, or with status 404 (Not Found) if the topics doesn't exist
+     */
+
     @RequestMapping(value = "/getTopics", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Topic>> getTopics()
     {
@@ -92,6 +129,12 @@ public class TopicController {
         else
             return new ResponseEntity<>(topics, HttpStatus.OK);
     }
+
+    /**
+     * GET  /getTopicsBySessionId/{sessionId} : Returning a list of topics which contain a session with a sessionID
+     *
+     * @return the ResponseEntity with status 200 (OK) and with body the new topics, or with status 404 (Not Found) if the session doesn't exist with sessionID
+     */
 
     @RequestMapping(value = "/getTopicsBySessionId/{sessionId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Set<TopicDTO>> getTopicsBySessionId(@PathVariable("sessionId") Long sessionId)

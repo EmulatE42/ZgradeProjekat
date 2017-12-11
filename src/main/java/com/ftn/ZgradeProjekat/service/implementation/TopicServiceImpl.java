@@ -11,12 +11,23 @@ import java.util.List;
 /**
  * Created by Momir on 08.12.2017.
  */
+
+/**
+ * Implementation service for managing Topic.
+ */
+
 @Service
 public class TopicServiceImpl implements TopicService{
 
     @Autowired
     private TopicRepository topicRepository;
 
+    /**
+     * Save a topic.
+     *
+     * @param topic the entity to add to database
+     * @return the persisted entity
+     */
     @Override
     public Topic addTopic(Topic topic) {
 
@@ -24,6 +35,12 @@ public class TopicServiceImpl implements TopicService{
         return saved;
     }
 
+    /**
+     * Return one a topic by id.
+     *
+     * @param id
+     * @return topic
+     */
     @Override
     public Topic getTopic(Long id) {
 
@@ -31,6 +48,12 @@ public class TopicServiceImpl implements TopicService{
         return topic;
     }
 
+    /**
+     * Delete one a topic by id.
+     *
+     * @param id
+     * @return true if topic is being deleted or false
+     */
     @Override
     public boolean deleteTopic(Long id) {
 
@@ -44,6 +67,11 @@ public class TopicServiceImpl implements TopicService{
         return false;
     }
 
+    /**
+     * Return list of topics.
+     *
+     * @return topics
+     */
     @Override
     public List<Topic> getTopics() {
 

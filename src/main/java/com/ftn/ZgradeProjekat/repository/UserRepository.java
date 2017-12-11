@@ -8,6 +8,12 @@ import org.springframework.data.repository.query.Param;
 /**
  * Created by EmulatE on 02-Nov-17.
  */
+
+/**
+ * Spring Data JPA repository for the User entity.
+ */
+
+
 public interface UserRepository extends JpaRepository<User,Integer> {
 
     @Query("SELECT w FROM User w WHERE w.username = :username")

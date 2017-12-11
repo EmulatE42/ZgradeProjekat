@@ -12,12 +12,23 @@ import java.util.List;
 /**
  * Created by Momir on 28.11.2017.
  */
+
+/**
+ * Implementation service for managing Session.
+ */
+
 @Service
 public class SessionServiceImpl implements SessionService{
 
     @Autowired
     private SessionRepository sessionRepository;
 
+    /**
+     * Save a session.
+     *
+     * @param session the entity to add to database
+     * @return the persisted entity
+     */
     @Override
     public Session addSession(Session session) {
 
@@ -25,6 +36,12 @@ public class SessionServiceImpl implements SessionService{
         return saved;
     }
 
+    /**
+     * Return one a session by id.
+     *
+     * @param id
+     * @return session
+     */
     @Override
     public Session getSession(Long id) {
 
@@ -32,6 +49,12 @@ public class SessionServiceImpl implements SessionService{
         return session;
     }
 
+    /**
+     * Delete one a session by id.
+     *
+     * @param id
+     * @return true if session is being deleted or false
+     */
     @Override
     public boolean deleteSession(Long id) {
 
@@ -45,6 +68,11 @@ public class SessionServiceImpl implements SessionService{
         return false;
     }
 
+    /**
+     * Return list of sessions.
+     *
+     * @return sessions
+     */
     @Override
     public List<Session> getSessions() {
 

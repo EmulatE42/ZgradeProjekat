@@ -12,12 +12,23 @@ import java.util.Set;
 /**
  * Created by Momir on 17.11.2017.
  */
+
+/**
+ * Implementation service for managing Parliament.
+ */
+
 @Service
 public class ParliamentServiceImpl implements ParliamentService {
 
     @Autowired
     private ParliamentRepository parliamentRepository;
 
+    /**
+     * Save a parliament.
+     *
+     * @param parliament the entity to add to database
+     * @return the persisted entity
+     */
     @Override
     public Parliament addParliament(Parliament parliament) {
 
@@ -25,6 +36,12 @@ public class ParliamentServiceImpl implements ParliamentService {
         return saved;
     }
 
+    /**
+     * Return one a parliament by id.
+     *
+     * @param id
+     * @return parliament
+     */
     @Override
     public Parliament getParliament(Long id) {
 
@@ -32,6 +49,12 @@ public class ParliamentServiceImpl implements ParliamentService {
         return parliament;
     }
 
+    /**
+     * Delete one a parliament by id.
+     *
+     * @param id
+     * @return true if parliament is being deleted or false
+     */
     @Override
     public boolean deleteParliament(Long id) {
 
@@ -45,6 +68,11 @@ public class ParliamentServiceImpl implements ParliamentService {
         return false;
     }
 
+    /**
+     * Return list of parliaments.
+     *
+     * @return parliaments
+     */
     @Override
     public List<Parliament> getParliaments() {
 
