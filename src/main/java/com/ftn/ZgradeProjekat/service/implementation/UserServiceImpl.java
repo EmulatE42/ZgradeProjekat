@@ -240,7 +240,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      *
-     * @return lista DTO objekata svih firmi 
+     * @return lista DTO objekata svih firmi
      */
     @Override
     public List<FirmDTO> getAllFirms()
