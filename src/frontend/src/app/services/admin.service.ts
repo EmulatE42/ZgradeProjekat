@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers,RequestOptions} from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
-import {LoggedUtils} from "../utils/logged.utils";
 import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address, BuildingListItemDTO} from "../models";
 
 const httpOptions = {

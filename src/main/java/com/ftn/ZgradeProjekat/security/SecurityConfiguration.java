@@ -76,19 +76,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/building/deleteResponsiblePerson/**").hasAuthority("ROLE_ADMIN")
 				.antMatchers("/user/getAllTenantsFromBuilding/**").hasAuthority("ROLE_ADMIN")
 				.antMatchers("/building/setBuildingManager/**").hasAuthority("ROLE_ADMIN")
-				.antMatchers("/building/getAllResponsiblePersonsByLocationId/**").hasAuthority("ROLE_ADMIN")
+				.antMatchers("/building/getAllResponsiblePersonsByLocationId/**").hasAnyAuthority("ROLE_ADMIN","TENANT")
+				.antMatchers("/bug/getBugsOfFirm/**").hasAuthority("FIRM")
+				.antMatchers("/bill/makeBill/**").hasAuthority("FIRM")
+				.antMatchers("/bug/getBugsOfResponsiblePerson/**").hasAnyAuthority("INSTITUTION","TENANT")
+				.antMatchers("/user/getAllFirms").hasAnyAuthority("INSTITUTION","TENANT")
+				.antMatchers("/bug/connectBugAndFirm/**").hasAnyAuthority("INSTITUTION","TENANT")
+				.antMatchers("/user/getApartmentsOfTenant/**").hasAuthority("TENANT")
+				.antMatchers("/bug/getAllBugs/**").hasAuthority("TENANT")
+				.antMatchers("/bug/reportBug/**").hasAuthority("TENANT")
+				.antMatchers("/bug/deleteBug/**").hasAuthority("TENANT")
+				.antMatchers("/bug/addComment/**").hasAnyAuthority("INSTITUTION","TENANT","FIRM")
+				.antMatchers("/bug/getBug/**").hasAnyAuthority("INSTITUTION","TENANT","FIRM")
+				.antMatchers("/bug/deleteComment/**").hasAnyAuthority("INSTITUTION","TENANT","FIRM")
+				.antMatchers("/bill/getBill/**").hasAnyAuthority("TENANT","FIRM")
+				.antMatchers("/bill/payBill/**").hasAuthority("TENANT")
 
 
 
-
-
-				//.antMatchers("/building/**").permitAll()
-				//.antMatchers("/location/**").permitAll()
 				.antMatchers("/parlament/**").permitAll()
 				.antMatchers("/session/**").permitAll()
-				//.antMatchers("/user/**").permitAll() ++++
-				.antMatchers("/bug/**").permitAll()
-				.antMatchers("/bill/**").permitAll()
 				.antMatchers("/topic/**").permitAll()
 				.anyRequest().authenticated();
 				 
