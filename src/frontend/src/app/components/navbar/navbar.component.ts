@@ -2,6 +2,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import {LoggedUtils} from "../../utils/logged.utils";
 import { AuthenticationService } from "../../services/authentication.service";
 import { Link } from "../../models";
+import { Router }    from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -14,26 +15,19 @@ export class NavbarComponent implements OnInit
   links: Link[];
   currentRole:string;
 
-  constructor(private authenticationService: AuthenticationService)
+  constructor(private authenticationService: AuthenticationService, private _router: Router)
   {
-    this.links = [];
-    //console.log(this.currentRole);
-    //authenticationService.getLoggedInName.subscribe((name: string) => this.changeRole(name));
-    //authenticationService.getLoggedInName.subscribe((name: string) => console.log('Triggered!', name));
-    //authenticationService.getMessage().subscribe(value => this.changeRole(value));
-    //authenticationService.ppp()
+    this.logout();
   }
 
   ngOnInit() {
-    this.authenticationService.getMessage().subscribe((value:string) => this.changeRole(value));
+    this.authenticationService.getRoleEmitter().subscribe((value:string) => this.changeRole(value));
   }
 
   private changeRole(role: string)
   {
-    //console.log("usaooooo1");
     this.currentRole = role;
-    //console.log(role)
-
+    this.links = [];
 
     if (this.currentRole == "ROLE_ADMIN")
       this.presetAdmin();
@@ -52,24 +46,49 @@ export class NavbarComponent implements OnInit
 
   presetAdmin()
   {
-    //this.addLink({text: "Home page", routerLink: "/adminPage"});
-    console.log("admin");
+    this.addLink({text: "Home", routerLink: "/adminPage"});
+    this.addLink({text: "Add user", routerLink: "/addUser"});
+    this.addLink({text: "About", routerLink: "/about"});
+    this.addLink({text: "Logout", routerLink:"/" });
+    this._router.navigate(['/adminPage']);
+
   }
 
   presetTenant()
   {
-    console.log("tenant");
+    console.log(LoggedUtils.getIsResponsible());
+    this.addLink({text: "Home", routerLink: "/tenantPageComponent"});
+    this.addLink({text: "Parlaments", routerLink: "/parlaments"});
+    if(LoggedUtils.getIsResponsible()==true)
+    {
+      this.addLink({text: "Your responsibility", routerLink: "/responsiblePersonBugs"});
+    }
+    this.addLink({text: "About", routerLink: "/about"});
+    this.addLink({text: "Logout", routerLink:"/" });
+    this._router.navigate(['/tenantPageComponent']);
   }
 
   presentFirm()
   {
-    console.log("firm");
+    this.addLink({text: "Home", routerLink: "/firmPage"});
+    this.addLink({text: "About", routerLink: "/about"});
+    this.addLink({text: "Logout", routerLink:"/" });
+    this._router.navigate(['/firmPage']);
   }
 
   presentInstitution()
   {
-    console.log("institution");
+    this.addLink({text: "Home", routerLink: "/responsiblePersonBugs"});
+    this.addLink({text: "About", routerLink: "/about"});
+    this.addLink({text: "Logout", routerLink:"/" });
+    this._router.navigate(['/responsiblePersonBugs']);
   }
 
-
+  logout()
+  {
+    this.links = [];
+    this.addLink({text: "Login", routerLink: "/"});
+    this.addLink({text: "About", routerLink: "/about"});
+    LoggedUtils.clearLocalStorage();
+  }
 }

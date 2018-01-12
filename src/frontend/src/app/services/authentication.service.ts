@@ -11,7 +11,7 @@ export class AuthenticationService
 {
   //@Output() getLoggedInName: EventEmitter<string> = new EventEmitter();
   //@Output() getLoggedInName = new EventEmitter<string>();
-  public OnShowToast = new Subject<string>();
+  public OnChangeRole = new Subject<string>();
 
   constructor(private http: Http) {}
 
@@ -30,17 +30,12 @@ export class AuthenticationService
   {
     if(urs!="")
     {
-      console.log("usaoooo");
-      console.log(LoggedUtils.getRole());
-      this.OnShowToast.next(LoggedUtils.getRole());
-      //this.getLoggedInName.emit("asdasd");
-      //this.getLoggedInName.emit(LoggedUtils.getRole());
-      //return true;
+      this.OnChangeRole.next(LoggedUtils.getRole());
     }
   }
 
-  getMessage(): Observable<any> {
-    return this.OnShowToast.asObservable();
+  getRoleEmitter(): Observable<any> {
+    return this.OnChangeRole.asObservable();
   }
 
 }

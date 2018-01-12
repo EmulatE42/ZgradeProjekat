@@ -59,12 +59,12 @@ INSERT INTO location(
   VALUES ('Apartment',-2, null, null, 5, 55, null, null, -2);
 
 INSERT INTO tenant(
-  id, password, username, firstname, tenant_is_building_manager, lastname)
-  VALUES (-2,'$2a$10$m0vzull2J6eDyN4cqAsfguP2bbIZy//CuhPo9vRXgx4WFpdbZnUQq', 'hhh', 'hhh', false, 'hhh');
+  id, password, username, firstname, tenant_is_building_manager, lastname, tenant_is_responsible)
+  VALUES (-2,'$2a$10$m0vzull2J6eDyN4cqAsfguP2bbIZy//CuhPo9vRXgx4WFpdbZnUQq', 'hhh', 'hhh', false, 'hhh', false);
   
  INSERT INTO tenant(
-  id, password, username, firstname, tenant_is_building_manager, lastname)
-  VALUES (-3,'$2a$10$g8bQYJ1ZkWM8H3SLEe/oYukJ3jxUrwOm2bEHh2CQllT/NJIm87RbC', 'aaa', 'aaa', false, 'aaa');
+  id, password, username, firstname, tenant_is_building_manager, lastname, tenant_is_responsible)
+  VALUES (-3,'$2a$10$g8bQYJ1ZkWM8H3SLEe/oYukJ3jxUrwOm2bEHh2CQllT/NJIm87RbC', 'aaa', 'aaa', false, 'aaa', false);
 
 INSERT INTO user_authority(
 	id, authority_id, user_id)

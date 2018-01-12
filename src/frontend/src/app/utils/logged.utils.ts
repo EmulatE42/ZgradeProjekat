@@ -10,6 +10,11 @@ export class LoggedUtils
     return JSON.parse(localStorage.getItem("loggedUser")).token;
   }
 
+  static getIsResponsible()
+  {
+    return JSON.parse(localStorage.getItem("loggedUser")).isResponsible;
+  }
+
   static hasRole(role: string)
   {
     let roles = JSON.parse(localStorage.getItem("loggedUser")).role;
