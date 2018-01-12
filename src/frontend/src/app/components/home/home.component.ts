@@ -5,8 +5,7 @@ import { AuthenticationService } from "../../services/authentication.service";
   moduleId: module.id,
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  providers: [AuthenticationService]
+  styleUrls: ['./home.component.css']
 
 })
 export class HomeComponent
@@ -26,9 +25,14 @@ export class HomeComponent
     this.authenticationService.authenticateUser(this.usr, this.password).subscribe(
       data => localStorage.setItem("loggedUser", JSON.stringify(data)),
       error => alert("Incorrect username and/or password"),
-      () => console.log(JSON.parse(localStorage.getItem("loggedUser")))
+      () => this.callEmitter()
     );
 
+  }
+
+  callEmitter()
+  {
+    this.authenticationService.emitRole(this.usr);
   }
 
 }

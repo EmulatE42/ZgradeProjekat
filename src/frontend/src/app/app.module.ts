@@ -32,6 +32,8 @@ import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.c
 import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 import {AddSessionComponent} from "./components/sessionView/addSession/addSession.component";
 
+import { AuthenticationService } from "./services/authentication.service";
+
 import { routing } from "./app.routes";
 import {TopicViewComponent} from "./components/topicView/topicView.component";
 
@@ -80,7 +82,8 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    AuthenticationService
   ],
   bootstrap:    [ AppComponent ]
 })

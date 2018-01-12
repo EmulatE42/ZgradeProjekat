@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   private UserRepository userRepository;
 
   @Override
-  //@Transactional
+  @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     User user = userRepository.findByUsername(username);
 
@@ -34,11 +34,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     		grantedAuthorities.add(new SimpleGrantedAuthority(ua.getAuthority().getName()));
     	}*/
     	
-    	//Java 1.8 way   	
+    	//Java 1.8 way
     	List<GrantedAuthority> grantedAuthorities = user.getUserAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthority().getName()))
                 .collect(Collectors.toList());
-    	
     	return new org.springframework.security.core.userdetails.User(
     		  user.getUsername(),
     		  user.getPassword(),
