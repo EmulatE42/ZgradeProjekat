@@ -44,9 +44,11 @@ export class AddUserComponent  {
 
   register()
   {
+    console.log("usaooooo");
     this.adminService.registerUser(this.usr, this.password, this.userType, this.firstname, this.lastname, this.institutionName,
       new Address(null,this.city, this.buildingNumber, this.buildingStreet, this.postalCode, this.country), this.firmName, this.firmDescription).subscribe(
       data => console.log(data),
     );
+    console.log("usaooooo1");
   }
 }

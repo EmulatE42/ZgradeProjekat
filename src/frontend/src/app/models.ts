@@ -183,3 +183,14 @@ export class Link
   ){}
 }
 
+export class LoginResponseDTO
+{
+  constructor( public text: string,
+               public routerLink: string,
+               public token: string,
+               public id: number,
+               public username: string,
+               public role: string,
+               public isResponsible: boolean
+  ){}
+}
