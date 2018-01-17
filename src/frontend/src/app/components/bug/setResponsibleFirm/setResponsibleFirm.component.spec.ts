@@ -27,7 +27,13 @@ describe('SetResponsibleFirmComponent', () => {
         .and.returnValue(Promise.resolve(
           new BugDTO(1, "problem sa strujom", new Date(2017, 9, 22), null, false, null,
             new FirmDTO(1, "aaaa", null, "bbb", "cccc"),false)
-        ))
+        )),
+
+      getApartmentsOfTenant: jasmine.createSpy('getApartmentsOfTenant')
+        .and.returnValue(Promise.resolve()),
+
+      addNewBug: jasmine.createSpy('addNewBug')
+        .and.returnValue(Promise.resolve())
     };
 
     let institutionServiceMock = {

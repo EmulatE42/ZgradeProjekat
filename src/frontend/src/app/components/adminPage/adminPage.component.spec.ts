@@ -69,6 +69,18 @@ describe('AdminPageComponent', () => {
 
       deleteResponsePerson: jasmine.createSpy('deleteResponsePerson')
         .and.returnValue(Promise.resolve()),
+
+      getLocationById: jasmine.createSpy('getLocationById')
+        .and.returnValue(Promise.resolve(
+          new LocationDTO(1,"APARTMENT",1,2,40,2,null)
+        )),
+
+      connectTenantAndApartment: jasmine.createSpy('connectTenantAndApartment')
+        .and.returnValue(Promise.resolve()),
+
+      getAllResponsiblePersonsByLocationId: jasmine.createSpy('getAllResponsiblePersonsByLocationId')
+        .and.returnValue(Promise.resolve()),
+
     };
 
     let routerMock = {
