@@ -31,8 +31,8 @@ INSERT INTO parliament(parliament_id) VALUES (-1);
 INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
   VALUES (-1, '2017-11-24 01:00:00', 'Danas smo radili...', 'Nesto', -3, -1);
 
-INSERT INTO topic(topic_id, topic_accepted, topic_description, topic_votes, topic_user_id, session_id)
-  VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, -3, -1);
+INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
+  VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, 0, -3, -1);
 
 INSERT INTO address(
   id, address_city, address_country, address_number, address_postal_code, address_street)

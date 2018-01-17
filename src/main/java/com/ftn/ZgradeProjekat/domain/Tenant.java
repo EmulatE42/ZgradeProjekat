@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -38,6 +39,9 @@ public class Tenant extends User {
 
     @Column(name = "tenant_is_responsible")
     private Boolean isResponsible;
+
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private Set<Vote> votes = new HashSet<Vote>();
 
     public Tenant(User user)
     {

@@ -162,7 +162,16 @@ export class TopicDTO
                public description:string,
                public creator: UserDTO,
                public accepted: boolean,
-               public votes: number
+               public pos_votes: number,
+               public neg_votes: number
+  ) {}
+}
+
+export class VoteDTO
+{
+  constructor( public id:number,
+               public topic:TopicDTO,
+               public tenant: TenantDTO
   ) {}
 }
 
