@@ -17,7 +17,7 @@
       <td>{{building.city}}</td>
       <td>{{building.street}}</td>
       <td>{{building.number}}</td>
-      <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/displayBuilding/{{building.id}}" routerLinkActive="active">Open</button></div></th>
+      <th><div class="container"><button type="button" class="btn btn-primary" (click)="goToDisplayBuilding(building.id)">Open</button></div></th>
       <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteBuilding(building.id, i)">Delete</button></div></th>
     </tr>
     <tr class="table-success">
@@ -26,7 +26,7 @@
       <th></th>
       <th></th>
       <th></th>
-      <th><div class="container"><button type="button" class="btn btn-success" routerLink="/makeBuilding" routerLinkActive="active">Add new</button></div></th>
+      <th><div class="container"><button type="button" class="btn btn-success" (click)="goToMakeBuilding()">Add new</button></div></th>
     </tr>
     </tbody>
   </table>

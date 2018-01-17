@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Http, HttpModule } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
-import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address, BuildingListItemDTO} from "../models";
+import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address, BuildingListItemDTO, LoginResponseDTO} from "../models";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'content-type': 'application/json' })
@@ -29,7 +30,7 @@ export class AdminService
     return this.http.post("http://localhost:8080/building/add", param, httpOptions);
   }
 
-  addAllBuildings()
+  getAllBuildings()
   {
     return this.http.get<BuildingListItemDTO[]>("http://localhost:8080/building/getAllBuildings", httpOptions);
   }
