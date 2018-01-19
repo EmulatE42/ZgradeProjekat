@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import {BuildingDTO, LocationDTO, ResponsiblePersonDTO, Address, BuildingListItemDTO, LoginResponseDTO} from "../models";
@@ -16,9 +17,13 @@ export class AdminService
   {
   }
 
-  registerUser(username: string, pass: string, role: string, firstname: string, lastname: string, institutionName: string, address: Address, firmName: string, firmDescription: string)
+  registerUser(username: string, pass: string, role: string, firstname: string,
+               lastname: string, institutionName: string, address: Address,
+               firmName: string, firmDescription: string)
   {
-    let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname, institutionName: institutionName, address: address, firmName: firmName, firmDescription: firmDescription};
+    let registerRequest = {username: username, password: pass, role: role, firstname:
+    firstname, lastname: lastname, institutionName: institutionName, address: address,
+      firmName: firmName, firmDescription: firmDescription};
     let param = JSON.stringify(registerRequest);
     return this.http.post("http://localhost:8080/api/registerUser", param, httpOptions);
 
