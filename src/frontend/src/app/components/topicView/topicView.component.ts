@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TopicService} from "../../services/topic.service";
 import {LoggedUtils} from "../../utils/logged.utils";
 
+declare var toastr: any;
 
 @Component({
   moduleId: module.id,
@@ -29,6 +30,7 @@ export class TopicViewComponent
       error => alert(error),
       () => console.log(JSON.stringify(this.topics))
     );
+
   }
 
   addTopic()
