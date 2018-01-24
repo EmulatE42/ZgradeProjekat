@@ -191,8 +191,9 @@ public class TopicController {
     {
         Integer updated = this.topicService.updateNegativeVote(topicDTO.getId());
 
-        if(updated != 1)
+        if(updated != 1) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         else {
 
             Tenant tenant = this.tenantRepository.findById(tenantId);

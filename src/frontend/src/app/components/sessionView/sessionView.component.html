@@ -7,6 +7,7 @@
       <th>Date</th>
       <th>Creator</th>
       <th>Topics</th>
+      <th>Record</th>
     </tr>
     </thead>
     <tbody>
@@ -15,9 +16,21 @@
       <td>{{session.date | date:'medium'}} </td>
       <td>{{session.creator.username}} </td>
       <th><div class="container"><button type="button" class="btn btn-danger" (click)="goToListOfTopics(session.id)">Topics</button></div></th>
+      <td> <div *ngIf="session.record != null; then exists else nexists"></div>
+
+        <ng-template #exists><a href={{session.record}}>Document</a></ng-template>
+        <ng-template #nexists><div *ngIf="building_manager; then yes else no"></div></ng-template>
+
+        <ng-template #no><b> - </b></ng-template>
+        <ng-template #yes><div *ngIf="isPassedSession(session.id); then pass else npass"></div></ng-template>
+
+        <ng-template #pass><button type="button" class="btn btn-danger" (click)="initSessionID(session.id)" data-toggle="modal" data-target="#myModal">Upload record</button></ng-template>
+        <ng-template #npass><b> - </b></ng-template>
+      </td>
     </tr>
 
-    <tr class="table-success">
+    <tr class="table-success" *ngIf="building_manager">
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -26,3 +39,37 @@
     </tbody>
   </table>
 </div>
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Upload record</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <div class="form-group">
+
+          <label class="col-form-label" for="record">Url of record: </label>
+          <input type="text" class="form-control" id="record" name="record" [(ngModel)]="record"
+                 placeholder="Enter url of record" required />
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="uploadRecord()" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
