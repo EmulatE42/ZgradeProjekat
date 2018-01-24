@@ -31,8 +31,8 @@ INSERT INTO parliament(parliament_id) VALUES (-1);
 INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
   VALUES (-1, '2017-11-24 01:00:00', 'Danas smo radili...', 'Nesto', -3, -1);
 
-INSERT INTO topic(topic_id, topic_accepted, topic_description, topic_votes, topic_user_id, session_id)
-  VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, -3, -1);
+INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
+  VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, 0, -3, -1);
 
 INSERT INTO address(
   id, address_city, address_country, address_number, address_postal_code, address_street)
@@ -59,12 +59,12 @@ INSERT INTO location(
   VALUES ('Apartment',-2, null, null, 5, 55, null, null, -2);
 
 INSERT INTO tenant(
-  id, password, username, firstname, tenant_is_building_manager, lastname)
-  VALUES (-2,'$2a$10$m0vzull2J6eDyN4cqAsfguP2bbIZy//CuhPo9vRXgx4WFpdbZnUQq', 'hhh', 'hhh', false, 'hhh');
+  id, password, username, firstname, tenant_is_building_manager, lastname, tenant_is_responsible)
+  VALUES (-2,'$2a$10$m0vzull2J6eDyN4cqAsfguP2bbIZy//CuhPo9vRXgx4WFpdbZnUQq', 'hhh', 'hhh', false, 'hhh', false);
   
  INSERT INTO tenant(
-  id, password, username, firstname, tenant_is_building_manager, lastname)
-  VALUES (-3,'$2a$10$g8bQYJ1ZkWM8H3SLEe/oYukJ3jxUrwOm2bEHh2CQllT/NJIm87RbC', 'aaa', 'aaa', false, 'aaa');
+  id, password, username, firstname, tenant_is_building_manager, lastname, tenant_is_responsible)
+  VALUES (-3,'$2a$10$g8bQYJ1ZkWM8H3SLEe/oYukJ3jxUrwOm2bEHh2CQllT/NJIm87RbC', 'aaa', 'aaa', false, 'aaa', false);
 
 INSERT INTO user_authority(
 	id, authority_id, user_id)

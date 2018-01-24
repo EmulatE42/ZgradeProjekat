@@ -14,11 +14,14 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     request = request.clone({
+
       setHeaders: {
         'x-auth-token': LoggedUtils.getToken()
       }
+
+      //headers: request.headers.set('x-auth-token', LoggedUtils.getToken())
+      //headers: request.headers.set(LoggedUtils.getToken(), LoggedUtils.getToken())
     });
     return next.handle(request);
   }

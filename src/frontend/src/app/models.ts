@@ -162,7 +162,16 @@ export class TopicDTO
                public description:string,
                public creator: UserDTO,
                public accepted: boolean,
-               public votes: number
+               public pos_votes: number,
+               public neg_votes: number
+  ) {}
+}
+
+export class VoteDTO
+{
+  constructor( public id:number,
+               public topic:TopicDTO,
+               public tenant: TenantDTO
   ) {}
 }
 
@@ -176,3 +185,21 @@ export class AddressDTO
   ) {}
 }
 
+export class Link
+{
+  constructor( public text: string,
+               public routerLink: string
+  ){}
+}
+
+export class LoginResponseDTO
+{
+  constructor( public text: string,
+               public routerLink: string,
+               public token: string,
+               public id: number,
+               public username: string,
+               public role: string,
+               public isResponsible: boolean
+  ){}
+}

@@ -4,7 +4,9 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent }  from './app.component';
@@ -32,6 +34,8 @@ import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.c
 import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 import {AddSessionComponent} from "./components/sessionView/addSession/addSession.component";
 
+import { AuthenticationService } from "./services/authentication.service";
+
 import { routing } from "./app.routes";
 import {TopicViewComponent} from "./components/topicView/topicView.component";
 
@@ -44,7 +48,9 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
     routing,
     HttpModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -80,7 +86,8 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    AuthenticationService
   ],
   bootstrap:    [ AppComponent ]
 })

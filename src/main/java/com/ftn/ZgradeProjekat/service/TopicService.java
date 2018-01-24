@@ -1,6 +1,8 @@
 package com.ftn.ZgradeProjekat.service;
 
+import com.ftn.ZgradeProjekat.domain.DTO.TopicDTO;
 import com.ftn.ZgradeProjekat.domain.Topic;
+import com.ftn.ZgradeProjekat.domain.Vote;
 
 import java.util.List;
 
@@ -9,8 +11,10 @@ import java.util.List;
  */
 public interface TopicService {
 
-    Topic addTopic(Topic topic);
+    TopicDTO addTopic(Topic topic);
     Topic getTopic(Long id);
     boolean deleteTopic(Long id);
     List<Topic> getTopics();
+    Integer updatePositiveVote(Long id);
+    Integer updateNegativeVote(Long id);
 }

@@ -41,7 +41,7 @@ export class AddLocationComponent implements OnInit
   goToDisplayBuilding()
   {
 
-    this._router.navigate(['/displayBuilding/'+this.buildingId]);
+    this._router.navigate(['/displayBuilding',this.buildingId]);
   }
 }
 

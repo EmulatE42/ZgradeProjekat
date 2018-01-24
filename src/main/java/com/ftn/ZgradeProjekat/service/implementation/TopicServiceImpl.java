@@ -1,6 +1,8 @@
 package com.ftn.ZgradeProjekat.service.implementation;
 
+import com.ftn.ZgradeProjekat.domain.DTO.TopicDTO;
 import com.ftn.ZgradeProjekat.domain.Topic;
+import com.ftn.ZgradeProjekat.domain.Vote;
 import com.ftn.ZgradeProjekat.repository.TopicRepository;
 import com.ftn.ZgradeProjekat.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +31,12 @@ public class TopicServiceImpl implements TopicService{
      * @return the persisted entity
      */
     @Override
-    public Topic addTopic(Topic topic) {
+    public TopicDTO addTopic(Topic topic) {
 
         Topic saved = this.topicRepository.save(topic);
-        return saved;
+
+        TopicDTO topicDTO = new TopicDTO(saved);
+        return topicDTO;
     }
 
     /**
@@ -78,4 +82,27 @@ public class TopicServiceImpl implements TopicService{
         List<Topic> topics = this.topicRepository.findAll();
         return topics;
     }
+
+    /**
+     * Update positive vote
+     *
+     * @return Integer
+     */
+
+    @Override
+    public Integer updatePositiveVote(Long id) {
+        return this.topicRepository.updatePositiveVote(id);
+    }
+
+    /**
+     * Update negative vote
+     *
+     * @return Integer
+     */
+
+    @Override
+    public Integer updateNegativeVote(Long id) {
+        return this.topicRepository.updateNegativeVote(id);
+    }
+
 }
