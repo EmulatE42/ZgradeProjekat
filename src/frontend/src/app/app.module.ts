@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -42,6 +42,8 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
 
 
 
+
+
 @NgModule({
   imports:      [
     BrowserModule,
@@ -51,6 +53,7 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule
+
   ],
   declarations: [
     AppComponent,
