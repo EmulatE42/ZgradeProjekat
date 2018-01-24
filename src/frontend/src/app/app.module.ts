@@ -4,7 +4,9 @@ import { HttpModule } from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth/token.interceptor';
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent }  from './app.component';
@@ -48,7 +50,9 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
     routing,
     HttpModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
+    ReactiveFormsModule
 
   ],
   declarations: [
