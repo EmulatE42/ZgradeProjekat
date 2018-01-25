@@ -97,7 +97,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/parlament/**").permitAll()
 				.antMatchers("/session/**").permitAll()
 				.antMatchers("/topic/**").permitAll()
-				.antMatchers("/survey/**").permitAll()
+				.antMatchers("/survey/**").hasAuthority("TENANT")
 				.anyRequest().authenticated();
 				 
 		

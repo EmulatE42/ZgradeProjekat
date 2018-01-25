@@ -30,4 +30,6 @@ public interface UserService {
     User getUserByUsername(String username);
 
     List<FirmDTO> getAllFirms();
+
+    TenantDTO getTenant(Integer tenantId);
 }
