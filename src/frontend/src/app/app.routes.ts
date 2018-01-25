@@ -25,6 +25,7 @@ import {ParlamentViewComponent} from "./components/parlamentView/parlamentView.c
 import {SessionViewComponent} from "./components/sessionView/sessionView.component";
 import {AddSessionComponent} from "./components/sessionView/addSession/addSession.component";
 import {TopicViewComponent} from "./components/topicView/topicView.component";
+import {MakesurveyComponent} from "./components/tenantPage/makesurvey/makesurvey.component";
 
 const appRoutes : Routes =
   [
@@ -123,6 +124,10 @@ const appRoutes : Routes =
     {
       path : "parlament/:p1/session/:p2/topics",
       component : TopicViewComponent
+    },
+    {
+      path : "makeSurvey",
+      component : MakesurveyComponent
     }
 
   ];
