@@ -38,6 +38,8 @@ import { AuthenticationService } from "./services/authentication.service";
 
 import { routing } from "./app.routes";
 import {TopicViewComponent} from "./components/topicView/topicView.component";
+import { MakesurveyComponent } from './components/tenantPage/makesurvey/makesurvey.component';
+import { DialogComponent } from './components/tenantPage/makesurvey/dialog/dialog.component';
 
 
 
@@ -82,7 +84,9 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
     ParlamentViewComponent,
     SessionViewComponent,
     AddSessionComponent,
-    TopicViewComponent
+    TopicViewComponent,
+    MakesurveyComponent,
+    DialogComponent
   ],
   providers: [
     {

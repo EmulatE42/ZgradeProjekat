@@ -24,7 +24,7 @@ export class HomeComponent
 
     this.authenticationService.authenticateUser(this.usr, this.password).subscribe(
       data => localStorage.setItem("loggedUser", JSON.stringify(data)),
-      error => alert("Incorrect username and/or password"),
+      error => this.badInput(),
       () => this.callEmitter()
     );
 
@@ -33,6 +33,11 @@ export class HomeComponent
   callEmitter()
   {
     this.authenticationService.emitRole(this.usr);
+  }
+
+  badInput()
+  {
+    document.getElementById("login").innerHTML = "<div class=\"alert alert-danger col-sm-offset-4 \"> Wrong email/password! </div>";
   }
 
 }
