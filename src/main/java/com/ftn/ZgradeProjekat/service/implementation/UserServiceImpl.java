@@ -257,4 +257,18 @@ public class UserServiceImpl implements UserService {
         }
         return firmDTOs;
     }
+
+    @Override
+    public TenantDTO getTenant(Integer tenantId) {
+
+        Tenant tenant = this.tenantRepository.findById(tenantId);
+
+        if(tenant != null)
+        {
+            TenantDTO tenantDTO = new TenantDTO(tenant);
+            return tenantDTO;
+        }
+
+        return null;
+    }
 }

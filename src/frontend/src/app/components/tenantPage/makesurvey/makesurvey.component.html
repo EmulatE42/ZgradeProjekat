@@ -1,0 +1,72 @@
+<p></p>
+<form>
+  <div class="form-group">
+    <legend>Create a new survey</legend>
+    <p></p>
+    <label for="title">Title of survey:</label>
+    <input type="text" class="form-control" id="title" data-toggle="modal" style="width: 350px;">
+
+
+    <div class="divider"></div>
+    <button type="button"  (click)=" dodajNovi()" class="btn btn-danger pull-right">Add Question</button>
+    <div class="my_table">
+      <legend>Questions</legend>
+      <table class="table table-striped table-hover table-bordered" style="width: 800px;">
+        <thead class="thead-dark">
+        <tr>
+          <th>Number</th>
+          <th>Question text</th>
+          <th>Type of question</th>
+          <th   id = "hed" style="display:none;width: 200px;" > Choices</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-active" *ngFor="let q of questionsTable; let i = index">
+          <td>
+            <p>{{i+1}}</p>
+          </td>
+          <td>
+            <p><textarea  class="span7" rows = "3" placeholder="Input a question"style="resize:none; width: 200px" required></textarea></p>
+          </td>
+          <td>
+            <p>
+              <select #selectedType class="form-control" (change)="onChangeType(i,selectedType.value)" >
+              <option *ngFor="let type of types" [value]="type" >{{type}}</option>
+              </select></p>
+          </td>
+
+          <td class = "h" style="display:none;"   >
+            <button  style="display:none;" (click)="otvoriDialog(i)" class="ha1 btn btn-danger pull-right" >Open</button>
+
+            <app-dialog [(visible)]="showDialog" >
+
+                  <div *ngFor="let row of choicesTable; let j = index">
+                    <div *ngIf=" j == odabir">
+                      <select style="width: 250px;" #selectedChoices class="form-control"  >
+                      <option *ngFor="let ch of row" [value]="ch" >{{ch}}</option>
+                      </select>
+                    </div>
+                  </div>
+                <p></p>
+                <label >New choice:</label>
+                <input type="text" class = "novi" value = ""  #inp style="width: 200px;">
+                <button (click)="dodajOdabir(inp.value)" style="display:inline-block;"class="btn btn-danger btn-md pull-right">Dodaj</button>
+                <p></p>
+
+
+              <button (click)="showDialog = !showDialog" class="btn  btn-primary pull-right">Zavrsi</button>
+            </app-dialog>
+
+          </td>
+
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+  <input type="submit" class="btn btn-primary" (click)=" submituj()" >
+
+
+</form>
