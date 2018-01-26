@@ -26,6 +26,8 @@ import {SessionViewComponent} from "./components/sessionView/sessionView.compone
 import {AddSessionComponent} from "./components/sessionView/addSession/addSession.component";
 import {TopicViewComponent} from "./components/topicView/topicView.component";
 import {MakesurveyComponent} from "./components/tenantPage/makesurvey/makesurvey.component";
+import {AllSurveysComponent} from "./components/tenantPage/all-surveys/all-surveys.component";
+import {FillSurveyComponent} from "./components/tenantPage/fill-survey/fill-survey.component";
 
 const appRoutes : Routes =
   [
@@ -128,8 +130,15 @@ const appRoutes : Routes =
     {
       path : "makeSurvey",
       component : MakesurveyComponent
+    },
+    {
+      path : "surveys",
+      component : AllSurveysComponent
+    },
+    {
+      path: "fillSurvey/:p1",
+      component: FillSurveyComponent
     }
-
   ];
 
 export const routing : ModuleWithProviders = RouterModule.forRoot(appRoutes);

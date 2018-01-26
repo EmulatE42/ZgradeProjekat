@@ -27,9 +27,10 @@ public class QuestionDTO {
     private String choices;
 
 
+
     public QuestionDTO(Question question)
     {
-        this.answers = new HashSet<AnswerDTO>();
+        this.answers = new HashSet<>();
         this.id = question.getId();
         this.text = question.getText();
         if (question.getAnswers() != null) {

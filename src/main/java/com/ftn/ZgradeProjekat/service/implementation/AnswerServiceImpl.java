@@ -27,8 +27,8 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public AnswerDTO save(AnswerDTO answerDTO) {
 
-        answerRepository.save(new Answer(answerDTO));
-        return answerDTO;
+        AnswerDTO adt = new AnswerDTO(answerRepository.save(new Answer(answerDTO)));
+        return adt;
     }
 
     /**
@@ -55,5 +55,11 @@ public class AnswerServiceImpl implements AnswerService {
             rez.add( new AnswerDTO(a1));
         }
         return  rez;
+    }
+
+    @Override
+    public void updateAnswer(Long a, Long id) {
+        System.out.println("SALJEM SA  U SERVISU xD " + a + " " + id);
+        answerRepository.updateAnswer(a,id);
     }
 }
