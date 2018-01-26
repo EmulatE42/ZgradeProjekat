@@ -49,6 +49,21 @@ public class SurveyController {
     @RequestMapping(value = "/addSurvey", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SurveyDTO> addSurvey(@RequestBody SurveyDTO surveyDTO)
     {
+        System.out.println("LOM LOM");
+        System.out.println(surveyDTO.getId());
+        System.out.println(surveyDTO.getDescription());
+        System.out.println(surveyDTO.getBuildingId());
+        System.out.println(surveyDTO.getDateOfSurvey());
+        System.out.println(surveyDTO.getQuestions() == null);
+        System.out.println(surveyDTO.getQuestions().size());
+        /*
+         private Long id;
+    private String description;
+    private Long buildingId;
+    private String dateOfSurvey;
+    private Set<QuestionDTO> questions;
+        * */
+
 
         SurveyDTO saved = surveyService.save(surveyDTO);
         if(saved == null)
@@ -217,7 +232,10 @@ public class SurveyController {
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<QuestionDTO> addQuesiton(@RequestBody QuestionDTO questionDTO)
     {
-
+        System.out.println("DOBIO SAM ");
+        System.out.println(questionDTO.getText());
+        System.out.println(questionDTO.getChoices());
+        System.out.println();
         QuestionDTO saved = questionService.save(questionDTO);
         if(saved == null)
         {
@@ -242,6 +260,22 @@ public class SurveyController {
             System.out.println(e);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        return new ResponseEntity<>(true, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/updateAnswer", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> updateAnswer(@RequestBody String s)
+    {
+        System.out.println("DOBIO SAM " + s);
+        Long a,id;
+        String temp[] = s.split(";");
+        System.out.println(temp[0] + ";" + temp[1]);
+        a = Long.parseLong(temp[0].replace('\"',' ').trim());
+        id = Long.parseLong(temp[1].replace('\"',' ').trim());
+        System.out.println("SALJEM SA " + a + " " + id);
+        answerService.updateAnswer(a,id);
+
 
         return new ResponseEntity<>(true, HttpStatus.CREATED);
     }

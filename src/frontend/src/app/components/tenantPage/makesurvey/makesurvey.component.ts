@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {QuestionDTO} from "../../../models";
-
-
-
-
-
-
-
+import {AnswerDTO, LocationDTO, QuestionDTO, SurveyDTO} from "../../../models";
+import {TenantService} from "../../../services/tenant.service";
+import {SurveyService} from "../../../services/survey.service";
+import {element} from "protractor";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'makesurvey',
   templateUrl: './makesurvey.component.html',
-  styleUrls: ['./makesurvey.component.css']
+  styleUrls: ['./makesurvey.component.css'],
+  providers: [TenantService,SurveyService]
 })
 
 export class MakesurveyComponent implements OnInit {
@@ -21,10 +19,37 @@ export class MakesurveyComponent implements OnInit {
   choicesTable :String[][] = []
   types:string[] = ["Text","Rate","Multiple"]
   odabir:number = -1;
-  constructor() {
+  datum:string = "";
+  zgrade:number[] = []
+  locations:LocationDTO[];
+
+  constructor(private tenantService: TenantService,private surveyService: SurveyService,private _router: Router)
+  {
+    this.tenantService.getApartmentsOfTenant().subscribe
+    (
+      (data:LocationDTO[]) => this.locations = data,
+      error => alert(error),() => this.read()
+    );
+  }
+
+  read()
+  {
+    if (this.locations.length > 0) {
+
+      for ( let i = 0 ; i< this.locations.length; i++)
+       {
+       this.zgrade.push(this.locations[i].buildingId);
+       }
+
+    }
+
   }
 
   ngOnInit() {
+    var date = new Date();
+    this.datum = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
+    //alert( this.datum );
+
 
   }
 
@@ -76,10 +101,11 @@ export class MakesurveyComponent implements OnInit {
     }
   }
 
+
   dodajNovi()
   {
-    let duzina = this.questionsTable.length;
-    this.questionsTable.push(new QuestionDTO(duzina,null,null,false,false,null));
+
+    this.questionsTable.push(new QuestionDTO(null,null,[],false,false,"",1));
     this.choicesTable.push([]);
 
 
@@ -112,13 +138,41 @@ export class MakesurveyComponent implements OnInit {
     this.showDialog = !this.showDialog;
   }
 
+  onChangeText(gde:number,sta:string)
+  {
+      this.questionsTable[gde].text = sta;
+  }
+
+  gotovaAnketa(naslov:string) {
+    if (naslov.length == 0 || this.questionsTable.length == 0) {
+      return;
+    }
+
+
+    for (let i = 0; i < this.choicesTable.length; i++) {
+      let duzina = this.questionsTable[i].choices.length
+      if (this.questionsTable[i].text == null)
+        return;
+      if (duzina > 0)
+        this.questionsTable[i].choices = this.questionsTable[i].choices.slice(0, duzina - 1);
+    }
+
+    for (let i = 0; i < this.zgrade.length; i++) {
+      let s = new SurveyDTO(null, naslov, this.datum, this.zgrade[i], this.questionsTable);
+      if (i == this.zgrade.length - 1) {
+        this.surveyService.addSurvey(s).subscribe(() => this.redirektuj(s));
+      }
+      else {
+        this.surveyService.addSurvey(s).subscribe();
+      }
+    }
+  }
+    redirektuj(s:SurveyDTO)
+    {
+      this._router.navigate(['/tenantPageComponent']);
+    }
+
+
+
 }
 
-/*
- public id: number,
- public text: string,
- public answers: AnswerDTO[],
- public secondType: boolean,
- public thirdType: boolean,
- public choices: string
-* */

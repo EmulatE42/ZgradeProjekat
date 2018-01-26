@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -30,16 +31,25 @@ public class Survey
     @Column(name = "survey_description")
     private String description;
 
-    @Column(name = "date_survey")
-    private Date dateOfSurvey;
+    @Column(name = "buildingId")
+    private Long buildingId;
 
-    @OneToMany(mappedBy = "survey1", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Column(name = "date_survey")
+    private String dateOfSurvey;
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "q1")
     private Set<Question> questions;
 
     public Survey(SurveyDTO surveyDTO)
     {
+        System.out.println("UPISAO BIH OVO " + this.id);
+        System.out.println("DRUGI JE NULL 99 POSTO" + surveyDTO.getId());
+        System.out.println();
+        this.questions = new HashSet<>();
         this.description = surveyDTO.getDescription();
         this.dateOfSurvey = surveyDTO.getDateOfSurvey();
+        this.buildingId = surveyDTO.getBuildingId();
         for (QuestionDTO q : surveyDTO.getQuestions())
         {
             this.questions.add(new Question(q));

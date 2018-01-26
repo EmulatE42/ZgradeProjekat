@@ -64,6 +64,7 @@ export class NavbarComponent implements OnInit
       this.addLink({text: "Your responsibility", routerLink: "/responsiblePersonBugs"});
     }
     this.addLink({text: "Make survey", routerLink: "/makeSurvey"});
+    this.addLink({text: "Surveys", routerLink: "/surveys"});
     this.addLink({text: "About", routerLink: "/about"});
     this.addLink({text: "Logout", routerLink:"/" });
     this._router.navigate(['/tenantPageComponent']);

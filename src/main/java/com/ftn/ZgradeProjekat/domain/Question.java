@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -31,7 +32,8 @@ public class Question
     @Column(name = "question_text")
     private String text;
 
-    @OneToMany(mappedBy = "question1", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "a1")
     private Set<Answer> answers;
 
     @Column(name = "secondType")
@@ -43,19 +45,24 @@ public class Question
     @Column(name = "choices")
     private String choices; // odvojeni zarezom da je slucaj 3
 
-    @JsonIgnore
-    @ManyToOne
-    protected Survey survey1;
 
     public Question(QuestionDTO questionDTO)
     {
+        this.answers = new HashSet<>();
         this.text = questionDTO.getText();
         this.secondType = questionDTO.isSecondType();
         this.thirdType = questionDTO.isThirdType();
         this.choices = questionDTO.getChoices();
-        for (AnswerDTO a: questionDTO.getAnswers())
+        try
         {
-            this.answers.add(new Answer(a));
+            for (AnswerDTO a: questionDTO.getAnswers())
+            {
+                this.answers.add(new Answer(a));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("NIJE JOS NAPRAVLJENO " + e) ;
         }
 
     }
