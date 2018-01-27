@@ -1,6 +1,6 @@
 <div class="my_table">
   <legend>All parliaments</legend>
-  <table class="table table-striped table-hover table-bordered">
+  <table class="table table-striped table-hover table-bordered" id="parliamentTable">
     <thead class="thead-dark">
     <tr>
       <th>#</th>
@@ -12,7 +12,7 @@
     <tr class="table-active" *ngFor="let parlament of parlaments; let i = index">
       <td>{{i}}</td>
       <td>{{parlament.buildingAddress.street}} {{parlament.buildingAddress.number}}, {{parlament.buildingAddress.country}} {{parlament.buildingAddress.postalCode}} </td>
-      <th><div class="container"><button type="button" id="parlament.id" class="btn btn-danger" routerLink="/parlament/{{parlament.id}}/sessions" routerLinkActive="active">Sessions</button></div></th>
+      <th><div class="container"><button type="button" id="{{parlament.id}}" class="btn btn-danger" routerLink="/parlament/{{parlament.id}}/sessions" routerLinkActive="active">Sessions</button></div></th>
 
     </tr>
     </tbody>

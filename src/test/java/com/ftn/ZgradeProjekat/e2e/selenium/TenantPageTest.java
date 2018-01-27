@@ -4,21 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import static org.testng.AssertJUnit.assertEquals;
 
 /**
- * Created by Momir on 1/25/2018.
+ * Created by djuro on 1/26/2018.
  */
-public class ParlamentPageTest {
-
+public class TenantPageTest
+{
     private WebDriver browser;
 
-    ParlamentPage parlamentPage;
     LoginPage loginPage;
     TenantPage tenantPage;
 
@@ -32,12 +30,11 @@ public class ParlamentPageTest {
 
 
         loginPage = PageFactory.initElements(browser, LoginPage.class);
-        parlamentPage = PageFactory.initElements(browser, ParlamentPage.class);
         tenantPage = PageFactory.initElements(browser, TenantPage.class);
     }
 
     @Test
-    public void testAddStudent() {
+    public void testSizeOfTableRows() {
         loginPage.ensureIsDisplayed();
 
         loginPage.getInputUsername().clear();
@@ -47,13 +44,10 @@ public class ParlamentPageTest {
         loginPage.getButton().click();
 
         tenantPage.ensureIsDisplayed();
-        tenantPage.getParlamentViewLink().click();
 
-        parlamentPage.ensureIsDisplayed();
-        parlamentPage.getButtonToSessions().click();
-
-        assertEquals("http://localhost:4200/parlament/-1/sessions", browser.getCurrentUrl());
-
+        //int noOfTableRows = browser.findElements(By.cssSelector("tr")).size();
+        //assertEquals(noOfTableRows , 2);
+        assertEquals("http://localhost:4200/tenantPageComponent", browser.getCurrentUrl());
     }
 
     @AfterMethod
