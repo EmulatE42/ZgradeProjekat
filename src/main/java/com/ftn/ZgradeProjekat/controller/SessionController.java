@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.controller;
 
+import com.ftn.ZgradeProjekat.domain.DTO.SessionDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.TenantDTO;
 import com.ftn.ZgradeProjekat.domain.Session;
 import com.ftn.ZgradeProjekat.service.SessionService;
@@ -121,5 +122,17 @@ public class SessionController {
         else {
             return new ResponseEntity<>(tenantDTO, HttpStatus.OK);
         }
+    }
+
+    @RequestMapping(value = "/updateRecord", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SessionDTO> updateRecord(@RequestBody SessionDTO session)
+    {
+        Boolean updated = sessionService.updateRecord(session.getId(), session.getRecord());
+
+        if(updated == false)
+        {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(session, HttpStatus.OK);
     }
 }

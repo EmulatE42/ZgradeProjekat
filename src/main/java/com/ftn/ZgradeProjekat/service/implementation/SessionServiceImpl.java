@@ -79,4 +79,16 @@ public class SessionServiceImpl implements SessionService{
         List<Session> sessions = this.sessionRepository.findAll();
         return sessions;
     }
+
+    @Override
+    public boolean updateRecord(Long id, String record) {
+
+        int updated = this.sessionRepository.updateRecord(id, record);
+
+        if(updated == 1)
+            return true;
+        else
+            return false;
+
+    }
 }

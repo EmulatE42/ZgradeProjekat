@@ -33,6 +33,11 @@ export class SessionService {
 
   }
 
+  updateRecord(session: SessionDTO) {
+    var param = JSON.stringify(session);
+    return this.http.put("http://localhost:8080/session/updateRecord", param, httpOptions);
+  }
+
 
   getId() {
     return LoggedUtils.getId();

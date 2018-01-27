@@ -165,6 +165,10 @@ export class SessionViewComponent
     }
 
     this.session.record = this.record;
+
+    this.sessionService.updateRecord(this.session).subscribe(
+      (date: SessionDTO) => this.session = date
+    );
   }
 
   initSessionID(id)
