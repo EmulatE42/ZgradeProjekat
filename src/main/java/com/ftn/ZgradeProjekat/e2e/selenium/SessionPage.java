@@ -9,23 +9,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by djuro on 1/25/2018.
+ * Created by Momir on 1/27/2018.
  */
 @Getter
-public class TenantPage
-{
+public class SessionPage {
+
     private WebDriver driver;
 
-    @FindBy(linkText = "Parlaments")
-    private WebElement parlamentViewLink;
+    @FindBy(id="newSession")
+    private WebElement buttonToNewSession;
 
-    public TenantPage(WebDriver driver) {
+
+    public SessionPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void ensureIsDisplayed() {
         //wait for add button to be present
-        (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Parlaments")));
+        (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.visibilityOf(buttonToNewSession));
     }
 }

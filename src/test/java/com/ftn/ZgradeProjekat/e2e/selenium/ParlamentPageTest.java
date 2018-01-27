@@ -37,7 +37,7 @@ public class ParlamentPageTest {
     }
 
     @Test
-    public void testAddStudent() {
+    public void testSwitchOnSessionPage() {
         loginPage.ensureIsDisplayed();
 
         loginPage.getInputUsername().clear();
@@ -53,7 +53,6 @@ public class ParlamentPageTest {
         parlamentPage.getButtonToSessions().click();
 
         assertEquals("http://localhost:4200/parlament/-1/sessions", browser.getCurrentUrl());
-
     }
 
     @AfterMethod

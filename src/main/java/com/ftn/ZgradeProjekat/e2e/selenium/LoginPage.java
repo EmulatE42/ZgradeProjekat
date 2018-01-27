@@ -31,7 +31,7 @@ public class LoginPage {
 
     public void ensureIsDisplayed() {
         //wait for add button to be present
-        (new WebDriverWait(driver, 10))
+        (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.visibilityOf(button));
                 //.until(ExpectedConditions.presenceOfElementLocated(
                 //By.id("loginButton")));
