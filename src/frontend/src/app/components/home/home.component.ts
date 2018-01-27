@@ -21,11 +21,13 @@ export class HomeComponent
 
   authenticate()
   {
-
     this.authenticationService.authenticateUser(this.usr, this.password).subscribe(
       data => localStorage.setItem("loggedUser", JSON.stringify(data)),
       error => this.badInput(),
-      () => this.callEmitter()
+      () => {
+        this.callEmitter();
+        alert('Radi');
+      }
     );
 
   }
