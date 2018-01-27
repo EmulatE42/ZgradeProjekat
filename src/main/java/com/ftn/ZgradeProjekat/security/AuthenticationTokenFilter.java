@@ -14,7 +14,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Enumeration;
 
 public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -28,25 +27,10 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
 	public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		//String authToken = httpRequest.getHeader("x-auth-token");
-		String authToken = httpRequest.getHeader("x-auth-token");
-		String username = tokenUtils.getUsernameFromToken(authToken);
-		//String authToken = httpRequest.getHeader("X-XSRF-TOKEN");
-		/*
-		System.out.println(httpRequest.toString());
-		System.out.println(httpRequest.getHeaderNames());
-		Enumeration<String> headerNames = httpRequest.getHeaderNames();
-		while (headerNames.hasMoreElements()) {
-			String headerName = headerNames.nextElement();
-			System.out.print("Header Name: <em>" + headerName);
-			String headerValue = httpRequest.getHeader(headerName);
-			System.out.print("</em>, Header Value: <em>" + headerValue);
-			System.out.println("</em><br/>");
-		}
+		String authToken = httpRequest.getHeader("X-Auth-Token");
 		System.out.println("authToken  " + authToken);
+		String username = tokenUtils.getUsernameFromToken(authToken);
 		System.out.println("username   "+username);
-		*/
-
 
 		if (username != null
 				&& SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by djuro on 11/4/2017.
@@ -37,27 +35,19 @@ public class Topic
     @Column(name = "topic_accepted")
     private Boolean accepted;
 
-    @Column(name = "pos_votes")
-    private Long pos_votes;
-
-    @Column(name = "neg_votes")
-    private Long neg_votes;
+    @Column(name = "topic_votes")
+    private Long votes;
 
     @ManyToOne(cascade=CascadeType.MERGE)
     @JsonIgnore
     private Session session;
 
-    @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    private Set<Vote> votes = new HashSet<Vote>();
-
-    public Topic(TopicDTO topicDTO, Session session)
+    public Topic(TopicDTO topicDTO)
     {
         this.id = topicDTO.getId();
         this.description = topicDTO.getDescription();
         this.creator = topicDTO.getCreator();
         this.accepted = topicDTO.getAccepted();
-        this.pos_votes = topicDTO.getPos_votes();
-        this.neg_votes = topicDTO.getNeg_votes();
-        this.session = session;
+        this.votes = topicDTO.getVotes();
     }
 }

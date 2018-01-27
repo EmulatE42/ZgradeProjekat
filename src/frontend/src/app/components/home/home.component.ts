@@ -5,7 +5,8 @@ import { AuthenticationService } from "../../services/authentication.service";
   moduleId: module.id,
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [AuthenticationService]
 
 })
 export class HomeComponent
@@ -21,25 +22,13 @@ export class HomeComponent
 
   authenticate()
   {
+
     this.authenticationService.authenticateUser(this.usr, this.password).subscribe(
       data => localStorage.setItem("loggedUser", JSON.stringify(data)),
-      error => this.badInput(),
-      () => {
-        this.callEmitter();
-        alert('Radi');
-      }
+      error => alert("Incorrect username and/or password"),
+      () => console.log(JSON.parse(localStorage.getItem("loggedUser")))
     );
 
-  }
-
-  callEmitter()
-  {
-    this.authenticationService.emitRole(this.usr);
-  }
-
-  badInput()
-  {
-    document.getElementById("login").innerHTML = "<div class=\"alert alert-danger col-sm-offset-4 \"> Wrong email/password! </div>";
   }
 
 }

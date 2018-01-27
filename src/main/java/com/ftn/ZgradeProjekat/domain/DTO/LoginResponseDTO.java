@@ -19,7 +19,6 @@ public class LoginResponseDTO
     private Integer id;
     private String username;
     private String role;
-    private Boolean isResponsible;
 
     public LoginResponseDTO(User user)
     {
@@ -27,6 +26,5 @@ public class LoginResponseDTO
         this.id = user.getId();
         this.username = user.getUsername();
         this.role = user.getFirstUserAuthority().getAuthority().getName();
-        this.isResponsible = false;
     }
 }

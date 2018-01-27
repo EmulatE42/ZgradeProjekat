@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -37,19 +36,12 @@ public class Tenant extends User {
     @Column(name = "tenant_is_building_manager")
     private Boolean isBuildingmManager;
 
-    @Column(name = "tenant_is_responsible")
-    private Boolean isResponsible;
-
-    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    private Set<Vote> votes = new HashSet<Vote>();
-
     public Tenant(User user)
     {
         this.setId(user.getId());  //--------------
         this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
         this.setUserAuthorities(user.getUserAuthorities());
-        this.setIsResponsible(false);
     }
 
     public Tenant(RegisterUserDTO registerUserDTO)
@@ -59,7 +51,6 @@ public class Tenant extends User {
         this.setFirstname(registerUserDTO.getFirstname());
         this.setLastname(registerUserDTO.getLastname());
         this.setIsBuildingmManager(false);
-        this.setIsResponsible(false);
     }
 
     public Tenant(TenantDTO tenantDTO)
@@ -68,7 +59,6 @@ public class Tenant extends User {
         this.firstname = tenantDTO.getFirstname();
         this.setUsername(tenantDTO.getUsername());
         this.setPassword(tenantDTO.getPassword());
-        this.setIsResponsible(false);
     }
 
     public void addApartment(Apartment apartment)

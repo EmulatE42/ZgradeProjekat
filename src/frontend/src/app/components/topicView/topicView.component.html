@@ -14,17 +14,7 @@
       <td>{{i}}</td>
       <td>{{topic.description}} </td>
       <td>{{topic.creator.username}} </td>
-      <td>
-          <span (click)="like(topic.id)" class="fa fa-thumbs-up" aria-hidden="true"></span> {{topic.pos_votes}}
-          <span (click)="dislike(topic.id)" class="fa fa-thumbs-down" aria-hidden="true"></span> {{topic.neg_votes}}
-
-
-        <!--<button type="button" class="btn btn-default btn-lg">-->
-          <!--<span class="fa fa-thumbs-down" aria-hidden="true"></span> 0-->
-        <!--</button>-->
-
-
-      </td>
+      <th>{{topic.votes}}</th>
     </tr>
 
     <tr class="table-success">

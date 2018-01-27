@@ -212,8 +212,6 @@ public class BuildingServiceImpl implements BuildingService
         if(responsiblePersonDTO.getIsTenant())
         {
             tenant = this.tenantRepository.findById(responsiblePersonDTO.getTenantDTO().getId());
-            tenant.setIsResponsible(true);
-            this.tenantRepository.save(tenant);
             responsiblePerson = new ResponsiblePerson(responsiblePersonDTO, tenant);
         }
         else {

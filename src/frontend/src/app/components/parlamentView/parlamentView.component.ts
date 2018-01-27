@@ -20,10 +20,7 @@ export class ParlamentViewComponent
     this.parlamentService.getParlaments().subscribe
     (
       (data: ParliamentDTO[]) => this.parlaments = data,
-      error => alert(error),
-      () =>
-      {}
+      error => alert(error)
     );
-
   }
 }

@@ -1,49 +1,31 @@
 import { Injectable } from '@angular/core';
-import {Response} from '@angular/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from "rxjs/Observable";
+import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
+
 import {LoggedUtils} from "../utils/logged.utils";
-import {TopicDTO, VoteDTO} from "../models";
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'content-type': 'application/json' })
-};
-
+import {TopicDTO} from "../models";
 
 @Injectable()
 export class TopicService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: Http) {}
 
   getTopics(id: number) {
-    return this.http.get("http://localhost:8080/topic/getTopicsBySessionId/" + id);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    return this.http.get("http://localhost:8080/topic/getTopicsBySessionId/" + id, {headers: headers})
+      .map(res => res.json());
   }
 
   addTopic(sessionID:number, topic: TopicDTO) {
     var param = JSON.stringify(topic);
-    return this.http.post("http://localhost:8080/topic/addBySessionId/" + sessionID, param, httpOptions);
-  }
-
-  updatePositiveVote(topic: TopicDTO) {
-    var param = JSON.stringify(topic);
-    return this.http.put("http://localhost:8080/topic/positiveVote/" + this.getId(), param, httpOptions);
-  }
-
-  updateNegativeVote(topic: TopicDTO) {
-    var param = JSON.stringify(topic);
-    return this.http.put("http://localhost:8080/topic/negativeVote/"  + this.getId(), param, httpOptions);
-  }
-
-  getVote(topic: TopicDTO)
-  {
-    return this.http.get("http://localhost:8080/topic/getVote/" + this.getId() + "/" + topic.id, {observe: 'response'});
-
-      // .map(this.extractVote)
-      // .do(data => console.log(""))
-      // .catch(this.handleError);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.post("http://localhost:8080/topic/addBySessionId/" + sessionID, param, {headers: headers})
+      .map(res => res.json());
   }
 
   getId() {
@@ -53,22 +35,6 @@ export class TopicService {
   getUsername()
   {
     return LoggedUtils.getUsername();
-  }
-
-  private extractVote(res: Response) {
-
-    alert('Status: ' + res.status);
-    if(res.status == 404)
-      return null;
-    else {
-      let body = res.json();
-      return body;
-    }
-  }
-
-  private handleError(error: Response)
-  {
-    return Observable.throw(error.json().error || 'Server error');
   }
 
 

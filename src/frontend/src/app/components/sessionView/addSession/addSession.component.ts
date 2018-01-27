@@ -3,8 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TopicDTO, SessionDTO, ParliamentDTO, Parliament} from "../../../models";
 import {LoggedUtils} from "../../../utils/logged.utils";
 import {SessionService} from "../../../services/session.service";
-import {TopicService} from "../../../services/topic.service";
-import { FormGroup, FormBuilder } from "@angular/forms";
 
 
 @Component({
@@ -12,66 +10,44 @@ import { FormGroup, FormBuilder } from "@angular/forms";
   selector: 'sessionPage',
   templateUrl: './addSession.component.html',
   styleUrls: ['./addSession.component.css'],
-  providers: [SessionService, TopicService]
+  providers: [SessionService]
 
 })
 export class AddSessionComponent
 {
-  date: string;
-  time: string;
+  date: Date;
   topics: TopicDTO[] = [];
-  topic: TopicDTO;
   description: string;
   session: SessionDTO;
 
-
-
-  constructor(private sessionService: SessionService, private topicService: TopicService, private route: ActivatedRoute, private _router: Router)
+  constructor(private sessionService: SessionService, private route: ActivatedRoute, private _router: Router)
   {
 
   }
 
-
   addSession()
   {
     var parlament = new Parliament(this.route.snapshot.params['p1'], null)
-    var d = new Date(this.date + ' ' + this.time);
-    this.session = new SessionDTO(null,d,null,null,null,LoggedUtils.getUser(), parlament);
+    this.session = new SessionDTO(null,this.date,this.topics,null,null,LoggedUtils.getUser(), parlament);
     console.log(JSON.stringify(this.session));
-
 
     this.sessionService.addSession(this.session).subscribe
     (
       (data: SessionDTO) => this.session = data,
       error => alert(error),
-      () => this.saveTopics()
+      () => this._router.navigate(['/parlament/'+this.route.snapshot.params['p1'] + '/sessions'])
     );
 
   }
 
   addTopic()
   {
-    this.topics.push(new TopicDTO(null, this.description, LoggedUtils.getUser(),false,0,0));
+    this.topics.push(new TopicDTO(null, this.description, LoggedUtils.getUser(),false,0));
     this.description = '';
   }
 
   deleteTopic(index: any)
   {
     this.topics.splice(index, 1);
-  }
-
-  saveTopics()
-  {
-    for(let topic of this.topics)
-    {
-      this.topicService.addTopic(this.session.id, topic).subscribe
-      (
-        (data: TopicDTO) => this.topic = data,
-        error => alert(error)
-      );
-    }
-
-
-    this._router.navigate(['/parlament/'+this.route.snapshot.params['p1'] + '/sessions'])
   }
 }

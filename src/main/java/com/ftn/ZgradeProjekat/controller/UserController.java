@@ -3,7 +3,6 @@ package com.ftn.ZgradeProjekat.controller;
 import com.ftn.ZgradeProjekat.domain.Building;
 import com.ftn.ZgradeProjekat.domain.DTO.*;
 import com.ftn.ZgradeProjekat.domain.Parliament;
-import com.ftn.ZgradeProjekat.domain.Tenant;
 import com.ftn.ZgradeProjekat.domain.User;
 import com.ftn.ZgradeProjekat.security.TokenUtils;
 import com.ftn.ZgradeProjekat.service.BuildingService;
@@ -64,16 +63,7 @@ public class UserController
             UserDetails details = userDetailsService.loadUserByUsername(loginDTO.getUsername());
             String userToken = tokenUtils.generateToken(details);
             User user = this.userService.getUserByUsername(loginDTO.getUsername());
-            Boolean isResponsible = false;
-            System.out.println(user.getUserAuthorities().iterator().next().getAuthority().getName());
-            if(user.getUserAuthorities().iterator().next().getAuthority().getName().toString().equals("TENANT"))
-            {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                Tenant tenant = (Tenant)user;
-                System.out.println(tenant.getIsResponsible());
-                isResponsible = tenant.getIsResponsible();
-            }
-            return new ResponseEntity<>(new LoginResponseDTO(userToken, user.getId(),loginDTO.getUsername(),user.getUserAuthorities().iterator().next().getAuthority().getName(), isResponsible), HttpStatus.OK);
+            return new ResponseEntity<>(new LoginResponseDTO(userToken, user.getId(),loginDTO.getUsername(),user.getUserAuthorities().iterator().next().getAuthority().getName()), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>("Invalid login", HttpStatus.BAD_REQUEST);
         }

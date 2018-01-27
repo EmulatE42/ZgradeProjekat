@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import {BuildingDTO, LocationDTO} from "../../../models";
 import { AdminService } from "../../../services/admin.service";
 import { ActivatedRoute }    from '@angular/router';
-import { Router }    from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -20,7 +19,7 @@ export class DisplayBuildingComponent implements OnInit
   buildingId:number;
 
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute, private _router: Router)
+  constructor(private adminService: AdminService, private route: ActivatedRoute)
   {
   }
 
@@ -51,29 +50,5 @@ export class DisplayBuildingComponent implements OnInit
     );
   }
 
-  goToLocation(locationId:number)
-  {
-    this._router.navigate(['/location',locationId]);
-  }
-
-  goToAddLocation(buildingId:number)
-  {
-    this._router.navigate(['/addLocation',buildingId]);
-  }
-
-  goToAddResposiblePerson(buildingId:number)
-  {
-    this._router.navigate(['/addResposiblePerson',buildingId]);
-  }
-
-  goToShowAllResponsiblePersonsComponent(buildingId:number)
-  {
-    this._router.navigate(['/showAllResponsiblePersonsComponent',buildingId]);
-  }
-
-  goToSetBuildingManagerComponent(buildingId:number)
-  {
-    this._router.navigate(['/setBuildingManagerComponent',buildingId]);
-  }
 }
 

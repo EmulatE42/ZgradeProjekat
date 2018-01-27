@@ -1,45 +1,68 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import {LoggedUtils} from "../utils/logged.utils";
 import {BugDTO, CommentDTO, UserDTO} from "../models";
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'content-type': 'application/json' })
-};
-
 @Injectable()
 export class TenantService {
-  constructor(private http: HttpClient) {
+  constructor(private http: Http) {
   }
 
   getApartmentsOfTenant() {
     let tenantId = LoggedUtils.getId();
-    return this.http.get("http://localhost:8080/user/getApartmentsOfTenant/" + tenantId);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    return this.http.get("http://localhost:8080/user/getApartmentsOfTenant/" + tenantId, {headers: headers})
+      .map(res => res.json());
   }
 
   getAllBugs(locationId: number) {
-    return this.http.get("http://localhost:8080/bug/getAllBugs/" + locationId);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    return this.http.get("http://localhost:8080/bug/getAllBugs/" + locationId, {headers: headers})
+      .map(res => res.json());
   }
 
   addNewBug(locationId: number, bugDTO: BugDTO) {
     var param = JSON.stringify(bugDTO);
-    return this.http.post("http://localhost:8080/bug/reportBug/" + locationId, param, httpOptions);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.post("http://localhost:8080/bug/reportBug/" + locationId, param, {headers: headers})
+      .map(res => res.json());
   }
 
   deleteBug(bugId: number, locationId: number) {
-    return this.http.delete("http://localhost:8080/bug/deleteBug/" + bugId + "/" + locationId);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    return this.http.delete("http://localhost:8080/bug/deleteBug/" + bugId + "/" + locationId, {headers: headers})
+      .map(res => res.json());
   }
 
   addComment(bugId: number, commentDTO: CommentDTO) {
     commentDTO.user = new UserDTO(LoggedUtils.getId(), LoggedUtils.getUsername());
     var param = JSON.stringify(commentDTO);
-    return this.http.post("http://localhost:8080/bug/addComment/" + bugId, param, httpOptions);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.post("http://localhost:8080/bug/addComment/" + bugId, param, {headers: headers})
+      .map(res => res.json());
   }
 
   getBug(bugId: number) {
-    return this.http.get("http://localhost:8080/bug/getBug/" + bugId);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/bug/getBug/" + bugId, {headers: headers})
+      .map(res => res.json());
   }
 
   getId() {
@@ -53,17 +76,32 @@ export class TenantService {
 
   deleteComment(commentId:number, bugId:number)
   {
-    return this.http.delete("http://localhost:8080/bug/deleteComment/" +commentId +"/" + bugId);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete("http://localhost:8080/bug/deleteComment/" +commentId +"/" + bugId, {headers: headers})
+      .map(res => res.json());
   }
 
   getBill(bugId:number)
   {
-    return this.http.get("http://localhost:8080/bill/getBill/" + bugId);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.get("http://localhost:8080/bill/getBill/" + bugId, {headers: headers})
+      .map(res => res.json());
   }
 
   payBill(bugId:number)
   {
-    return this.http.put("http://localhost:8080/bill/payBill/" + bugId, httpOptions);
+    var headers = new Headers();
+    console.log("Token:   " + LoggedUtils.getToken());
+    headers.append("X-Auth-Token", LoggedUtils.getToken());
+    headers.append('Content-Type', 'application/json');
+    return this.http.put("http://localhost:8080/bill/payBill/" + bugId, {headers: headers})
+      .map(res => res.json());
   }
 
 

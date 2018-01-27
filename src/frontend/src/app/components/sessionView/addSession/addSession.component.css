@@ -1,11 +1,9 @@
-
-
 .session_container {
   position: absolute;
   width: 300px;
   height: 200px;
   z-index: 15;
-  top: 25%;
+  top: 30%;
   left: 40%;
   margin: -100px 0 0 -150px;
 }

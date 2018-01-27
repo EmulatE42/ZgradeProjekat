@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import {BuildingListItemDTO} from "../../models";
 import { AdminService } from "../../services/admin.service";
-import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -16,9 +15,9 @@ export class AdminPageComponent
 {
   buildings:BuildingListItemDTO[];
 
-  constructor(private adminService: AdminService, private _router: Router)
+  constructor(private adminService: AdminService )
   {
-     this.adminService.getAllBuildings().subscribe(
+     this.adminService.addAllBuildings().subscribe(
        data => this.buildings = data,
        error => alert(error)
      );
@@ -37,16 +36,6 @@ export class AdminPageComponent
     this.adminService.getBuildingById(buildingId).subscribe(
       data=>console.log(data)
     )
-  }
-
-  goToDisplayBuilding(id:number)
-  {
-    this._router.navigate(['/displayBuilding',id]);
-  }
-
-  goToMakeBuilding()
-  {
-    this._router.navigate(['/makeBuilding']);
   }
 }
 

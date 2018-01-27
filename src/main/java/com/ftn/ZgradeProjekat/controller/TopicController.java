@@ -1,16 +1,11 @@
 package com.ftn.ZgradeProjekat.controller;
 
 import com.ftn.ZgradeProjekat.domain.DTO.TopicDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.VoteDTO;
 import com.ftn.ZgradeProjekat.domain.Session;
-import com.ftn.ZgradeProjekat.domain.Tenant;
 import com.ftn.ZgradeProjekat.domain.Topic;
-import com.ftn.ZgradeProjekat.domain.Vote;
 import com.ftn.ZgradeProjekat.repository.SessionRepository;
-import com.ftn.ZgradeProjekat.repository.TenantRepository;
 import com.ftn.ZgradeProjekat.service.SessionService;
 import com.ftn.ZgradeProjekat.service.TopicService;
-import com.ftn.ZgradeProjekat.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,12 +35,6 @@ public class TopicController {
     @Autowired
     private SessionService sessionService;
 
-    @Autowired
-    private VoteService voteService;
-
-    @Autowired
-    private TenantRepository tenantRepository;
-
     /**
      * POST  /add : Create a new topic.
      *
@@ -54,9 +43,9 @@ public class TopicController {
      */
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TopicDTO> addTopic(@RequestBody Topic topic)
+    public ResponseEntity<Topic> addTopic(@RequestBody Topic topic)
     {
-        TopicDTO saved = topicService.addTopic(topic);
+        Topic saved = topicService.addTopic(topic);
 
         if(saved == null)
         {
@@ -73,20 +62,18 @@ public class TopicController {
      */
 
     @RequestMapping(value = "/addBySessionId/{sessionId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TopicDTO> addTopicBySessionId(@PathVariable("sessionId") Long sessionId, @RequestBody TopicDTO topicDTO)
+    public ResponseEntity<Topic> addTopicBySessionId(@PathVariable("sessionId") Long sessionId, @RequestBody TopicDTO topicDTO)
     {
         Session session = this.sessionService.getSession(sessionId);
 
         if(session == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else {
-            Topic topic = new Topic(topicDTO, session);
-            TopicDTO saved = this.topicService.addTopic(topic);
+            Topic topic = new Topic(topicDTO);
+            session.getTopics().add(topic);
+            this.sessionService.addSession(session);
 
-//            session.getTopics().add(topic);
-//            this.sessionService.addSession(session);
-
-            return new ResponseEntity<>(saved, HttpStatus.CREATED);
+            return new ResponseEntity<>(topic, HttpStatus.CREATED);
         }
     }
 
@@ -152,68 +139,17 @@ public class TopicController {
     @RequestMapping(value = "/getTopicsBySessionId/{sessionId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Set<TopicDTO>> getTopicsBySessionId(@PathVariable("sessionId") Long sessionId)
     {
-        List<Topic> topics = this.topicService.getTopics();
+        Session session = this.sessionService.getSession(sessionId);
 
-        if(topics == null)
+        if(session == null) 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else {
-            Set<TopicDTO> topicsDTO = new HashSet<>();
+            Set<TopicDTO> topics = new HashSet<>();
 
-            for(Topic topic: topics) {
+            for(Topic topic: session.getTopics())
+                topics.add(new TopicDTO(topic));
 
-                if(topic.getSession().getId() == sessionId)
-                    topicsDTO.add(new TopicDTO(topic));
-            }
-
-            return new ResponseEntity<>(topicsDTO, HttpStatus.OK);
-        }
-    }
-
-    @RequestMapping(value = "/positiveVote/{tenantId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TopicDTO> positiveVote(@PathVariable("tenantId") Integer tenantId, @RequestBody TopicDTO topicDTO)
-    {
-        Integer updated = this.topicService.updatePositiveVote(topicDTO.getId());
-
-        if(updated != 1)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        else {
-
-            Tenant tenant = this.tenantRepository.findById(tenantId);
-            Topic topic = new Topic(topicDTO, null);
-
-            voteService.addVote(new Vote(null, tenant, topic));
-            return new ResponseEntity<>(topicDTO, HttpStatus.OK);
-        }
-    }
-
-    @RequestMapping(value = "/negativeVote/{tenantId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TopicDTO> negativeVote(@PathVariable("tenantId") Integer tenantId, @RequestBody TopicDTO topicDTO)
-    {
-        Integer updated = this.topicService.updateNegativeVote(topicDTO.getId());
-
-        if(updated != 1) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        else {
-
-            Tenant tenant = this.tenantRepository.findById(tenantId);
-            Topic topic = new Topic(topicDTO, null);
-
-            voteService.addVote(new Vote(null, tenant, topic));
-            return new ResponseEntity<>(topicDTO, HttpStatus.OK);
-        }
-    }
-
-    @RequestMapping(value = "/getVote/{tenantId}/{topicID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoteDTO> getVote(@PathVariable("tenantId") Integer tenantId, @PathVariable("topicID") Long topicID)
-    {
-        VoteDTO vote = this.voteService.getVote(topicID, tenantId);
-
-        if(vote == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        else {
-            return new ResponseEntity<>(vote, HttpStatus.OK);
+            return new ResponseEntity<>(topics, HttpStatus.OK);
         }
     }
 }

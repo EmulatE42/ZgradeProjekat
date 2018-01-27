@@ -1,16 +1,13 @@
 package com.ftn.ZgradeProjekat.controller;
 
-import com.ftn.ZgradeProjekat.domain.DTO.TenantDTO;
 import com.ftn.ZgradeProjekat.domain.Session;
 import com.ftn.ZgradeProjekat.service.SessionService;
-import com.ftn.ZgradeProjekat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.List;
 
 /**
@@ -28,9 +25,6 @@ public class SessionController {
 
     @Autowired
     private SessionService sessionService;
-
-    @Autowired
-    private UserService userService;
 
     /**
      * POST  /add : Create a new session.
@@ -102,24 +96,5 @@ public class SessionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(sessions, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/isBuildingManager/{tenantId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TenantDTO> isBuildingManager(@PathVariable("tenantId") Integer tenantId)
-    {
-        TenantDTO tenantDTO = this.userService.getTenant(tenantId);
-
-
-        if(tenantDTO == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        else if(tenantDTO.getIsBuildingManager() == false) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
-
-        else {
-            return new ResponseEntity<>(tenantDTO, HttpStatus.OK);
-        }
     }
 }

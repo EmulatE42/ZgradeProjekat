@@ -33,7 +33,7 @@
           <td *ngIf="l.square != null">#</td>
           <td *ngIf="l.numberOfFloors != null">{{l.numberOfFloors}}</td>
           <td *ngIf="l.numberOfFloors != null">#</td>
-          <th><div class="container"><button type="button" class="btn btn-primary" (click)="goToLocation(l.locationId)">Open</button></div></th>
+          <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/location/{{l.locationId}}" routerLinkActive="active">Open</button></div></th>
           <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteLocation(l.locationId, i)">Delete</button></div></th>
         </tr>
       <tr class="table-success">
@@ -43,13 +43,13 @@
         <th></th>
         <th></th>
         <th></th>
-        <th><div class="container"><button type="button" class="btn btn-success" (click)="goToAddLocation(building.id)">Add new</button></div></th>
+        <th><div class="container"><button type="button" class="btn btn-success" routerLink="/addLocation/{{building.id}}" routerLinkActive="active">Add new</button></div></th>
       </tr>
       </tbody>
     </table>
     <div class="form-group">
-      <button type="button" class="btn btn-success" (click)="goToAddResposiblePerson(buildingId)">Add responsible person</button>
-      <button type="button" class="btn btn-secondary" (click)="goToShowAllResponsiblePersonsComponent(buildingId)">Show responsible people</button>
-      <button type="button" class="btn btn-info" (click)="goToSetBuildingManagerComponent(buildingId)">Set building manager</button>
+      <button type="button" class="btn btn-success" routerLink="/addResposiblePerson/{{buildingId}}" routerLinkActive="active">Add responsible person</button>
+      <button type="button" class="btn btn-secondary" routerLink="/showAllResponsiblePersonsComponent/{{buildingId}}" routerLinkActive="active">Show responsible people</button>
+      <button type="button" class="btn btn-info" routerLink="/setBuildingManagerComponent/{{buildingId}}" routerLinkActive="active">Set building manager</button>
     </div>
   </div>
