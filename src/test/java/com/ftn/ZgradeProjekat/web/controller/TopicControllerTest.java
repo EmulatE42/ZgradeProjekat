@@ -87,7 +87,8 @@ public class TopicControllerTest {
         topic.setId(TopicConstants.DB_NEW_ID);
         topic.setDescription(TopicConstants.DB_NEW_DESCRIPTION);
         topic.setAccepted(TopicConstants.DB_NEW_ACCEPTED);
-        topic.setVotes(TopicConstants.DB_NEW_VOTES);
+        topic.setPos_votes(TopicConstants.DB_NEW_VOTES);
+        topic.setNeg_votes(TopicConstants.DB_NEW_VOTES);
 
 
 
@@ -149,7 +150,8 @@ public class TopicControllerTest {
         topic.setId(TopicConstants.DB_NEW_ID);
         topic.setDescription(TopicConstants.DB_NEW_DESCRIPTION);
         topic.setAccepted(TopicConstants.DB_NEW_ACCEPTED);
-        topic.setVotes(TopicConstants.DB_NEW_VOTES);
+        topic.setPos_votes(TopicConstants.DB_NEW_VOTES);
+        topic.setNeg_votes(TopicConstants.DB_NEW_VOTES);
 
         String json = TestUtil.json(topic);
         this.mockMvc.perform(post(URL_PREFIX + "/addBySessionId/" + SessionConstants.DB_ID)

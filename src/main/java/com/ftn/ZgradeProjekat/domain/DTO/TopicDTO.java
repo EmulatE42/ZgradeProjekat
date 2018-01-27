@@ -17,7 +17,8 @@ public class TopicDTO {
     private String description;
     private User creator;
     private Boolean accepted;
-    private Long votes;
+    private Long pos_votes;
+    private Long neg_votes;
 
     public TopicDTO() {}
 
@@ -27,6 +28,7 @@ public class TopicDTO {
         this.description = topic.getDescription();
         this.creator = topic.getCreator();
         this.accepted = topic.getAccepted();
-        this.votes = topic.getVotes();
+        this.pos_votes = topic.getPos_votes();
+        this.neg_votes = topic.getNeg_votes();
     }
 }

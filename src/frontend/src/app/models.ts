@@ -162,7 +162,16 @@ export class TopicDTO
                public description:string,
                public creator: UserDTO,
                public accepted: boolean,
-               public votes: number
+               public pos_votes: number,
+               public neg_votes: number
+  ) {}
+}
+
+export class VoteDTO
+{
+  constructor( public id:number,
+               public topic:TopicDTO,
+               public tenant: TenantDTO
   ) {}
 }
 
@@ -174,5 +183,65 @@ export class AddressDTO
                public postalCode: string,
                public country: string
   ) {}
+}
+
+export class Link
+{
+  constructor( public text: string,
+               public routerLink: string
+  ){}
+}
+
+export class LoginResponseDTO
+{
+  constructor( public text: string,
+               public routerLink: string,
+               public token: string,
+               public id: number,
+               public username: string,
+               public role: string,
+               public isResponsible: boolean
+  ){}
+}
+/* @GeneratedValue(strategy = GenerationType.AUTO)
+ @Column(name = "survey_id", unique = true, nullable = false)
+ private Long id;
+
+ @Column(name = "survey_description")
+ private String description;
+
+ @Column(name = "date_survey")
+ private Date dateOfSurvey;
+
+ @OneToMany(mappedBy = "survey1", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+ private Set<Question> questions;
+ */
+export class SurveyDTO
+{
+  constructor(public id: number,
+              public description: string,
+              public dateOfSurvey: Date, // PROVERI DATUM
+              public questions: QuestionDTO[]
+  ){}
+}
+
+export class QuestionDTO
+{
+  constructor(public id: number,
+              public text: string,
+              public answers: AnswerDTO[],
+              public secondType: boolean,
+              public thirdType: boolean,
+              public choices: string
+  ){}
+}
+
+export class AnswerDTO
+{
+  constructor(public id: number,
+              public text: string,
+              public rate: number,
+              public choiced: string
+  ){}
 }
 

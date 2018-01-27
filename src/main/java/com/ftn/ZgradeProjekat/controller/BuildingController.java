@@ -24,7 +24,7 @@ import java.util.List;
  * Kontroler za rad sa zgradama
  */
 @RestController
-@CrossOrigin
+@CrossOrigin(allowedHeaders={"x-auth-token"})
 @RequestMapping(value = "/building")
 public class BuildingController
 {
