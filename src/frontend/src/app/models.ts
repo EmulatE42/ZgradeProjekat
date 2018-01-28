@@ -192,35 +192,22 @@ export class Link
   ){}
 }
 
-export class LoginResponseDTO
-{
-  constructor( public text: string,
-               public routerLink: string,
-               public token: string,
-               public id: number,
-               public username: string,
-               public role: string,
-               public isResponsible: boolean
-  ){}
+export class LoginResponseDTO {
+  constructor(public text: string,
+              public routerLink: string,
+              public token: string,
+              public id: number,
+              public username: string,
+              public role: string,
+              public isResponsible: boolean) {
+  }
 }
-/* @GeneratedValue(strategy = GenerationType.AUTO)
- @Column(name = "survey_id", unique = true, nullable = false)
- private Long id;
-
- @Column(name = "survey_description")
- private String description;
-
- @Column(name = "date_survey")
- private Date dateOfSurvey;
-
- @OneToMany(mappedBy = "survey1", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
- private Set<Question> questions;
- */
 export class SurveyDTO
 {
   constructor(public id: number,
               public description: string,
-              public dateOfSurvey: Date, // PROVERI DATUM
+              public dateOfSurvey: string,
+              public buildingId: number,
               public questions: QuestionDTO[]
   ){}
 }
@@ -232,7 +219,8 @@ export class QuestionDTO
               public answers: AnswerDTO[],
               public secondType: boolean,
               public thirdType: boolean,
-              public choices: string
+              public choices: string,
+              public survey1: number
   ){}
 }
 
@@ -242,6 +230,24 @@ export class AnswerDTO
               public text: string,
               public rate: number,
               public choiced: string
+  ){}
+}
+
+export class FilledSurveyDTO
+{
+  constructor(public id: number,
+              public surveyID: number,
+              public tenantID: number
+  ){}
+}
+
+
+export class PublicNotificationDTO
+{
+  constructor(public id: number,
+              public dateOfPublicNotification: string,
+              public username: string,
+              public text: string
   ){}
 }
 

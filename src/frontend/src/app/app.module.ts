@@ -40,6 +40,9 @@ import { routing } from "./app.routes";
 import {TopicViewComponent} from "./components/topicView/topicView.component";
 import { MakesurveyComponent } from './components/tenantPage/makesurvey/makesurvey.component';
 import { DialogComponent } from './components/tenantPage/makesurvey/dialog/dialog.component';
+import { AllSurveysComponent } from './components/tenantPage/all-surveys/all-surveys.component';
+import { FillSurveyComponent } from './components/tenantPage/fill-survey/fill-survey.component';
+import { PublicNotificationComponent } from './components/tenantPage/public-notification/public-notification.component';
 
 
 
@@ -86,7 +89,10 @@ import { DialogComponent } from './components/tenantPage/makesurvey/dialog/dialo
     AddSessionComponent,
     TopicViewComponent,
     MakesurveyComponent,
-    DialogComponent
+    DialogComponent,
+    AllSurveysComponent,
+    FillSurveyComponent,
+    PublicNotificationComponent
   ],
   providers: [
     {

@@ -12,7 +12,7 @@
     <tr class="table-active" *ngFor="let parlament of parlaments; let i = index">
       <td>{{i}}</td>
       <td>{{parlament.buildingAddress.street}} {{parlament.buildingAddress.number}}, {{parlament.buildingAddress.country}} {{parlament.buildingAddress.postalCode}} </td>
-      <th><div class="container"><button type="button" class="btn btn-danger" (click)="goToLink(parlament.id)">Sessions</button></div></th>
+      <th><div class="container"><button type="button" class="btn btn-danger" id="{{parlament.id}}" (click)="goToLink(parlament.id)">Sessions</button></div></th>
 
     </tr>
     </tbody>

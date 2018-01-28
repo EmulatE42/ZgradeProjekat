@@ -1,10 +1,7 @@
 package com.ftn.ZgradeProjekat.controller;
 
 import com.ftn.ZgradeProjekat.domain.*;
-import com.ftn.ZgradeProjekat.domain.DTO.AnswerDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.BuildingDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.QuestionDTO;
-import com.ftn.ZgradeProjekat.domain.DTO.SurveyDTO;
+import com.ftn.ZgradeProjekat.domain.DTO.*;
 import com.ftn.ZgradeProjekat.service.AnswerService;
 import com.ftn.ZgradeProjekat.service.QuestionService;
 import com.ftn.ZgradeProjekat.service.SurveyService;
@@ -115,13 +112,15 @@ public class SurveyController {
      * @param datumi - string koji sadrzi oba datuma ciji se interval trazi
      * @return - lista anketa koja zadovoljava uslov
      */
-    @RequestMapping(value = "/getSurveyBetweenDates", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/getSurveyBetweenDates", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SurveyDTO>> getSurveyBetweenDates(@RequestBody String datumi)
-    { // Datumi 01.01.2017;05.05.2017
+    {
+        datumi = datumi.replace('-','/');
         String[] s = datumi.split(";");
-        String startDateString = s[0];
-        String endDateString = s[1];
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        String startDateString = s[0].replace('\"',' ').trim();
+        String endDateString = s[1].replace('\"',' ').trim();
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date startDate = null;
         Date endDate = null;
         try {
@@ -129,8 +128,7 @@ public class SurveyController {
             endDate = df.parse(endDateString);
             String newDateString = df.format(startDate);
             String newDateString2 = df.format(endDate);
-            System.out.println(newDateString);
-            System.out.println(newDateString2);
+
         } catch (ParseException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
@@ -217,7 +215,6 @@ public class SurveyController {
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<QuestionDTO> addQuesiton(@RequestBody QuestionDTO questionDTO)
     {
-
         QuestionDTO saved = questionService.save(questionDTO);
         if(saved == null)
         {
@@ -246,6 +243,44 @@ public class SurveyController {
         return new ResponseEntity<>(true, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/updateAnswer", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> updateAnswer(@RequestBody String s)
+    {
 
+        Long a,id;
+        String temp[] = s.split(";");
+
+        a = Long.parseLong(temp[0].replace('\"',' ').trim());
+        id = Long.parseLong(temp[1].replace('\"',' ').trim());
+
+        answerService.updateAnswer(a,id);
+
+
+        return new ResponseEntity<>(true, HttpStatus.CREATED);
+    }
+
+
+    @RequestMapping(value = "/addFilledSurvey", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FilledSurveyDTO> addFilledSurvey(@RequestBody FilledSurveyDTO filledSurveyDTO)
+    {
+
+        FilledSurveyDTO saved = surveyService.save(filledSurveyDTO);
+        if(saved == null)
+        {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/getAllFilledSurveys/{surveyId}", method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<SurveyDTO>> getAllFilledSurveys(@PathVariable("surveyId") Long id)
+    {
+
+        List<SurveyDTO>  allFilledSurveys = this.surveyService.getAllFilledSurveys(id);
+        if(allFilledSurveys == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(allFilledSurveys, HttpStatus.OK);
+    }
 
 }
