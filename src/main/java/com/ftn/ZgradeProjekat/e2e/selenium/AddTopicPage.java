@@ -23,6 +23,12 @@ public class AddTopicPage {
     @FindBy(id="addTopic")
     private WebElement addTopic;
 
+    @FindBy(id="like_1")
+    private WebElement like;
+
+    @FindBy(id="dislike_1")
+    private WebElement dislike;
+
 
     public AddTopicPage(WebDriver driver) {
         this.driver = driver;
@@ -30,7 +36,7 @@ public class AddTopicPage {
 
     public void ensureIsDisplayed() {
         //wait for add button to be present
-        (new WebDriverWait(driver, 20))
+        (new WebDriverWait(driver, 30))
                 .until(ExpectedConditions.visibilityOf(addTopic));
     }
 

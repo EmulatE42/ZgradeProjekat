@@ -15,8 +15,8 @@
       <td>{{topic.description}} </td>
       <td>{{topic.creator.username}} </td>
       <td>
-          <span (click)="like(topic.id)" class="fa fa-thumbs-up" aria-hidden="true"></span> {{topic.pos_votes}}
-          <span (click)="dislike(topic.id)" class="fa fa-thumbs-down" aria-hidden="true"></span> {{topic.neg_votes}}
+          <span (click)="like(topic.id)" class="fa fa-thumbs-up" aria-hidden="true" id="like_{{topic.id}}"> {{topic.pos_votes}} </span>
+          <span (click)="dislike(topic.id)" class="fa fa-thumbs-down" aria-hidden="true" id="dislike_{{topic.id}}"> {{topic.neg_votes}} </span>
 
 
         <!--<button type="button" class="btn btn-default btn-lg">-->
