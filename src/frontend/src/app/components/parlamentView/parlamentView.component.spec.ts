@@ -49,8 +49,9 @@ describe('ParlamentViewComponent', () => {
         { provide: Router, useValue: routerMock },
       ]
     }).compileComponents().then(() => {
+
       fixture = TestBed.createComponent(ParlamentViewComponent);
-      componentForParlamentViewComponent = fixture.componentInstance;
+      componentForParlamentViewComponent  = fixture.componentInstance;
       parlamentService = TestBed.get(ParlamentService);
       router = TestBed.get(Router);
     });

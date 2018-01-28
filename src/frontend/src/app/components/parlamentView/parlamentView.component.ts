@@ -30,6 +30,6 @@ export class ParlamentViewComponent
 
   goToLink(id: number)
   {
-    this._router.navigate(['/parlament',id,'/sessions']);
+    this._router.navigate(['/parlament',id,'sessions']);
   }
 }
