@@ -1,26 +1,23 @@
 package com.ftn.ZgradeProjekat.e2e.selenium;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import static org.testng.AssertJUnit.assertEquals;
 
 /**
- * Created by Momir on 1/25/2018.
+ * Created by djuro on 1/27/2018.
  */
-public class ParlamentPageTest {
-
+public class LoginPageTest
+{
     private WebDriver browser;
 
-    ParlamentPage parlamentPage;
     LoginPage loginPage;
-    TenantPage tenantPage;
+    AdminPage adminPage;
 
     @BeforeMethod
     public void setupSelenium() {
@@ -30,29 +27,20 @@ public class ParlamentPageTest {
         browser.manage().window().maximize();
         browser.navigate().to("http://localhost:4200");
 
-
         loginPage = PageFactory.initElements(browser, LoginPage.class);
-        parlamentPage = PageFactory.initElements(browser, ParlamentPage.class);
-        tenantPage = PageFactory.initElements(browser, TenantPage.class);
+        adminPage = PageFactory.initElements(browser, AdminPage.class);
     }
 
     @Test
-    public void testSwitchOnSessionPage() {
+    public void testLogin() {
         loginPage.ensureIsDisplayed();
 
-        loginPage.getInputUsername().clear();
-        loginPage.getInputUsername().sendKeys("aaa");
-        loginPage.getInputPassword().clear();
-        loginPage.getInputPassword().sendKeys("aaa");
+        loginPage.setUsername("a");
+        loginPage.setInputPassword("a");
         loginPage.getButton().click();
 
-        tenantPage.ensureIsDisplayed();
-        tenantPage.getParlamentViewLink().click();
-
-        parlamentPage.ensureIsDisplayed();
-        parlamentPage.getButtonToSessions().click();
-
-        assertEquals("http://localhost:4200/parlament/-1/sessions", browser.getCurrentUrl());
+        adminPage.ensureIsDisplayed();
+        assertEquals("http://localhost:4200/adminPage", browser.getCurrentUrl());
     }
 
     @AfterMethod

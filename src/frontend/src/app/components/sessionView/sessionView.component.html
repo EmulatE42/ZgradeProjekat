@@ -24,7 +24,7 @@
         <ng-template #no><b> - </b></ng-template>
         <ng-template #yes><div *ngIf="isPassedSession(session.id); then pass else npass"></div></ng-template>
 
-        <ng-template #pass><button type="button" class="btn btn-danger" (click)="initSessionID(session.id)" data-toggle="modal" data-target="#myModal">Upload record</button></ng-template>
+        <ng-template #pass><button type="button" class="btn btn-danger" (click)="initSessionID(session.id)" id="{{session.id}}" data-toggle="modal" data-target="#myModal">Upload record</button></ng-template>
         <ng-template #npass><b> - </b></ng-template>
       </td>
     </tr>
@@ -34,7 +34,7 @@
       <th></th>
       <th></th>
       <th></th>
-      <th><div class="container"><button type="button" class="btn btn-success" (click)="goToAddNewSession()">Add new</button></div></th>
+      <th><div class="container"><button type="button" class="btn btn-success" id="newSession" (click)="goToAddNewSession()">Add new</button></div></th>
     </tr>
     </tbody>
   </table>
@@ -63,8 +63,8 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="uploadRecord()" data-dismiss="modal">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="uploadRecord()" id="saveRecord" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Close</button>
       </div>
 
     </div>

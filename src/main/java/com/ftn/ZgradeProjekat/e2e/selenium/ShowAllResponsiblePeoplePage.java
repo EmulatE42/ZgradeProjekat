@@ -8,28 +8,27 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
 /**
- * Created by Momir on 1/25/2018.
+ * Created by djuro on 1/27/2018.
  */
 @Getter
-public class ParlamentPage {
-
+public class ShowAllResponsiblePeoplePage
+{
     private WebDriver driver;
 
     @FindBy(id="-1")
-    private WebElement buttonToSessions;
+    private WebElement deleteButton;
 
-    public ParlamentPage(WebDriver driver) {
+    @FindBy(id="Logout1")
+    private WebElement logout;
+
+    public ShowAllResponsiblePeoplePage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void ensureIsDisplayed() {
         //wait for add button to be present
         (new WebDriverWait(driver, 10))
-                //.until(ExpectedConditions.visibilityOfElementLocated(By.id("parliamentTable")));
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("-1")));
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("showAllResponsiblePeople")));
     }
-
 }
