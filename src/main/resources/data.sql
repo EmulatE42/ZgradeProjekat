@@ -29,7 +29,10 @@ INSERT INTO user_authority(
 INSERT INTO parliament(parliament_id) VALUES (-1);
 
 INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
-  VALUES (-1, '2017-11-24 01:00:00', 'https://docs.google.com/document/d/1LG2YtbGc_R5C3tcXuRIcGYEV3GxQwnbRXZAWDjyJzls/edit', 'Nesto', -3, -1);
+  VALUES (-1, '2017-11-24 20:00:00', 'https://docs.google.com/document/d/1LG2YtbGc_R5C3tcXuRIcGYEV3GxQwnbRXZAWDjyJzls/edit', 'Nesto', -3, -1);
+
+INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
+  VALUES (1, '2018-01-27 21:00:00', null, null, -3, -1);
 
 INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
   VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, 0, -3, -1);
