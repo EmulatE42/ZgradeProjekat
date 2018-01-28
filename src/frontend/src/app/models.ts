@@ -233,3 +233,21 @@ export class AnswerDTO
   ){}
 }
 
+export class FilledSurveyDTO
+{
+  constructor(public id: number,
+              public surveyID: number,
+              public tenantID: number
+  ){}
+}
+
+
+export class PublicNotificationDTO
+{
+  constructor(public id: number,
+              public dateOfPublicNotification: string,
+              public username: string,
+              public text: string
+  ){}
+}
+

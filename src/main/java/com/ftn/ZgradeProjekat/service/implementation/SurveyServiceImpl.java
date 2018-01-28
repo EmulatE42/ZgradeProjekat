@@ -1,8 +1,11 @@
 package com.ftn.ZgradeProjekat.service.implementation;
 
+import com.ftn.ZgradeProjekat.domain.DTO.FilledSurveyDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.SurveyDTO;
+import com.ftn.ZgradeProjekat.domain.FilledSurvey;
 import com.ftn.ZgradeProjekat.domain.Survey;
 import com.ftn.ZgradeProjekat.domain.Tenant;
+import com.ftn.ZgradeProjekat.repository.FilledSurveyRepository;
 import com.ftn.ZgradeProjekat.repository.QuestionRepository;
 import com.ftn.ZgradeProjekat.repository.SurveyRepository;
 import com.ftn.ZgradeProjekat.repository.UserRepository;
@@ -29,7 +32,7 @@ public class SurveyServiceImpl implements SurveyService{
     SurveyRepository surveyRepository;
 
     @Autowired
-    QuestionRepository questionRepository;
+    FilledSurveyRepository filledSurveyRepository;
 
     /**
      *
@@ -81,9 +84,8 @@ public class SurveyServiceImpl implements SurveyService{
     @Override
     public SurveyDTO getById(Long id) {
 
-        System.out.println("Dobio sam " + id);
         Survey s = surveyRepository.findOne(id);
-        System.out.println("vracam sam " + s.getId());
+
         return new SurveyDTO(s);
     }
 
@@ -100,7 +102,7 @@ public class SurveyServiceImpl implements SurveyService{
         for (Survey s : surveys)
         {
 
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             Date date = null;
             try {
                 date = df.parse(s.getDateOfSurvey());
@@ -108,7 +110,7 @@ public class SurveyServiceImpl implements SurveyService{
 
                 System.out.println(newDateString);
             } catch (ParseException e) {
-                System.out.println("NE SME OVO");
+
             }
             if (date.getTime() >= begin.getTime() && date.getTime() <= end.getTime())
             {
@@ -116,6 +118,31 @@ public class SurveyServiceImpl implements SurveyService{
             }
         }
         return ret;
+    }
+
+    @Override
+    public List<SurveyDTO> getAllFilledSurveys(Long tenantID) {
+        List<Survey> svi = surveyRepository.findAll();
+        List<FilledSurvey> sviP = filledSurveyRepository.findAll();
+        List<SurveyDTO> rez = new ArrayList<>();
+
+        for (Survey s : svi)
+        {
+            for (FilledSurvey fs : sviP)
+            {
+                if (fs.getTenantID().equals(tenantID) && s.getId().equals(fs.getSurveyID()))
+                {
+                    rez.add(new SurveyDTO(s));
+                }
+            }
+        }
+        return rez;
+    }
+
+    @Override
+    public FilledSurveyDTO save(FilledSurveyDTO filledSurveyDTO) {
+        filledSurveyRepository.save(new FilledSurvey(filledSurveyDTO));
+        return filledSurveyDTO;
     }
 
 }

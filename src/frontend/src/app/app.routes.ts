@@ -28,6 +28,7 @@ import {TopicViewComponent} from "./components/topicView/topicView.component";
 import {MakesurveyComponent} from "./components/tenantPage/makesurvey/makesurvey.component";
 import {AllSurveysComponent} from "./components/tenantPage/all-surveys/all-surveys.component";
 import {FillSurveyComponent} from "./components/tenantPage/fill-survey/fill-survey.component";
+import {PublicNotificationComponent} from "./components/tenantPage/public-notification/public-notification.component";
 
 const appRoutes : Routes =
   [
@@ -138,6 +139,10 @@ const appRoutes : Routes =
     {
       path: "fillSurvey/:p1",
       component: FillSurveyComponent
+    },
+    {
+      path: "publicNotifications",
+      component: PublicNotificationComponent
     }
   ];
 

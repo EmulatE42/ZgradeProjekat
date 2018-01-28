@@ -43,9 +43,7 @@ public class Survey
 
     public Survey(SurveyDTO surveyDTO)
     {
-        System.out.println("UPISAO BIH OVO " + this.id);
-        System.out.println("DRUGI JE NULL 99 POSTO" + surveyDTO.getId());
-        System.out.println();
+
         this.questions = new HashSet<>();
         this.description = surveyDTO.getDescription();
         this.dateOfSurvey = surveyDTO.getDateOfSurvey();

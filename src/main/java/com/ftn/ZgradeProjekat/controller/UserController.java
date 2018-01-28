@@ -68,7 +68,6 @@ public class UserController
             System.out.println(user.getUserAuthorities().iterator().next().getAuthority().getName());
             if(user.getUserAuthorities().iterator().next().getAuthority().getName().toString().equals("TENANT"))
             {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 Tenant tenant = (Tenant)user;
                 System.out.println(tenant.getIsResponsible());
                 isResponsible = tenant.getIsResponsible();
