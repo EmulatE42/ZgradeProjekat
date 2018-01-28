@@ -15,7 +15,7 @@
       <td>{{i}}</td>
       <td>{{session.date | date:'medium'}} </td>
       <td>{{session.creator.username}} </td>
-      <th><div class="container"><button type="button" class="btn btn-danger" (click)="goToListOfTopics(session.id)">Topics</button></div></th>
+      <th><div class="container"><button type="button" class="btn btn-danger" id="topics_{{session.id}}" (click)="goToListOfTopics(session.id)">Topics</button></div></th>
       <td> <div *ngIf="session.record != null; then exists else nexists"></div>
 
         <ng-template #exists><a href={{session.record}}>Document</a></ng-template>
