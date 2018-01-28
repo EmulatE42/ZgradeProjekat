@@ -43,7 +43,7 @@ public class AddTopicTest {
     }
 
     @Test
-    public void testSwitchOnSessionPage() {
+    public void testAddTopic() {
         loginPage.ensureIsDisplayed();
 
         assertTrue(loginPage.getInputPassword().isDisplayed());

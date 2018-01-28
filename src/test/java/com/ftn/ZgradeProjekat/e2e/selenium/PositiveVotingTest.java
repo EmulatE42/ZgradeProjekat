@@ -34,8 +34,8 @@ public class PositiveVotingTest {
         browser.navigate().to("http://localhost:4200");
 
 
-        loginPage = PageFactory.initElements(browser, LoginPage.class);
         sessionPage = PageFactory.initElements(browser, SessionPage.class);
+        loginPage = PageFactory.initElements(browser, LoginPage.class);
         tenantPage = PageFactory.initElements(browser, TenantPage.class);
         parlamentPage = PageFactory.initElements(browser, ParlamentPage.class);
         addTopicPage = PageFactory.initElements(browser, AddTopicPage.class);
@@ -43,7 +43,7 @@ public class PositiveVotingTest {
     }
 
     @Test
-    public void testSwitchOnSessionPage() {
+    public void testPositiveVoting() {
         loginPage.ensureIsDisplayed();
 
         assertTrue(loginPage.getInputPassword().isDisplayed());
