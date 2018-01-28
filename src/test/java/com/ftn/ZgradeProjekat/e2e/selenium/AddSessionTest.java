@@ -43,7 +43,7 @@ public class AddSessionTest {
     }
 
     @Test
-    public void testSwitchOnSessionPage() {
+    public void testAddSession() {
         loginPage.ensureIsDisplayed();
 
         assertTrue(loginPage.getInputPassword().isDisplayed());

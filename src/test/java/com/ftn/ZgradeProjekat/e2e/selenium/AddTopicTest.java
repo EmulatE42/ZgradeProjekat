@@ -15,7 +15,7 @@ import static org.testng.AssertJUnit.assertEquals;
 /**
  * Created by Momir on 1/28/2018.
  */
-public class UploadRecordTest {
+public class AddTopicTest {
 
     private WebDriver browser;
 
@@ -23,7 +23,7 @@ public class UploadRecordTest {
     LoginPage loginPage;
     TenantPage tenantPage;
     ParlamentPage parlamentPage;
-    UploadRecordPage uploadRecordPage;
+    AddTopicPage addTopicPage;
 
     @BeforeMethod
     public void setupSelenium() {
@@ -38,12 +38,12 @@ public class UploadRecordTest {
         sessionPage = PageFactory.initElements(browser, SessionPage.class);
         tenantPage = PageFactory.initElements(browser, TenantPage.class);
         parlamentPage = PageFactory.initElements(browser, ParlamentPage.class);
-        uploadRecordPage = PageFactory.initElements(browser, UploadRecordPage.class);
+        addTopicPage = PageFactory.initElements(browser, AddTopicPage.class);
 
     }
 
     @Test
-    public void testUpdateRecord() {
+    public void testAddTopic() {
         loginPage.ensureIsDisplayed();
 
         assertTrue(loginPage.getInputPassword().isDisplayed());
@@ -65,20 +65,22 @@ public class UploadRecordTest {
 
         sessionPage.ensureIsDisplayed();
         assertEquals("http://localhost:4200/parlament/-1/sessions", browser.getCurrentUrl());
-        sessionPage.getButtonToUploadRecord().click();
+        sessionPage.getButtonToAddTopic().click();
 
 
-        uploadRecordPage.ensureIsDisplayed();
+        addTopicPage.ensureIsDisplayed();
+        assertEquals("http://localhost:4200/parlament/-1/session/2/topics", browser.getCurrentUrl());
+        assertTrue(addTopicPage.getInputDescription().isDisplayed());
+        assertTrue(addTopicPage.getAddTopic().isDisplayed());
+        int noOfTableRows = browser.findElements(By.cssSelector("tr")).size();
 
-        assertTrue(uploadRecordPage.getInputUrl().isDisplayed());
-        assertTrue(uploadRecordPage.getButtonToUploadRecord().isDisplayed());
-        assertTrue(uploadRecordPage.getCloseButton().isDisplayed());
 
-        uploadRecordPage.setInputUrl("https://docs.google.com/document/d/1LG2YtbGc_R5C3tcXuRIcGYEV3GxQwnbRXZAWDjyJzls/edit");
-        uploadRecordPage.getButtonToUploadRecord().click();
+        addTopicPage.setInputDescription("Neka tacka dnevnog reda...");
+        addTopicPage.getAddTopic().click();
 
-        sessionPage.ensureIsDisplayed();
-        assertEquals("http://localhost:4200/parlament/-1/sessions", browser.getCurrentUrl());
+        (new WebDriverWait(browser, 10))
+                .until(ExpectedConditions.numberOfElementsToBe(
+                        By.cssSelector("tr"), noOfTableRows + 1));
 
     }
 

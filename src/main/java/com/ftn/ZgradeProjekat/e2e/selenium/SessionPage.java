@@ -22,6 +22,9 @@ public class SessionPage {
     @FindBy(id="1")
     private WebElement buttonToUploadRecord;
 
+    @FindBy(id="topics_2")
+    private WebElement buttonToAddTopic;
+
 
     public SessionPage(WebDriver driver) {
         this.driver = driver;

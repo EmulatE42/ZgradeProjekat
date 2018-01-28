@@ -34,8 +34,14 @@ INSERT INTO session(id, session_date, session_record, session_timetable, session
 INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
   VALUES (1, '2018-01-27 21:00:00', null, null, -3, -1);
 
+INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
+  VALUES (2, '2018-01-30 21:00:00', null, null, -3, -1);
+
 INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
   VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, 0, -3, -1);
+
+INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
+  VALUES (1, false, 'Da li cemo menjati ulazna vrata?', 0, 0, -3, 2);
 
 INSERT INTO address(
   id, address_city, address_country, address_number, address_postal_code, address_street)
