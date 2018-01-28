@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {AnswerDTO, QuestionDTO, SurveyDTO} from "../../../models";
+import {AnswerDTO, FilledSurveyDTO, QuestionDTO, SurveyDTO} from "../../../models";
 import {SurveyService} from "../../../services/survey.service";
+import {LoggedUtils} from "../../../utils/logged.utils";
 
 @Component({
   selector: 'app-fill-survey',
@@ -108,7 +109,11 @@ export class FillSurveyComponent implements OnInit {
   zavrsi(idAnswera:number)
   {
 
-    this.surveyService.updateAnswer(this.id,idAnswera).subscribe(()=>this.redirektuj());
+    this.surveyService.updateAnswer(this.id,idAnswera).subscribe(()=>this.upisiPopunjeno());
+  }
+  upisiPopunjeno()
+  {
+    this.surveyService.addFilledSurvey(new FilledSurveyDTO(null,this.id,LoggedUtils.getId())).subscribe(()=>this.redirektuj());
   }
   redirektuj()
   {

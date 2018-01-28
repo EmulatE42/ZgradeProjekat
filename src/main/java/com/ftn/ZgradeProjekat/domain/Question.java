@@ -62,7 +62,7 @@ public class Question
         }
         catch (Exception e)
         {
-            System.out.println("NIJE JOS NAPRAVLJENO " + e) ;
+
         }
 
     }

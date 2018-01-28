@@ -59,7 +59,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public void updateAnswer(Long a, Long id) {
-        System.out.println("SALJEM SA  U SERVISU xD " + a + " " + id);
+
         answerRepository.updateAnswer(a,id);
     }
 }

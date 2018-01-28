@@ -174,7 +174,9 @@ INSERT INTO answer(
   answer_id,choiced,rate,text,a1)
   VALUES(-2,'qwe',1,'fgh',-2);
 
-
+INSERT INTO public_notification(
+  public_notificationid, date_public_notification, username, text)
+  VALUES(-1,'31/12/2017','Pera','NEMA VODE LOL XD');
 
 
 
