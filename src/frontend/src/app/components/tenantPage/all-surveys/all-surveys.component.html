@@ -27,10 +27,10 @@
     </td>
     <td>
       <div *ngIf="nalazi(s.id) == false">
-        <button (click)="popuni(s.id)"  class="ha1 btn btn-danger " >Fill survey</button>
+        <button (click)="popuni(s.id)" id="fill" class="ha1 btn btn-danger " >Fill survey</button>
       </div>
       <div *ngIf="nalazi(s.id) == true">
-        <button  class="btn btn-success " disabled >Done</button>
+        <button class="btn btn-success " disabled >Done</button>
       </div>
     </td>
   </tr>

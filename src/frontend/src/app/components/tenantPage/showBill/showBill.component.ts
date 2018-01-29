@@ -20,8 +20,17 @@ export class ShowBillComponent {
     this.tenantService.getBill(this.route.snapshot.params['p1']).subscribe
     (
       (data:Bill) => this.bill = data,
-      error => alert(error)
+      error => alert(error),
+      () => this.total()
     );
+  }
+
+  total()
+  {
+    for (let i = 0 ; i < this.bill.billItemSet.length;i++)
+    {
+      this.ttt+=this.bill.billItemSet[i].amount*this.bill.billItemSet[i].quantity;
+    }
   }
 
   payBill()
