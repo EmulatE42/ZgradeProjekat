@@ -7,7 +7,7 @@
     <input type="text" class="form-control" #titleInput id="title" data-toggle="modal" style="width: 350px;">
 
     <p></p>
-    <button type="button"  (click)=" dodajNovi()" class="btn btn-danger">Add Question</button>
+    <button type="button"  id="dodavanje" (click)=" dodajNovi()" class="btn btn-danger">Add Question</button>
     <div class="my_table">
       <legend>Questions</legend>
       <table class="table table-striped table-hover table-bordered" style="width: 800px;">
@@ -25,7 +25,7 @@
             <p>{{i+1}}</p>
           </td>
           <td>
-            <p><textarea #ta (change)="onChangeText(i,ta.value)"  class="span7" rows = "3" placeholder="Input a question"style="resize:none; width: 200px" required></textarea></p>
+            <p><textarea #ta  id="qt"(change)="onChangeText(i,ta.value)"  class="span7" rows = "3" placeholder="Input a question"style="resize:none; width: 200px" required></textarea></p>
           </td>
           <td>
             <p>
@@ -65,7 +65,7 @@
     </div>
 
   </div>
-  <input type="submit" class="btn btn-primary" (click)="gotovaAnketa(titleInput.value)" >
+  <input type="submit" id="kraj" class="btn btn-primary" (click)="gotovaAnketa(titleInput.value)" >
 
 
 </form>

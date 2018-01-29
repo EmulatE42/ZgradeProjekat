@@ -28,6 +28,8 @@ INSERT INTO user_authority(
 
 INSERT INTO parliament(parliament_id) VALUES (-1);
 
+
+
 INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
   VALUES (-1, '2017-11-24 20:00:00', 'https://docs.google.com/document/d/1LG2YtbGc_R5C3tcXuRIcGYEV3GxQwnbRXZAWDjyJzls/edit', 'Nesto', -3, -1);
 
@@ -136,6 +138,7 @@ INSERT INTO building_responsible_persons(
 INSERT INTO bug(
 	bug_id, bug_date_of_bug, bug_description, bug_finished, bill_id, responsible_firm_id, responsible_person_responsible_person_id, bug_paid)
 	VALUES (-1, '2017-12-03 19:52:14', 'krecenje sobe', false, null, -5,-2, false);
+
 
 INSERT INTO location_bugs(
 	location_location_id, bugs_bug_id)

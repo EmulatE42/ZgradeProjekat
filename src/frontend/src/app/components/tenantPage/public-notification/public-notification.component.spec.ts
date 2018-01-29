@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { PublicNotificationComponent } from './public-notification.component';
 
 describe('PublicNotificationComponent', () => {
