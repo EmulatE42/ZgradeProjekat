@@ -1,0 +1,40 @@
+<p></p>
+<p></p>
+<legend>All public notifications</legend>
+<table class="table table-striped table-hover table-bordered" style="width: 800px;">
+  <thead class="thead-dark">
+  <tr>
+    <th>Number</th>
+    <th>Date of notification</th>
+    <th>Author's username</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="table-active" *ngFor="let n of notifications; let i = index">
+    <td>
+      <p>{{i+1}}</p>
+    </td>
+    <td>
+      <p>{{n.dateOfPublicNotification}}</p>
+    </td>
+    <td>
+      <p>{{n.username}}</p>
+    </td>
+    <td>
+      <p>{{n.text}}</p>
+    </td>
+  </tr>
+  </tbody>
+
+</table>
+
+<p></p>
+<p></p>
+<p></p>
+<legend>Make new public notification</legend>
+<textarea #makeNew id="unos" class="span7" rows = "3" placeholder="Input a description"style="resize:none; width: 400px" required></textarea>
+<p></p>
+<input type="submit" id="izvrsio" class="btn btn-primary" (click)="dodao(makeNew.value)" >
+
+

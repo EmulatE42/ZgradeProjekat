@@ -14,4 +14,5 @@ public interface SessionService {
     Session getSession(Long id);
     boolean deleteSession(Long id);
     List<Session> getSessions();
+    boolean updateRecord(Long id, String record);
 }

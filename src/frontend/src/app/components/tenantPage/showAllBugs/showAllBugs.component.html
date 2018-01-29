@@ -22,7 +22,7 @@
       <td *ngIf="b.paid == false"><span class="badge badge-danger">{{b.paid}}</span></td>
       <td *ngIf="b.finished == true"><span class="badge badge-success">{{b.finished}}</span></td>
       <td *ngIf="b.finished == false"><span class="badge badge-danger">{{b.finished}}</span></td>
-      <th><div class="container"><button type="button" class="btn btn-primary" routerLink="/bug/{{b.id}}" routerLinkActive="active">Open</button></div></th>
+      <th><div class="container"><button id="otvaranje" type="button" class="btn btn-primary" routerLink="/bug/{{b.id}}" routerLinkActive="active">Open</button></div></th>
       <th><div class="container"><button type="button" class="btn btn-danger" (click)="deleteBug(i)">Delete</button></div></th>
       <th><div class="container" *ngIf="b.paid == false && b.finished == true"><button type="button" class="btn btn-danger" routerLink="/showBill/{{b.id}}/{{locationId}}" routerLinkActive="active">Open bill</button></div></th>
     </tr>

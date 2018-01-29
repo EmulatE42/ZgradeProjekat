@@ -25,10 +25,28 @@ public class LoginPage {
     @FindBy(id="loginButton")
     private WebElement button;
 
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     public void ensureIsDisplayed() {
         //wait for add button to be present
-        (new WebDriverWait(driver, 10))
+        (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.visibilityOf(button));
+                //.until(ExpectedConditions.presenceOfElementLocated(
+                //By.id("loginButton")));
+    }
+
+    public void setUsername(String value) {
+        WebElement el = getInputUsername();
+        el.clear();
+        el.sendKeys(value);
+    }
+
+    public void setInputPassword(String value) {
+        WebElement el = getInputPassword();
+        el.clear();
+        el.sendKeys(value);
     }
 
 }

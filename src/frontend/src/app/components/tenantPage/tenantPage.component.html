@@ -1,6 +1,6 @@
 <div class="my_table">
   <legend>All your apartments</legend>
-  <table class="table table-striped table-hover table-bordered">
+  <table class="table table-striped table-hover table-bordered" id="tenantTable">
     <thead class="thead-dark">
     <tr>
       <th>#</th>
@@ -14,7 +14,7 @@
       <td>{{i}}</td>
       <td>{{l.floor}}</td>
       <td>{{l.square}}</td>
-      <th><div class="container"><button type="button" class="btn btn-danger" (click)="goToShowAllBugs(l.locationId)">Bugs</button></div></th>
+      <th><div class="container"><button type="button" id="bugovi" class="btn btn-danger" (click)="goToShowAllBugs(l.locationId)">Bugs</button></div></th>
     </tr>
     </tbody>
   </table>

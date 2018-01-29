@@ -8,8 +8,8 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item active" *ngFor="let link of links">
-        <a *ngIf="link.text != 'Logout'" class="nav-link" routerLink="{{link.routerLink}}" routerLinkActive="active">{{link.text}}</a>
-        <a *ngIf="link.text == 'Logout'" (click)="logout()" class="nav-link" routerLink="{{link.routerLink}}" routerLinkActive="active">{{link.text}}</a>
+        <a *ngIf="link.text != 'Logout'" class="nav-link" routerLink="{{link.routerLink}}" routerLinkActive="active" id="{{link.text}}">{{link.text}}</a>
+        <a *ngIf="link.text == 'Logout'" (click)="logout()" class="nav-link" routerLink="{{link.routerLink}}" routerLinkActive="active" id="{{link.text}}1">{{link.text}}</a>
 
       </li>
 

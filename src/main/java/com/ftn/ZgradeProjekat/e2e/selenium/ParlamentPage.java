@@ -21,9 +21,14 @@ public class ParlamentPage {
     @FindBy(id="-1")
     private WebElement buttonToSessions;
 
+    public ParlamentPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     public void ensureIsDisplayed() {
         //wait for add button to be present
         (new WebDriverWait(driver, 10))
+                //.until(ExpectedConditions.visibilityOfElementLocated(By.id("parliamentTable")));
                 .until(ExpectedConditions.visibilityOfElementLocated(By.id("-1")));
     }
 

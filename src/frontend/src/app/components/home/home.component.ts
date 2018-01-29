@@ -26,7 +26,6 @@ export class HomeComponent
       error => this.badInput(),
       () => {
         this.callEmitter();
-        alert('Radi');
       }
     );
 

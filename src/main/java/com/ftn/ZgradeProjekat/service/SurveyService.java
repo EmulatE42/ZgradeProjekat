@@ -1,6 +1,8 @@
 package com.ftn.ZgradeProjekat.service;
 
+import com.ftn.ZgradeProjekat.domain.DTO.FilledSurveyDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.SurveyDTO;
+import com.ftn.ZgradeProjekat.domain.FilledSurvey;
 import com.ftn.ZgradeProjekat.domain.Survey;
 import com.ftn.ZgradeProjekat.domain.Tenant;
 
@@ -17,5 +19,7 @@ public interface SurveyService {
     List<SurveyDTO> getAllSurveys();
     SurveyDTO getById(Long id);
     List<SurveyDTO> getAllSurveysBetweenDates(Date begin, Date end);
+    List<SurveyDTO> getAllFilledSurveys(Long tenantID);
+    FilledSurveyDTO save(FilledSurveyDTO filledSurveyDTO);
 
 }

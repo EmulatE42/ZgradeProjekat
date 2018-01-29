@@ -34,9 +34,6 @@ public class Answer {
     @Column(name = "choiced")
     private String choiced; // ako je treci tip
 
-    @JsonIgnore
-    @ManyToOne
-    protected Question question1;
 
     public Answer(AnswerDTO answerDTO)
     {

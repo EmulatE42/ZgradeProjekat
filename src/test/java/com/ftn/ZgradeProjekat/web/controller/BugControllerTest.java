@@ -1,7 +1,9 @@
 package com.ftn.ZgradeProjekat.web.controller;
 
+import com.ftn.ZgradeProjekat.TestUtil;
 import com.ftn.ZgradeProjekat.constants.BugConstants;
 import com.ftn.ZgradeProjekat.constants.TopicConstants;
+import com.ftn.ZgradeProjekat.domain.Comment;
 import com.ftn.ZgradeProjekat.domain.DTO.LoginRequestDTO;
 import com.ftn.ZgradeProjekat.domain.DTO.LoginResponseDTO;
 import org.junit.Test;
@@ -11,10 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +27,7 @@ import java.nio.charset.Charset;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -69,5 +75,23 @@ public class BugControllerTest {
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$", hasSize(BugConstants.DB_COUNT_BUGS)));
     }
+
+    @Test
+    public void testGetBug() throws Exception {
+        mockMvc.perform(get(URL_PREFIX + "/getBug/"+(-1)))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(contentType));
+    }
+
+    @Test
+    public void testGetFirm() throws Exception {
+        mockMvc.perform(get(URL_PREFIX + "/getBugsOfFirm/"+(-5)))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(contentType));
+    }
+
+
+
+
 
 }

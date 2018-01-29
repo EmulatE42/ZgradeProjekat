@@ -28,11 +28,22 @@ INSERT INTO user_authority(
 
 INSERT INTO parliament(parliament_id) VALUES (-1);
 
+
+
 INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
-  VALUES (-1, '2017-11-24 01:00:00', 'https://docs.google.com/document/d/1LG2YtbGc_R5C3tcXuRIcGYEV3GxQwnbRXZAWDjyJzls/edit', 'Nesto', -3, -1);
+  VALUES (-1, '2017-11-24 20:00:00', 'https://docs.google.com/document/d/1LG2YtbGc_R5C3tcXuRIcGYEV3GxQwnbRXZAWDjyJzls/edit', 'Nesto', -3, -1);
+
+INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
+  VALUES (1, '2018-01-27 21:00:00', null, null, -3, -1);
+
+INSERT INTO session(id, session_date, session_record, session_timetable, session_user_id, parliament_parliament_id)
+  VALUES (2, '2018-01-30 21:00:00', null, null, -3, -1);
 
 INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
   VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, 0, -3, -1);
+
+INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
+  VALUES (1, false, 'Da li cemo menjati ulazna vrata?', 0, 0, -3, 2);
 
 INSERT INTO address(
   id, address_city, address_country, address_number, address_postal_code, address_street)
@@ -134,6 +145,7 @@ INSERT INTO bug(
 	bug_id, bug_date_of_bug, bug_description, bug_finished, bill_id, responsible_firm_id, responsible_person_responsible_person_id, bug_paid)
 	VALUES (-1, '2017-12-03 19:52:14', 'krecenje sobe', false, null, -5,-2, false);
 
+
 INSERT INTO location_bugs(
 	location_location_id, bugs_bug_id)
 	VALUES (-2, -1);
@@ -147,31 +159,33 @@ INSERT INTO firm_bugs(
 	VALUES (-5, -1);
 
 
-INSERT  INTO survey(
-  survey_id, date_survey, survey_description)
-  VALUES(-1,'2017-12-31','Cistoca');
+INSERT INTO survey(
+  survey_id,building_id, date_survey, survey_description)
+  VALUES(-1,-2,'31/12/2017','Cistoca');
 
 INSERT INTO question(
-  question_id,choices,second_type,question_text,third_type,survey1_survey_id)
+  question_id,choices,second_type,question_text,third_type,q1)
   VALUES(-1,'a,b,c,d',true,'fgh',false,-1);
 
 INSERT INTO question(
-  question_id,choices,second_type,question_text,third_type,survey1_survey_id)
+  question_id,choices,second_type,question_text,third_type,q1)
   VALUES(-2,'1a,1b2,4d4',false,'mozda',true,-1);
 
 INSERT INTO answer(
-  answer_id,choiced,rate,text,question1_question_id)
+  answer_id,choiced,rate,text,a1)
   VALUES(-1,'asd',1,'zxc',-1);
 
 INSERT INTO answer(
-  answer_id,choiced,rate,text,question1_question_id)
+  answer_id,choiced,rate,text,a1)
   VALUES(-3,'zum',2,'muz',-1);
 
 INSERT INTO answer(
-  answer_id,choiced,rate,text,question1_question_id)
+  answer_id,choiced,rate,text,a1)
   VALUES(-2,'qwe',1,'fgh',-2);
 
-
+INSERT INTO public_notification(
+  public_notificationid, date_public_notification, username, text)
+  VALUES(-1,'31/12/2017','Pera','NEMA VODE');
 
 
 

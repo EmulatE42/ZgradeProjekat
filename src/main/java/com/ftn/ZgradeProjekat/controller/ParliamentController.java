@@ -33,7 +33,7 @@ public class ParliamentController {
     /**
      * POST  /add : Create a new parlament.
      *
-     * @param parliament
+     * @param parliament -
      * @return the ResponseEntity with status 201 (Created) and with body the new parliament, or with status 409 (Conflict) if the parliament has already an ID
      */
 
@@ -51,7 +51,7 @@ public class ParliamentController {
     /**
      * GET  /getById/{parlamentId} : Returning a parlament which has parlamentId
      *
-     * @param parlamentId
+     * @param parlamentId -
      * @return the ResponseEntity with status 200 (OK) and with body the new parliament, or with status 404 (Not Found) if the parliament hasn't a parlamentId
      */
 
@@ -69,7 +69,7 @@ public class ParliamentController {
     /**
      * GET  /deleteParlament/{parlamentId} : Deleting a parlament which has parlamentId
      *
-     * @param parlamentId
+     * @param parlamentId -
      * @return the ResponseEntity with status 200 (OK) and with body the new parliament, or with status 404 (Not Found) if the parliament hasn't a parlamentId
      */
 
@@ -102,7 +102,7 @@ public class ParliamentController {
 
     /**
      * GET  /getSessions/{parlamentId} : Returning a list of sessions which contain parlament with parlamentId
-     *
+     * @param parlamentId -
      * @return the ResponseEntity with status 200 (OK) and with body the new Set Session sessions, or with status 404 (Not Found) if the parliament with parlamentId doesn't exist
      */
 

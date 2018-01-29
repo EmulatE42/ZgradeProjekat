@@ -18,4 +18,5 @@ public interface AnswerService {
 
     List<AnswerDTO> getAllAnswers();
 
+    void updateAnswer(Long a,Long id);
 }

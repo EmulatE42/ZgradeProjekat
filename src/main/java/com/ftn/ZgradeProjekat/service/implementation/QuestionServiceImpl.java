@@ -52,7 +52,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<QuestionDTO> getAllQuestions() {
         List<Question> a = questionRepository.findAll();
-        System.out.println("DOBAVIO SMA " + a.size());
+
         List<QuestionDTO> rez = new ArrayList<>();
         for (Question a1 : a)
         {

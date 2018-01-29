@@ -1,6 +1,6 @@
 <div class="my_table">
   <legend>Responsible people</legend>
-  <table class="table table-striped table-hover table-bordered">
+  <table class="table table-striped table-hover table-bordered" id="showAllResponsiblePeople">
     <thead class="thead-dark">
     <tr>
       <th>#</th>
@@ -16,7 +16,7 @@
       <td *ngIf="rp.isTenant == false">{{rp.institutionDTO.username}}</td>
 
       <td>{{rp.description}}</td>
-      <th><div class="container"><button type="button" class="btn btn-danger" (click)="delete(rp.id,i)">Delete</button></div></th>
+      <th><div class="container"><button type="button" class="btn btn-danger" (click)="delete(rp.id,i)" id="{{rp.id}}">Delete</button></div></th>
     </tr>
     </tbody>
   </table>

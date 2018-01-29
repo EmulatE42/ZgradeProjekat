@@ -1,0 +1,45 @@
+<p></p>
+<table class="table table-striped table-hover table-bordered" style="width: 800px;">
+  <thead class="thead-dark">
+  <tr>
+    <th>Number</th>
+    <th>Text of Question</th>
+    <th>Answer</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="table-active" *ngFor="let q of questions; let i = index">
+    <td>
+      <p>{{i+1}}</p>
+    </td>
+    <td>
+      <p>{{q.text}}</p>
+    </td>
+    <td>
+
+       <div *ngIf="tip(q) == 1">
+         <textarea #t (change)="onChangeTa(i,t.value)"  class="span7" rows = "3" placeholder="Input a answer"style="resize:none; width: 200px" required></textarea>
+
+       </div>
+
+      <div *ngIf="tip(q) == 2">
+        <p>
+          <select style="width: 250px;" #selectedMark class="form-control" (change)="onChangeM(i,selectedMark.value)"  >
+            <option *ngFor="let o of ocene" [value]="o" >{{o}}</option>
+          </select>
+        </p>
+      </div>
+      <div *ngIf="tip(q) == 3">
+        <p>
+          <select style="width: 250px;" #selectedChoice class="form-control"  (change)="onChangeC(i,selectedChoice.value)" >
+            <option *ngFor="let c of napraviListu(q.choices)" [value]="c" >{{c}}</option>
+          </select>
+        </p>
+      </div>
+
+    </td>
+  </tr>
+  </tbody>
+
+</table>
+<input type="submit" id="filled" class="btn btn-primary" (click)="popunjenaAnketa()" >
