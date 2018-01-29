@@ -34,7 +34,7 @@ export class AddSessionComponent
 
   addSession()
   {
-    var parlament = new Parliament(this.route.snapshot.params['p1'], null)
+    var parlament = new ParliamentDTO(this.route.snapshot.params['p1'], null, null)
     var d = new Date(this.date + ' ' + this.time);
     console.log('Datum: ' + d);
     this.session = new SessionDTO(null,d,null,null,null,LoggedUtils.getUser(), parlament);

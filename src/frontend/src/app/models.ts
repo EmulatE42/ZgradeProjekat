@@ -152,7 +152,7 @@ export class SessionDTO
                public record:string,
                public timetable: string,
                public creator: UserDTO,
-               public parliament: Parliament
+               public parliament: ParliamentDTO
   ) {}
 }
 

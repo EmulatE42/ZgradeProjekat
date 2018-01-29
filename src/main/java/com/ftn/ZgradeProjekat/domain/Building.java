@@ -60,6 +60,7 @@ public class Building
     {
         this.dateOfConstruction = buildingDTO.getDateOfConstruction();
         this.address = buildingDTO.getAdress();
+        this.parliament = new Parliament(buildingDTO.getParliamentDTO().getId(), null);
     }
 
     public void addResponsiblePerson(ResponsiblePerson responsiblePerson)

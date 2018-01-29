@@ -43,6 +43,15 @@ INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_vo
   VALUES (-1, false, 'Da li cemo kreciti zgradu?', 0, 0, -3, -1);
 
 INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
+  VALUES (2, false, 'Tacka dnevnog reda 1', 0, 0, -3, -1);
+
+INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
+  VALUES (3, false, 'Tacka dnevnog reda 2', 0, 0, -3, -1);
+
+INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
+  VALUES (4, false, 'Tacka dnevnog reda 3', 0, 0, -3, -1);
+
+INSERT INTO topic(topic_id, topic_accepted, topic_description, pos_votes, neg_votes, topic_user_id, session_id)
   VALUES (1, false, 'Da li cemo menjati ulazna vrata?', 0, 0, -3, 2);
 
 INSERT INTO address(

@@ -43,8 +43,10 @@ public class ParliamentController {
         Parliament saved = parliamentService.addParliament(parliament);
         if(saved == null)
         {
+            System.out.println("Nije sacuvalo");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+        System.out.println("Sacuvalo je");
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
