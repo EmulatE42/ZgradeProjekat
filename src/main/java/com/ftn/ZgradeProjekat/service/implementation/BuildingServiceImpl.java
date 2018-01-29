@@ -127,11 +127,14 @@ public class BuildingServiceImpl implements BuildingService
                         if(user instanceof Tenant)
                         {
                             ((Tenant) user).removeApartment((Apartment) location);
+                            ((Tenant) user).setIsResponsible(false);
+                            ((Tenant) user).setIsBuildingmManager(false);
                         }
                     }
                     //((Tenant)((Apartment) location).getOwner()).setApartment(null);
                 }
             }
+            buildingForDelete.setResponsiblePersons(null);
             buildingRepository.delete(buildingForDelete);
             deleted = true;
         }
@@ -262,6 +265,26 @@ public class BuildingServiceImpl implements BuildingService
             Building building = this.buildingRepository.findById(buildingId);
             building.removeResponsiblePerson(deletedResponsiblePerson);
             this.buildingRepository.save(building);
+            if(deletedResponsiblePerson.getIsTenant())
+            {
+                Tenant tenant = deletedResponsiblePerson.getTenant();
+                List<ResponsiblePerson> rp = this.responsiblePersonRepository.findAll();
+                int a=0;
+                for(ResponsiblePerson aa : rp)
+                {
+                    if(aa.getIsTenant())
+                    {
+                        if(aa.getTenant().getUsername().equals(tenant.getUsername()))
+                        {
+                            a = a+1;
+                        }
+                    }
+                }
+                if(a==1)
+                {
+                    tenant.setIsResponsible(false);
+                }
+            }
             this.responsiblePersonRepository.delete(deletedResponsiblePerson);
             deleted = true;
         }
