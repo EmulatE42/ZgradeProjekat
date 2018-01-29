@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import {LoggedUtils} from "../utils/logged.utils";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Parliament} from "../models";
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'content-type': 'application/json' })
+};
 
 @Injectable()
 export class ParlamentService {
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   getParlaments() {
     let tenantId = LoggedUtils.getId();
-    var headers = new Headers();
-    console.log("Token:   " + LoggedUtils.getToken());
-    headers.append("X-Auth-Token", LoggedUtils.getToken());
-    return this.http.get("http://localhost:8080/user/getParliamentsOfTenant/" + tenantId, {headers: headers})
-      .map(res => res.json());
+    return this.http.get("http://localhost:8080/user/getParliamentsOfTenant/" + tenantId);
+  }
+
+  addParlament(parlament: Parliament) {
+    var param = JSON.stringify(parlament);
+    return this.http.post("http://localhost:8080/parlament/add", param, httpOptions);
   }
 
 

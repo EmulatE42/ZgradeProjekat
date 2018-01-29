@@ -1,5 +1,6 @@
 package com.ftn.ZgradeProjekat.service;
 
+import com.ftn.ZgradeProjekat.domain.DTO.ParliamentDTO;
 import com.ftn.ZgradeProjekat.domain.Parliament;
 
 import java.util.List;
