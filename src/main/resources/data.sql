@@ -185,7 +185,7 @@ INSERT INTO answer(
 
 INSERT INTO public_notification(
   public_notificationid, date_public_notification, username, text)
-  VALUES(-1,'31/12/2017','Pera','NEMA VODE LOL XD');
+  VALUES(-1,'31/12/2017','Pera','NEMA VODE');
 
 
 
