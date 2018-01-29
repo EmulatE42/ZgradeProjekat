@@ -36,7 +36,7 @@ public class SessionController {
     /**
      * POST  /add : Create a new session.
      *
-     * @param session
+     * @param session -
      * @return the ResponseEntity with status 201 (Created) and with body the new session, or with status 409 (Conflict) if the session has already an ID
      */
 
@@ -55,7 +55,7 @@ public class SessionController {
     /**
      * GET  /getById/{sessionId} : Returning a session which has sessionId
      *
-     * @param sessionId
+     * @param sessionId -
      * @return the ResponseEntity with status 200 (OK) and with body the new session, or with status 404 (Not Found) if the session hasn't a sessionId
      */
 
@@ -74,7 +74,7 @@ public class SessionController {
     /**
      * GET  /deleteSession/{sessionId} : Deleting a session which has a sessionId
      *
-     * @param sessionId
+     * @param sessionId -
      * @return the ResponseEntity with status 200 (OK) and with body the new session, or with status 404 (Not Found) if the session hasn't a sessionId
      */
 

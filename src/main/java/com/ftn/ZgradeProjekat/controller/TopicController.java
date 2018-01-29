@@ -145,7 +145,7 @@ public class TopicController {
 
     /**
      * GET  /getTopicsBySessionId/{sessionId} : Returning a list of topics which contain a session with a sessionID
-     *
+     *@param sessionId -
      * @return the ResponseEntity with status 200 (OK) and with body the new topics, or with status 404 (Not Found) if the session doesn't exist with sessionID
      */
 
